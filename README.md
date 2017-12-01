@@ -3,8 +3,8 @@ https://confluence.mdgms.com/display/SSPDRS/Home
 
 ## Prerequisites ##
 - The current LTS version of [Node](https://nodejs.org/en/download/) for your platform
-- Ionic
-- Cordova
+- Ionic CLI
+- Cordova CLI
 
 > npm install -g ionic cordova
 
