@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
-import { ActionSheetController, NavController } from 'ionic-angular';
+import { ActionSheetController, NavController, Tabs } from 'ionic-angular';
 
 import { FundsPage } from '../funds/funds';
 import { TrackerPage } from '../tracker/tracker';
@@ -16,6 +16,7 @@ import { ContactPage } from '../contact/contact';
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
+  @ViewChild('myTabs') tabRef: Tabs;
 
   tab1Root = FundsPage;
   tab2Root = TrackerPage;
@@ -25,6 +26,7 @@ export class TabsPage {
   constructor(public actionSheetCtl: ActionSheetController,
     public navCtrl: NavController) {
 
+    // TODO: setup subscriptions for 3DTouch Navigation Events
   }
 
   more() {
@@ -71,6 +73,7 @@ export class TabsPage {
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');
+            //this.tabRef.select(1);
           }
         }
       ]
