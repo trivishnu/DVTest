@@ -7,12 +7,12 @@
 </ion-header>
 
 <ion-content>
-  <ion-slides pager="true" effect="fade" style="height: 30%">
+  <ion-slides pager="true" effect="fade" style="height: 30%" *ngIf="showSlides">
     <ion-slide style="background-image: url('assets/imgs/card-sf.png'); background-size: 100%;">
       <h2>Investing Techniques Intro</h2>
     </ion-slide>
 
-    <ion-slide style="background-color: blue">
+    <ion-slide style="background-image: url('assets/imgs/card-saopaolo.png'); background-size: 100%;">
       <h2>Document Library Intro</h2>
     </ion-slide>
   </ion-slides>

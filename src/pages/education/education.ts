@@ -21,10 +21,16 @@ export class EducationPage {
     "XLE - Energy Documents"
   ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public showSlides: boolean = false;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams) {
+
   }
 
   ionViewDidLoad() {
+    this.showSlides = true;
     console.log('ionViewDidLoad EducationPage');
   }
 
@@ -35,4 +41,5 @@ export class EducationPage {
   librarySelected() {
     this.navCtrl.push(ContactPage);
   }
+
 }
