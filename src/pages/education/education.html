@@ -7,19 +7,9 @@
 </ion-header>
 
 <ion-content>
-  <ion-slides pager="true" effect="fade" style="height: 400px">
-    <ion-slide>
-      <ion-card>
-        <img src="assets/imgs/card-sf.png"/>
-        <ion-card-content>
-          <ion-card-title>
-            Sector SPDRs Investor Education
-          </ion-card-title>
-          <p>
-            Sector SPDR ETFs complement a variety of investing techniques.
-          </p>
-        </ion-card-content>
-      </ion-card>
+  <ion-slides pager="true" effect="fade" style="height: 30%">
+    <ion-slide style="background-image: url('assets/imgs/card-sf.png'); background-size: 100%;">
+      <h2>Investing Techniques Intro</h2>
     </ion-slide>
 
     <ion-slide style="background-color: blue">
@@ -27,15 +17,15 @@
     </ion-slide>
   </ion-slides>
   <ion-item-group>
-      <ion-item-divider color="light">Investing Techniques</ion-item-divider>
-      <button ion-item *ngFor="let technique of techniques" (click)="techniqueSelected(technique)">
+    <ion-item-divider color="light">Investing Techniques</ion-item-divider>
+    <button ion-item *ngFor="let technique of techniques" (click)="techniqueSelected(technique)">
         {{ technique }}
       </button>
-    </ion-item-group>
-    <ion-item-group>
-        <ion-item-divider color="light">Document Library (PDFs)</ion-item-divider>
-        <button ion-item *ngFor="let library of libraries" (click)="librarySelected(library)">
+  </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider color="light">Document Library (PDFs)</ion-item-divider>
+    <button ion-item *ngFor="let library of libraries" (click)="librarySelected(library)">
           {{ library }}
         </button>
-      </ion-item-group>
+  </ion-item-group>
 </ion-content>

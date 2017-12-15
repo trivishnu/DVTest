@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams , ModalController} from 'ionic-angular';
 
-/**
- * Generated class for the WatchlistPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { NotificationsPage } from '../notifications/notifications';
+import { LoginPage } from '../login/login';
 
 @IonicPage()
 @Component({
@@ -15,11 +11,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class WatchlistPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WatchlistPage');
+  }
+
+  notifications() {
+    let notificationsModal = this.modalCtrl.create(NotificationsPage);
+    notificationsModal.present();
+  }
+
+  logIn() {
+    let loginModal = this.modalCtrl.create(LoginPage);
+    loginModal.present();
   }
 
 }

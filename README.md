@@ -25,6 +25,12 @@ these commands in order.
 
 > ionic cordova run ios
 
+In order to list out the simulator options use the following command.
+> ionic cordova emulate ios --list
+
+Then you can run with a specific simulator.
+> ionic cordova run ios --target="iPad-Air-2, 11.2"
+
 ## Debug Settings
 If built with debug settings enabled you can go into the app settings and point the screener and the filter urls to a local dev server or to any of the various environments where those components get deployed.
 

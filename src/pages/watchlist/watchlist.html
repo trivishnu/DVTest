@@ -1,6 +1,17 @@
 <ion-header>
 
   <ion-navbar>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="notifications()">
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logIn()">
+        <ion-icon name="log-in"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>Watchlist</ion-title>
   </ion-navbar>
 
@@ -10,5 +21,7 @@
   <p>
     This view would show the watchlist if the user is logged in or include
     instructions on logging in or registering.
+
+    The login button could change to a log out button if the user is already logged in.
   </p>
 </ion-content>
