@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the EducationPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ContactPage } from '../contact/contact';
 
 @IonicPage()
 @Component({
@@ -14,6 +9,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'education.html',
 })
 export class EducationPage {
+  public techniques: Array<string> = [
+    "Customize S&P 500",
+    "Equal Sector Strategy",
+    "Tax Strategies"
+  ];
+
+  public libraries: Array<string> = [
+    "All General",
+    "XLY - Consumer Discresionary",
+    "XLE - Energy Documents"
+  ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -22,4 +28,11 @@ export class EducationPage {
     console.log('ionViewDidLoad EducationPage');
   }
 
+  techniqueSelected() {
+    this.navCtrl.push(ContactPage);
+  }
+
+  librarySelected() {
+    this.navCtrl.push(ContactPage);
+  }
 }
