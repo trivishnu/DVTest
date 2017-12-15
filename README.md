@@ -29,3 +29,6 @@ these commands in order.
 If built with debug settings enabled you can go into the app settings and point the screener and the filter urls to a local dev server or to any of the various environments where those components get deployed.
 
 Production build command should be 'ionic cordova build --prod' in order to remove angular debug mode.
+
+## Notes
+Uses Chart.js: http://www.chartjs.org/samples/latest/

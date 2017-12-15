@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { SpdrApp } from './app.component';
+import { ChartsModule } from 'ng2-charts';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -37,7 +38,8 @@ import { ThreeDeeTouch } from '@ionic-native/three-dee-touch';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(SpdrApp)
+    IonicModule.forRoot(SpdrApp),
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
