@@ -21,8 +21,6 @@ export class EducationPage {
     "XLE - Energy Documents"
   ];
 
-  public showSlides: boolean = false;
-
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams) {
@@ -30,7 +28,6 @@ export class EducationPage {
   }
 
   ionViewDidLoad() {
-    this.showSlides = true;
     console.log('ionViewDidLoad EducationPage');
   }
 
