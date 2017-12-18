@@ -28,7 +28,6 @@ export class EducationPage {
   }
 
   ionViewDidLoad() {
-    this.navCtrl.parent.select(2);
     console.log('ionViewDidLoad EducationPage');
   }
 
