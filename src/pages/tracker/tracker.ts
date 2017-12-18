@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the TrackerPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { TapticEngine } from '@ionic-native/taptic-engine';
+
 
 @IonicPage()
 @Component({
@@ -33,14 +29,20 @@ export class TrackerPage {
 
   // events
   public chartClicked(e:any):void {
-    console.log(e);
+    //console.log(e);
+    this.taptic.selection().
+      then(() => console.log("taptic OK")).
+      catch(() => console.log("ERROR!"));
   }
 
   public chartHovered(e:any):void {
     console.log(e);
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private taptic: TapticEngine) {
   }
 
   ionViewDidLoad() {
