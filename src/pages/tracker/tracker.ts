@@ -11,10 +11,10 @@ import { TapticEngine } from '@ionic-native/taptic-engine';
 })
 export class TrackerPage {
   // Doughnut
-  public doughnutChartLabels:string[] = ['Sector 1', 'Sector 2', 'Sector 3'];
-  public doughnutChartData:number[] = [350, 450, 100];
-  public doughnutChartType:string = 'doughnut';
-  public doughnutChartColors:Array<any> = [{
+  public doughnutChartLabels: string[] = ['Sector 1', 'Sector 2', 'Sector 3'];
+  public doughnutChartData: number[] = [350, 450, 100];
+  public doughnutChartType: string = 'doughnut';
+  public doughnutChartColors: Array<any> = [{
     backgroundColor: [
       "#b8436d",
       "#00d9f9",
@@ -25,17 +25,18 @@ export class TrackerPage {
       "#000000",
       "#000000"
     ]
-    }];
+  }];
+  public doughnutLegendDisplayed: boolean = false;
 
   // events
-  public chartClicked(e:any):void {
+  public chartClicked(e: any): void {
     //console.log(e);
     this.taptic.selection().
       then(() => console.log("taptic OK")).
       catch(() => console.log("ERROR!"));
   }
 
-  public chartHovered(e:any):void {
+  public chartHovered(e: any): void {
     console.log(e);
   }
 

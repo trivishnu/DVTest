@@ -16,6 +16,7 @@ import { SearchPage } from '../pages/search/search';
 import { SummaryPage } from '../pages/summary/summary';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { LoginPage } from '../pages/login/login';
+import { DetailPage } from '../pages/detail/detail';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -38,7 +39,8 @@ import { ThreeDeeTouch } from '@ionic-native/three-dee-touch';
     SummaryPage,
     TabsPage,
     NotificationsPage,
-    LoginPage
+    LoginPage,
+    DetailPage
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,8 @@ import { ThreeDeeTouch } from '@ionic-native/three-dee-touch';
     SummaryPage,
     TabsPage,
     NotificationsPage,
-    LoginPage
+    LoginPage,
+    DetailPage
   ],
   providers: [
     StatusBar,

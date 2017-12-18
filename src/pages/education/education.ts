@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { ContactPage } from '../contact/contact';
+import { DetailPage } from '../detail/detail';
 
 @IonicPage()
 @Component({
@@ -28,15 +28,26 @@ export class EducationPage {
   }
 
   ionViewDidLoad() {
+    this.navCtrl.parent.select(2);
     console.log('ionViewDidLoad EducationPage');
   }
 
-  techniqueSelected() {
-    this.navCtrl.push(ContactPage);
+  // Workaround for ionic issue redrawing slides
+  // https://github.com/ionic-team/ionic/issues/11216
+  ionViewDidEnter() {
+    try {
+      let event = document.createEvent('HTMLEvents');
+      event.initEvent('resize', true, false);
+      window.dispatchEvent(event);
+    } catch (e) { }
   }
 
-  librarySelected() {
-    this.navCtrl.push(ContactPage);
+  techniqueSelected(selection) {
+    this.navCtrl.push(DetailPage, {title: selection});
+  }
+
+  librarySelected(selection) {
+    this.navCtrl.push(DetailPage, {title: selection});
   }
 
 }

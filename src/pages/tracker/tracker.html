@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Tracker</ion-title>
+    <ion-title>Sector Tracker</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -13,6 +13,7 @@
                   [labels]="doughnutChartLabels"
                   [chartType]="doughnutChartType"
                   [colors]="doughnutChartColors"
+                  [legend]="doughnutLegendDisplayed"
                   (chartHover)="chartHovered($event)"
                   (chartClick)="chartClicked($event)"></canvas>
     </div>
