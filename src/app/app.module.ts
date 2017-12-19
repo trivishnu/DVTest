@@ -24,6 +24,7 @@ import { AppVersion } from '@ionic-native/app-version';
 import { TapticEngine } from '@ionic-native/taptic-engine';
 import { Network } from '@ionic-native/network';
 import { ThreeDeeTouch } from '@ionic-native/three-dee-touch';
+import { Push } from '@ionic-native/push';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { ThreeDeeTouch } from '@ionic-native/three-dee-touch';
     TapticEngine,
     Network,
     ThreeDeeTouch,
+    Push,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
