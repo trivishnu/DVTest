@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.sector.spdr" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.sector.spdrs" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Sector SPDRs</name>
     <description>Sector SPDRs Mobile App</description>
     <author email="mobile.development@factset.com" href="http://www.factset.com">FactSet Digitial Solutions Mobile Team</author>
@@ -79,7 +79,6 @@
     </platform>
     <allow-navigation href="http://172.17.102.164:8100" />
     <allow-navigation href="http://localhost" />
-    <engine name="ios" spec="~4.5.4" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.1" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
@@ -90,5 +89,5 @@
     <plugin name="cordova-plugin-taptic-engine" spec="^2.1.0" />
     <plugin name="cordova-plugin-app-version" spec="^0.1.9" />
     <plugin name="cordova-plugin-statusbar" spec="^2.3.0" />
-    <plugin name="phonegap-plugin-push" spec="^2.1.2" />
+    <engine name="ios" spec="~4.5.4" />
 </widget>
