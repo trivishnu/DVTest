@@ -27,12 +27,14 @@ export class TabsPage {
     public actionSheetCtl: ActionSheetController,
     public navCtrl: NavController,
     events: Events) {
+
     events.subscribe('navigation:watchlist', () => {
-        this.tabsRef.select(3);
+      // primarily used when user clicks the 3D Touch to jump to a specific tab
+      this.tabsRef.select(3);
     });
   }
 
-  more() {
+  showMore() {
     let actionSheet = this.actionSheetCtl.create({
       title: 'More Actions',
       buttons: [
