@@ -13,7 +13,9 @@ Pull down the project from git and from the root directory of the project run
 these commands in order.
 > npm install
 
-> ionic serve
+> ionic cordova platform add browser
+
+> ionic cordova run browser
 
 Running those commands will install any dependencies, build the www dist, launch
 a local server with livereload and launch the app within your default browser.
