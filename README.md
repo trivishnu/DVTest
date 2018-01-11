@@ -39,4 +39,6 @@ If built with debug settings enabled you can go into the app settings and point 
 Production build command should be 'ionic cordova build --prod' in order to remove angular debug mode.
 
 ## Notes
-Uses Chart.js: http://www.chartjs.org/samples/latest/
+- Uses Chart.js: http://www.chartjs.org/samples/latest/
+
+- The Push plugin requires CocoaPods to be installed. Please check the iOS details section of the push plugin for any compilation issues. The push plugin documentation can be found here: https://github.com/phonegap/phonegap-plugin-push/blob/master/docs/INSTALLATION.md
