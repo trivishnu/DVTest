@@ -25,6 +25,7 @@ import { TapticEngine } from '@ionic-native/taptic-engine';
 import { Network } from '@ionic-native/network';
 import { ThreeDeeTouch } from '@ionic-native/three-dee-touch';
 import { Push } from '@ionic-native/push';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { Push } from '@ionic-native/push';
     Network,
     ThreeDeeTouch,
     Push,
+    NativeStorage,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

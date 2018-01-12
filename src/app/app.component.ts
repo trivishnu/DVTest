@@ -3,7 +3,8 @@ import { Platform, ModalController, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ThreeDeeTouch, ThreeDeeTouchQuickAction } from '@ionic-native/three-dee-touch';
-import { Push } from '@ionic-native/push';
+import { Push, PushObject, PushOptions } from '@ionic-native/push';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { NotificationsPage } from '../pages/notifications/notifications';
@@ -15,23 +16,43 @@ export class SpdrApp {
   rootPage: any = TabsPage;
   pushNotification: any;
 
-  constructor(platform: Platform,
+  constructor(public platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
     public threeDeeTouch: ThreeDeeTouch,
     private modalCtrl: ModalController,
     private events: Events,
-    public push: Push) {
+    private push: Push,
+    private nativeStorage: NativeStorage) {
     platform.ready().then(() => {
-      this.pushNotification = push.init({});
-      this.pushNotification.on('registration', (data) => {
-        console.log('pushToken: ' + data.registrationId);
-        console.log('registrationType:' + data.registrationType);
-      });
+      this.initPushNotification();
       threeDeeTouch.isAvailable().then(isAvailable => this.configureThreeDeeTouch(isAvailable));
       statusBar.styleDefault();
       splashScreen.hide();
     });
+  }
+
+  initPushNotification() {
+    if (!this.platform.is('cordova')) {
+      console.warn('Push notifications not initialized. Cordova is not available - Run in physical device');
+      return;
+    }
+    const options: PushOptions = {
+      ios: {
+        alert: 'true',
+        badge: false,
+        sound: 'true'
+      }
+    };
+    const pushObject: PushObject = this.push.init(options);
+
+    pushObject.on('registration').subscribe((data: any) => {
+      console.log('device token -> ' + data.registrationId);
+      //TODO: send device token to server on the alerts provider
+      this.nativeStorage.setItem('pushToken', {registrationId: data.registrationId});
+    });
+
+    pushObject.on('error').subscribe(error => console.error('Error with Push plugin' + error));
   }
 
   configureThreeDeeTouch(isAvailable: boolean) {

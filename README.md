@@ -42,3 +42,5 @@ Production build command should be 'ionic cordova build --prod' in order to remo
 - Uses Chart.js: http://www.chartjs.org/samples/latest/
 
 - The Push plugin requires CocoaPods to be installed. Please check the iOS details section of the push plugin for any compilation issues. The push plugin documentation can be found here: https://github.com/phonegap/phonegap-plugin-push/blob/master/docs/INSTALLATION.md
+
+- Make sure to open up 'Sector SPDRs.xcworkspace' in Xcode instead of just the project so that the pod dependencies can be built and found when building the app.
