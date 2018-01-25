@@ -6,17 +6,13 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-list>
-    <ion-list-header>
-      App Version
-    </ion-list-header>
+<ion-content>
+  <ion-item-group>
+    <ion-item-divider color="light">App Version</ion-item-divider>
     <ion-item text-wrap>v{{version}}</ion-item>
-  </ion-list>
-  <ion-list>
-    <ion-list-header>
-      Push Token
-    </ion-list-header>
+  </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider color="light">Push Token</ion-item-divider>
     <ion-item ngClass="selectable" text-wrap>{{pushToken}}</ion-item>
-  </ion-list>
+  </ion-item-group>
 </ion-content>
