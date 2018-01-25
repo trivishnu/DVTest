@@ -79,6 +79,7 @@
     </platform>
     <allow-navigation href="http://172.17.102.164:8100" />
     <allow-navigation href="http://localhost" />
+    <allow-navigation href="http://192.168.86.28:8100" />
     <engine name="browser" spec="~5.0.3" />
     <engine name="ios" spec="~4.5.4" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
@@ -92,6 +93,5 @@
     <plugin name="cordova-plugin-app-version" spec="^0.1.9" />
     <plugin name="cordova-plugin-statusbar" spec="^2.3.0" />
     <plugin name="phonegap-plugin-push" spec="^2.1.2" />
-    <allow-navigation href="http://192.168.86.28:8100" />
     <plugin name="cordova-plugin-nativestorage" spec="^2.2.2" />
 </widget>
