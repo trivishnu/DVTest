@@ -38,6 +38,10 @@ If built with debug settings enabled you can go into the app settings and point 
 
 Production build command should be 'ionic cordova build --prod' in order to remove angular debug mode.
 
+## Update The Project
+You may have local node_modules or command line tools that are out of date and you can run the following command to review your environment and suggest changes that could update/fix your modules and/or command line tools.
+> ionic doctor check
+
 ## Notes
 - Uses Chart.js: http://www.chartjs.org/samples/latest/
 
