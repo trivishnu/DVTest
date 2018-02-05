@@ -6,9 +6,18 @@
 
 </ion-header>
 
-<ion-content>
-  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+<ion-content (ionScrollStart)="dismissKeyboard()">
+  <form action="." (ngSubmit)="dismissKeyboard()">
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  </form>
   <ion-list>
-    <ion-item>Howdy</ion-item>
+    <button ion-item *ngFor="let result of results" (click)="resultSelected(result)">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-2 class="symbol" [id]="result.symbol">{{ result.symbol }}</ion-col>
+        <ion-col col-10 text-capitalize>{{ cleanName(result.name) }}</ion-col>
+      </ion-row>
+    </ion-grid>
+    </button>
   </ion-list>
 </ion-content>

@@ -41,7 +41,8 @@ export class SpdrApp {
       ios: {
         alert: 'true',
         badge: false,
-        sound: 'true'
+        sound: 'true',
+        clearBadge: 'true'
       }
     };
     const pushObject: PushObject = this.push.init(options);

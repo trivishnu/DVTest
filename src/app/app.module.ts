@@ -18,6 +18,8 @@ import { NotificationsPage } from '../pages/notifications/notifications';
 import { LoginPage } from '../pages/login/login';
 import { DetailPage } from '../pages/detail/detail';
 
+import { FdsgProvider } from '../providers/fdsg/fdsg';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AppVersion } from '@ionic-native/app-version';
@@ -26,6 +28,8 @@ import { Network } from '@ionic-native/network';
 import { ThreeDeeTouch } from '@ionic-native/three-dee-touch';
 import { Push } from '@ionic-native/push';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { HTTP } from '@ionic-native/http';
+import { Keyboard } from '@ionic-native/keyboard';
 
 @NgModule({
   declarations: [
@@ -75,7 +79,10 @@ import { NativeStorage } from '@ionic-native/native-storage';
     ThreeDeeTouch,
     Push,
     NativeStorage,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    HTTP,
+    Keyboard,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    FdsgProvider
   ]
 })
 export class AppModule {}
