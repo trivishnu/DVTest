@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Platform, NavController } from 'ionic-angular';
 
 import { NativeStorage } from '@ionic-native/native-storage';
 import { AppVersion } from '@ionic-native/app-version';
@@ -14,22 +14,26 @@ export class AboutPage {
 
   constructor(public navCtrl: NavController,
     private nativeStorage: NativeStorage,
-    private appVersion: AppVersion) {
+    private appVersion: AppVersion,
+    private platform: Platform) {
 
   }
 
   ionViewWillEnter() {
     // TODO: this should be in the alerts provider
-    this.nativeStorage.getItem('pushToken')
-      .then(
-        data => this.pushToken = data.registrationId,
-        error => console.error(error)
-      );
+    if (this.platform.is('cordova')) {
+      this.nativeStorage.getItem('pushToken')
+        .then(
+          data => this.pushToken = data.registrationId,
+          error => console.error(error)
+        );
 
-    this.appVersion.getVersionNumber()
-      .then(
-        version => this.version = version
-      );
+      this.appVersion.getVersionNumber()
+        .then(
+          version => this.version = version
+        );
+    }
+
   }
 
 }
