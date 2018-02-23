@@ -1,5 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { SpdrApp } from './app.component';
 import { ChartsModule } from 'ng2-charts';
@@ -50,6 +51,7 @@ import { Keyboard } from '@ionic-native/keyboard';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(SpdrApp),
     ChartsModule
   ],

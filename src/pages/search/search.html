@@ -8,7 +8,7 @@
 
 <ion-content (ionScrollStart)="dismissKeyboard()">
   <form action="." (ngSubmit)="dismissKeyboard()">
-    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-searchbar (ionInput)="getItems($event)" (search)="dismissKeyboard()"></ion-searchbar>
   </form>
   <ion-list>
     <button ion-item *ngFor="let result of results" (click)="resultSelected(result)">
