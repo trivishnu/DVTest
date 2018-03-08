@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HTTP } from '@ionic-native/http';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-const SUGGEST_URL: string = 'https://api.test.idmanagedsolutions.com/autocomplete/v1/suggest';
+const SUGGEST_URL: string = '/autocomplete/v1/suggest';
+const HISTORICAL_QUOTE_URL: string = 'https://api.test.idmanagedsolutions.com/quotes/v1/historical-quotes';
 const SUGGEST_EXCHANGES: string = 'NYS,NAS,AMEX';
 const SUGGEST_SECURITY_TYPES: string = 'STO,X-STO.COMMON,X-STO.PREF,ETF,IND,X-FUN.LIPPER,X-DEPOSITORY.RECEIPT,X-STO.RIGHT';
 const API_KEY: string = 'IDMS-CLIENTKEY Dk0vjumHmzzZF89noZ04B60xnQzUdNisncWxN7UV1RIckxRsxocl';
@@ -11,7 +11,7 @@ const API_KEY: string = 'IDMS-CLIENTKEY Dk0vjumHmzzZF89noZ04B60xnQzUdNisncWxN7UV
 export class FdsgProvider {
   public searchResults: '{"meta": {}, "data": {}}';
 
-  constructor(public http: HTTP, public httpClient: HttpClient) {
+    constructor(public httpClient: HttpClient) {
     // using a plugin for HTTP Client requests
     // https://github.com/silkimen/cordova-plugin-advanced-http
 
@@ -22,33 +22,49 @@ export class FdsgProvider {
   }
 
   autoComplete(searchInput: string): Promise<any> {
-    return new Promise(resolve => {
-      this.httpClient.get(SUGGEST_URL, {
-        headers: new HttpHeaders({'Authorization': API_KEY}),
-        params: new HttpParams().set('search', searchInput)
-          .set('exchanges', SUGGEST_EXCHANGES)
-          .set('securityTypes', SUGGEST_SECURITY_TYPES)
-      })
-        .subscribe(data => {
-          resolve(data);
-        }, err => {
-          return {};
-        });
-    });
+
+
+    return this.httpClient.get(SUGGEST_URL,
+       {
+          params: {
+            search: searchInput,
+            exchanges: SUGGEST_EXCHANGES,
+            securityTypes: SUGGEST_SECURITY_TYPES
+          },
+          headers: new HttpHeaders().set('Authorization', API_KEY)
+      }
+    ).toPromise();
+
+
+    // return this.http.get(SUGGEST_URL, {
+    //   search: searchInput,
+    //   exchanges: SUGGEST_EXCHANGES,
+    //   securityTypes: SUGGEST_SECURITY_TYPES
+    // }, { Authorization:  API_KEY })
+    //   .then(resp => {
+    //     return JSON.parse(resp.data);
+    //   })
+    //   .catch(error => {
+    //     return {};
+    //   });
+
   }
 
+  getHistoricalQuotes(identifier: string, startDateTime: string, endDateTime: string, resolution: string) {
 
-  //return this.http.get(SUGGEST_URL, {
-  //  search: searchInput,
-  //  exchanges: SUGGEST_EXCHANGES,
-  //  securityTypes: SUGGEST_SECURITY_TYPES
-  //}, { Authorization:  API_KEY })
-  //  .then(resp => {
-  //    return JSON.parse(resp.data);
-  //  })
-  //  .catch(error => {
-  //    return {};
-  //  });
-  //}
+
+    return this.httpClient.get(HISTORICAL_QUOTE_URL,
+       {
+        headers: new HttpHeaders().set('Authorization', API_KEY),
+        params: {
+            identifier: identifier,
+            startTimestamp: startDateTime,
+            endTimestamp: endDateTime,
+            resolution: resolution
+        }
+      }
+    );
+
+  }
 
 }
