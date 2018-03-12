@@ -50,7 +50,11 @@ export class SearchPage {
   getItems(ev) {
     console.log('get items for event: ' + ev.target.value);
     this.fdsgProvider.autoComplete(ev.target.value)
-      .then(resp => this.results = resp.data);
+      .subscribe(resp => {
+        var data : any = (resp as any).data;
+        this.results = data
+      }
+    );
   }
 
   resultSelected(selection) {

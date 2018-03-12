@@ -4,7 +4,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content >
 
 <div padding>
   <ion-segment [(ngModel)]="symbol"  (ionChange)="onSectorChange()">
@@ -13,7 +13,7 @@
   </div>
   
 <div padding>
-  <ion-segment [(ngModel)]="chartType" (ionChange)="onChargeTypeChange()">
+  <ion-segment [(ngModel)]="chartType" (ionChange)="onChartTypeChange()">
     <ion-segment-button value="1D">1D</ion-segment-button>
     <ion-segment-button value="1M">1M</ion-segment-button>
     <ion-segment-button value="3M">3M</ion-segment-button>
@@ -25,5 +25,5 @@
   </ion-segment>
 </div>
 
-<div padding-right id="chart" style="height: 100%;width: 100%;"></div>
+<div padding-right id="chart" style="height: calc(100% - 220px);width: 100%"></div>
 </ion-content>

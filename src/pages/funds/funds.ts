@@ -12,12 +12,13 @@ import { FdsgProvider } from '../../providers/fdsg/fdsg';
 })
 export class FundsPage {
 
-  chartType : String;
-  symbol: String;
+  chartType : string;
+  symbol: string;
 
   // Chart Objects
   chart: any;
-  plot: any;
+//  plot: any;
+  series: any;
 
   sectors = [
     { symbol: 'XLE', color : 0xFFCA05},
@@ -37,34 +38,108 @@ export class FundsPage {
     private fdsgProvider: FdsgProvider) {
 
       this.chartType = "1M";
-      this.symbol = "XLK";
+      this.symbol = "XLE";
   }
 
   ionViewDidLoad() {
 
 
-   this.createChart();
+    //this.createChart();
+    
+    this.setupChart();
 
    this.chartType = "1D";
 
   }
 
-  createChart(){
+  onSectorChange() {
+    this.refreshChart();
+  }
+
+  onChartTypeChange() {
+    this.refreshChart();
+  }
+
+  setupChart(){
 
     var chartDiv = this.elementRef.nativeElement.querySelector('#chart');
 
     this.chart = new FDSChartJS(chartDiv, {appName: 'fdsg-app', theme:1, disableLogging: true});
 
-  }
+    
+    var plot = new FDSChartJS.models.plot({
+      id: "plot"
+    });
+
+    // plot.AxisResetOnDataChange = true;
+
+    this.chart.addPlot(plot);
+
+    plot.setAttribute('AxisResetOnDataChange', 'app', true);
 
 
-  onSectorChange() {
-    this.refreshChart();
+    // Plot attributes
+
+    plot.setAttributes({
+      'Heading1': false,
+      'Heading2': false,
+      'UseIntradayScale': true,
+//      'XIntradayLabeling': true,
+      'XLabelsLevelsMask': 3,
+      'XLabelMinorPadding': 10,
+      'XRemoveGapsFromMinorIntervals': 0, //Want to remove gaps from minor labels
+      //If auto detection is true, uses that. Otherwise, use XMinorUnitStart/XMinorUnitEnd
+      'XAutomaticStartEndDayDetection': false,
+      'XMinorUnitStart': '---3-30-0' // Second day starts at 3:30AM when auto detection is off
+    });
+
+
+    // Major Scale Label Format
+    plot.setAttributes({
+      'XIntradayScaleLabelFormatDAY': 'MMM dd, YYYY',   // 1D
+      'XIntradayScaleLabelFormatWEEK': 'MMM'   // 1M, 3M, 6M
+    });
+
+
+    // Minor Scale Label Format
+    plot.setAttributes({
+      'XIntradayScaleMinorLabelFormatMINUTE': 'h:nn am',
+      'XIntradayScaleMinorLabelFormatFIVEMINUTE': 'h:nn am',
+      'XIntradayScaleMinorLabelFormatFIVESECOND': 'h:nn am',
+      'XIntradayScaleMinorLabelFormatFIVEY': 'h:nn am',
+      'XIntradayScaleMinorLabelFormatTENMINUTE': 'h:nn am',
+      'XIntradayScaleMinorLabelFormatHALFHOUR': 'h:nn am',
+      'XIntradayScaleMinorLabelFormatHALFMINUTE': 'h:nn am',
+      'XIntradayScaleMinorLabelFormatHALFY': 'h:nn am',
+      'XIntradayScaleMinorLabelFormatHOUR': 'h:nn am',
+      'XIntradayScaleMinorLabelFormatDAY': 'd',   // 1M
+      'XIntradayScaleMinorLabelFormatQUARTER': 'MMM',   // 5Y, 10Y
+      'XIntradayScaleMinorLabelFormatMONTH': 'MMM',
+      'XIntradayScaleMinorLabelFormatYEAR': 'MMM'
+    });
+
+    this.series = this.getChartSeries();
+    plot.addSeries(this.series);
+
   }
 
-  onChargeTypeChange() {
-    this.refreshChart();
-  }
+  getChartSeries() {
+    var xData = new FDSChartJS.models.data({
+      dataType: 'DateTime',
+      data: []
+    });
+  
+    var yData = new FDSChartJS.models.data({
+      dataType: "float",
+      data: [],
+    });
+  
+    return new FDSChartJS.models.series({
+      id: "Series",
+      x: xData,
+      y: yData,
+    }); 
+  };
 
   refreshChart() {
 
@@ -73,19 +148,23 @@ export class FundsPage {
     this.fdsgProvider.getHistoricalQuotes("US:" + this.symbol, params.start, params.end, params.resolution)
       .subscribe(resp => {
 
-//        console.log("resp", resp);
+      //  console.log("resp", resp);
 
         var data : any = (resp as any).data;
-        var chartData = data.map(p => {
 
-          return {
-            x: this.getChartTime(p.lastTimestamp),
-            y: p.last};
-        });
+        var labels = data.map(p => this.getChartTime(p.lastTimestamp));
+        var values = data.map(p => p.last);
 
-//        console.log("chartData", chartData);
-        this.setupPLot(chartData);
-        this.chart.draw();
+//        console.log(this.series);
+        // console.log(labels);
+
+        this.series.getData().x.replace(0, labels);
+        this.series.getData().y.replace(0, values);
+        this.series.setAttribute('Label', 'app', this.symbol);
+        this.series.setAttribute('SeriesColor', 'app', this.getSectorColor(this.symbol));
+
+        // Display chart. Per FactSet Charting group, use invalidate instead of draw
+        this.chart.invalidate();
       }
     );
     
@@ -103,7 +182,7 @@ export class FundsPage {
     return newDate;   
   }
 
-  getChartTime(strDate : String) {
+  getChartTime(strDate : string) {
 
 //    let date = new Date(strDate);
     var date = this.convertUTCDateToLocalDate(new Date(strDate));
@@ -202,100 +281,6 @@ export class FundsPage {
     startDate.setHours(0,0,0,0);
     var endDate = new Date();
     return { start: startDate.toISOString(), end: endDate.toISOString(), resolution: 'DAY' };
-  }
-
-  setupPLot(data) {
-
-    console.log("Plot Data", data);
-
-    let series = this.getSeries(data);
-    
-    console.log(series);
-
-    this.plot = new FDSChartJS.models.plot({
-      id: "plot1",
-      label: data.Name || "SectorSpdr"
-    });
-    
-    // Attach the chart
-    this.chart.addPlot(this.plot);
-
-    this.plot.addSeries(series);
-
-    let color = this.getSectorColor(this.symbol);
-    series.setAttribute('SeriesColor', 'app', color); // Red
-
-    this.plot.setAttribute('UseIntradayScale', 'app', true);
-//    this.plot.setAttribute('XIntradayLabeling', 'app', true);
-    this.plot.setAttribute('XLabelsLevelsMask', 'app', 3);
-
-    this.plot.setAttribute('XLabelMinorPadding', 'app', 10);
-
-    // 1D
-    this.plot.setAttribute('XIntradayScaleLabelFormatDAY', 'app', 'MMM dd, YYYY');
-
-    this.plot.setAttribute('XIntradayScaleMinorLabelFormatFIVEMINUTE', 'app', 'h:nn am');
-    this.plot.setAttribute('XIntradayScaleMinorLabelFormatFIVESECOND', 'app', 'h:nn am');
-    this.plot.setAttribute('XIntradayScaleMinorLabelFormatFIVEY', 'app', 'h:nn am');
-    this.plot.setAttribute('XIntradayScaleMinorLabelFormatTENMINUTE', 'app', 'hh:nn am');
-    this.plot.setAttribute('XIntradayScaleMinorLabelFormatHALFHOUR', 'app', 'h:nn am');
-    this.plot.setAttribute('XIntradayScaleMinorLabelFormatHALFMINUTE', 'app', 'h:nn am');
-    this.plot.setAttribute('XIntradayScaleMinorLabelFormatHALFY', 'app', 'h:nn am');
-    this.plot.setAttribute('XIntradayScaleMinorLabelFormatHOUR', 'app', 'h:nn am');
-    this.plot.setAttribute('XIntradayScaleMinorLabelFormatMINUTE', 'app', 'h:nn am');
-
-    // 1M
-    this.plot.setAttribute('XIntradayScaleMinorLabelFormatDAY', 'app', 'd');
-    
-    // 1M, 3M, 6M
-    this.plot.setAttribute('XIntradayScaleLabelFormatWEEK', 'app', 'MMM');
-
-    // 5Y, 10Y
-    this.plot.setAttribute('XIntradayScaleMinorLabelFormatQUARTER', 'app', 'MMM');
-
-    this.plot.setAttribute('XIntradayScaleMinorLabelFormatYEAR', 'app', 'MMM');
-    this.plot.setAttribute('XIntradayScaleMinorLabelFormatMONTH', 'app', 'MMM');
-
-    this.plot.setAttribute('XRemoveGapsFromMinorIntervals', 'app', 0); //Want to remove gaps from minor labels
-    
-    //If auto detection is true, uses that. Otherwise, use XMinorUnitStart/XMinorUnitEnd
-    this.plot.setAttribute('XAutomaticStartEndDayDetection', 'app', false);
-    this.plot.setAttribute('XMinorUnitStart', 'app', '---3-30-0'); // Second day starts at 3:30AM when auto detection is off
-    
-  }
-
-
-  getSeries(data) {
-
-    let labelData = [];
-    let lastData = [];
-
-    for (let point of data) {
-      labelData.push(point.x);
-      lastData.push(point.y);
-    }
-
-    console.log("labelData", labelData);
-
-    var xData = new FDSChartJS.models.data({
-      dataType: 'DateTime',
-      data: labelData
-    });
-
-    var yData = new FDSChartJS.models.data({
-      dataType: "float",
-      data: lastData,
-    });
-
-    var series = new FDSChartJS.models.series({
-      id: "Series",
-      label: this.symbol,
-      drawStyle: FDSChartJS.constants.DrawStyle.LINE,
-      x: xData,
-      y: yData,
-    });
-
-    return series;
   }
 
   hh_mm_ss (date) {
