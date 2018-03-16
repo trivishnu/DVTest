@@ -1,5 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { SpdrApp } from './app.component';
 import { ChartsModule } from 'ng2-charts';
@@ -18,8 +19,6 @@ import { NotificationsPage } from '../pages/notifications/notifications';
 import { LoginPage } from '../pages/login/login';
 import { DetailPage } from '../pages/detail/detail';
 
-import { FdsgProvider } from '../providers/fdsg/fdsg';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AppVersion } from '@ionic-native/app-version';
@@ -30,6 +29,9 @@ import { Push } from '@ionic-native/push';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { HTTP } from '@ionic-native/http';
 import { Keyboard } from '@ionic-native/keyboard';
+
+import { FinancialAPIModule } from '../providers/FinancialAPI/FinancialAPIModule'
+import { ChartService } from '../providers/fdsg/chartService';
 
 @NgModule({
   declarations: [
@@ -50,8 +52,10 @@ import { Keyboard } from '@ionic-native/keyboard';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(SpdrApp),
-    ChartsModule
+    ChartsModule,
+    FinancialAPIModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -82,7 +86,7 @@ import { Keyboard } from '@ionic-native/keyboard';
     HTTP,
     Keyboard,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FdsgProvider
+    ChartService
   ]
 })
 export class AppModule {}

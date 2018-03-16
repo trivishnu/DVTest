@@ -10,12 +10,17 @@ https://confluence.mdgms.com/display/SSPDRS/Home
 
 ## Run Project in Browser ##
 Pull down the project from git and from the root directory of the project run
-these commands in order.
+these commands in order. Note that any code using a native plugin will not work
+in the browser since the plugins require a platform specific device to run properly.
 > npm install
 
 > ionic cordova platform add browser
 
-> ionic cordova run browser
+> ionic cordova run browser --livereload
+
+This command will work as well since it will make the calls to the FinAPI from
+a host that is included in the API gateway whitelist.
+> ionic serve --address localhost --port 8080
 
 Running those commands will install any dependencies, build the www dist, launch
 a local server with livereload and launch the app within your default browser.

@@ -24,19 +24,18 @@ export class SpdrApp {
     private events: Events,
     private push: Push,
     private nativeStorage: NativeStorage) {
+
     platform.ready().then(() => {
-      this.initPushNotification();
-      threeDeeTouch.isAvailable().then(isAvailable => this.configureThreeDeeTouch(isAvailable));
-      statusBar.styleDefault();
-      splashScreen.hide();
+      if (this.platform.is('cordova')) {
+        this.initPushNotification();
+        threeDeeTouch.isAvailable().then(isAvailable => this.configureThreeDeeTouch(isAvailable));
+        statusBar.styleDefault();
+        splashScreen.hide();
+      }
     });
   }
 
   initPushNotification() {
-    if (!this.platform.is('cordova')) {
-      console.warn('Push notifications not initialized. Cordova is not available - Run in physical device');
-      return;
-    }
     const options: PushOptions = {
       ios: {
         alert: 'true',
