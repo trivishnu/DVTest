@@ -1,5 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Platform } from 'ionic-angular';
 
 import { QuoteService } from '../../providers/FinancialAPI'
 
@@ -42,12 +42,13 @@ export class FundsPage {
 
 
   constructor(public navCtrl: NavController, private elementRef: ElementRef,
-    private quoteService: QuoteService, private chartService: ChartService) {
+    private quoteService: QuoteService, private chartService: ChartService,
+    private platform: Platform) {
 
     this.chartType = "1M";
     this.symbol = "XLE";
-    this.windowWidth = window.screen.width;
-    this.windowHeight = window.screen.height;
+    this.windowWidth = platform.width();
+    this.windowHeight = platform.height()-250;
   }
 
   ionViewDidLoad() {
@@ -67,8 +68,7 @@ export class FundsPage {
 
     var chartDiv = this.elementRef.nativeElement.querySelector('#chart');
 
-    this.chart = new FDSChartJS(chartDiv, { appName: 'fdsg-app', theme: 1, disableLogging: true, width: this.windowWidth-20, height: 300 });
-
+    this.chart = new FDSChartJS(chartDiv, { appName: 'fdsg-app', theme: 1, disableLogging: true, height: this.windowHeight });
 
     var plot = new FDSChartJS.models.plot({
       id: "plot"
