@@ -8,7 +8,7 @@ import { ChartService } from '../../providers/fdsg/chartService';
 
 // import { QuoteService } from ''
 
- declare var FDSChartJS: any;
+declare var FDSChartJS: any;
 //import * as FDSChartJS from '@fds/fdschartjs'
 
 @Component({
@@ -17,44 +17,42 @@ import { ChartService } from '../../providers/fdsg/chartService';
 })
 export class FundsPage {
 
-  chartType : string;
+  chartType: string;
   symbol: string;
 
   // Chart Objects
   chart: any;
-//  plot: any;
+  //  plot: any;
   series: any;
+  windowHeight: any;
+  windowWidth: any;
 
   sectors = [
-    { symbol: 'XLE', color : 0xFFCA05},
-    { symbol: 'XLU', color : 0xFF9A00},
-    { symbol: 'XLK', color : 0x92278F},
-    { symbol: 'XLB', color : 0x8E97C7},
-    { symbol: 'XLP', color : 0x00ABBC},
-    { symbol: 'XLY', color : 0xC4CA40},
-    { symbol: 'XLI', color : 0x92C5EB},
-    { symbol: 'XLV', color : 0x00ADEE},
-    { symbol: 'XLF', color : 0xA6CE39},
-    { symbol: 'XLRE', color : 0xA40C1E}
+    { symbol: 'XLE', color: 0xFFCA05 },
+    { symbol: 'XLU', color: 0xFF9A00 },
+    { symbol: 'XLK', color: 0x92278F },
+    { symbol: 'XLB', color: 0x8E97C7 },
+    { symbol: 'XLP', color: 0x00ABBC },
+    { symbol: 'XLY', color: 0xC4CA40 },
+    { symbol: 'XLI', color: 0x92C5EB },
+    { symbol: 'XLV', color: 0x00ADEE },
+    { symbol: 'XLF', color: 0xA6CE39 },
+    { symbol: 'XLRE', color: 0xA40C1E }
   ];
 
 
   constructor(public navCtrl: NavController, private elementRef: ElementRef,
-    private quoteService : QuoteService, private chartService:ChartService) {
+    private quoteService: QuoteService, private chartService: ChartService) {
 
-      this.chartType = "1M";
-      this.symbol = "XLE";
+    this.chartType = "1M";
+    this.symbol = "XLE";
+    this.windowWidth = window.screen.width;
+    this.windowHeight = window.screen.height;
   }
 
   ionViewDidLoad() {
-
-
-    //this.createChart();
-    
     this.setupChart();
-
-   this.chartType = "1D";
-
+    this.chartType = "1D";
   }
 
   onSectorChange() {
@@ -65,13 +63,13 @@ export class FundsPage {
     this.refreshChart();
   }
 
-  setupChart(){
+  setupChart() {
 
     var chartDiv = this.elementRef.nativeElement.querySelector('#chart');
 
-    this.chart = new FDSChartJS(chartDiv, {appName: 'fdsg-app', theme:1, disableLogging: true});
+    this.chart = new FDSChartJS(chartDiv, { appName: 'fdsg-app', theme: 1, disableLogging: true, width: this.windowWidth-20, height: 300 });
 
-    
+
     var plot = new FDSChartJS.models.plot({
       id: "plot"
     });
@@ -89,7 +87,7 @@ export class FundsPage {
       'Heading1': false,
       'Heading2': false,
       'UseIntradayScale': true,
-//      'XIntradayLabeling': true,
+      //      'XIntradayLabeling': true,
       'XLabelsLevelsMask': 3,
       'XLabelMinorPadding': 10,
       'XRemoveGapsFromMinorIntervals': 0, //Want to remove gaps from minor labels
@@ -133,23 +131,23 @@ export class FundsPage {
       dataType: 'DateTime',
       data: []
     });
-  
+
     var yData = new FDSChartJS.models.data({
       dataType: "float",
       data: [],
     });
-  
+
     return new FDSChartJS.models.series({
       id: "Series",
       x: xData,
       y: yData,
-    }); 
+    });
   };
 
   refreshChart() {
 
     var params = this.getHistoricaDataParameters(this.chartType);
-//    console.log("params", params);
+    //    console.log("params", params);
 
     this.quoteService.setConfiguration(SERVER, API_KEY);
     this.quoteService.getHistoricalQuotes("US:" + this.symbol, params.start, params.end, params.resolution)
@@ -166,13 +164,13 @@ export class FundsPage {
         // Display chart. Per FactSet Charting group, use invalidate instead of draw
         this.chart.invalidate();
       }
-    );
-    
+      );
+
   }
 
   getHistoricaDataParameters(chartType: string) {
 
-    switch(chartType) {
+    switch (chartType) {
 
       case "1M":
         return this.getMonthsHistoricaDataParameters(1);
@@ -203,9 +201,9 @@ export class FundsPage {
 
   getOneDayHistoricaDataParameters() {
     var startDate = new Date();
-    startDate.setHours(0,0,0,0);
+    startDate.setHours(0, 0, 0, 0);
     var endDate = new Date();
-    endDate.setHours(23,59,59,0);
+    endDate.setHours(23, 59, 59, 0);
     return { start: startDate.toISOString(), end: endDate.toISOString(), resolution: 'MINUTE' };
   }
 
@@ -226,19 +224,18 @@ export class FundsPage {
 
   getYTDHistoricaDataParameters() {
     var startDate = new Date(new Date().getFullYear(), 0, 1)
-    startDate.setHours(0,0,0,0);
+    startDate.setHours(0, 0, 0, 0);
     var endDate = new Date();
     return { start: startDate.toISOString(), end: endDate.toISOString(), resolution: 'DAY' };
   }
 
   getSectorColor(symbol: string) {
 
-    for (let sector of this.sectors) 
-    {  
-        if( sector.symbol === symbol) {
-          return sector.color;
-        }
-    }  
+    for (let sector of this.sectors) {
+      if (sector.symbol === symbol) {
+        return sector.color;
+      }
+    }
     return 0x0000;
 
   }

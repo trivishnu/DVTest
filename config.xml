@@ -96,4 +96,6 @@
     <plugin name="phonegap-plugin-push" spec="^2.1.2" />
     <plugin name="cordova-plugin-nativestorage" spec="^2.2.2" />
     <plugin name="cordova-plugin-advanced-http" spec="^1.9.1" />
+    <allow-navigation href="http://192.168.197.1:8100" />
+    <allow-navigation href="http://172.17.102.135:8100" />
 </widget>
