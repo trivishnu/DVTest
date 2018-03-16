@@ -1,7 +1,12 @@
 import { Component, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { FdsgProvider } from '../../providers/fdsg/fdsg';
+import { QuoteService } from '../../providers/FinancialAPI'
+
+import { SERVER, API_KEY } from '../../config/config';
+import { ChartService } from '../../providers/fdsg/chartService';
+
+// import { QuoteService } from ''
 
  declare var FDSChartJS: any;
 //import * as FDSChartJS from '@fds/fdschartjs'
@@ -35,7 +40,7 @@ export class FundsPage {
 
 
   constructor(public navCtrl: NavController, private elementRef: ElementRef,
-    private fdsgProvider: FdsgProvider) {
+    private quoteService : QuoteService, private chartService:ChartService) {
 
       this.chartType = "1M";
       this.symbol = "XLE";
@@ -143,20 +148,15 @@ export class FundsPage {
 
   refreshChart() {
 
-    var params = this.getHistoricaDataParameters();
+    var params = this.getHistoricaDataParameters(this.chartType);
 //    console.log("params", params);
-    this.fdsgProvider.getHistoricalQuotes("US:" + this.symbol, params.start, params.end, params.resolution)
-      .subscribe(resp => {
 
-      //  console.log("resp", resp);
+    this.quoteService.setConfiguration(SERVER, API_KEY);
+    this.quoteService.getHistoricalQuotes("US:" + this.symbol, params.start, params.end, params.resolution)
+      .subscribe(historicalQuotes => {
 
-        var data : any = (resp as any).data;
-
-        var labels = data.map(p => this.getChartTime(p.lastTimestamp));
-        var values = data.map(p => p.last);
-
-//        console.log(this.series);
-        // console.log(labels);
+        var labels = historicalQuotes.data.map(p => this.chartService.getChartTime(p.lastTimestamp));
+        var values = historicalQuotes.data.map(p => p.last);
 
         this.series.getData().x.replace(0, labels);
         this.series.getData().y.replace(0, values);
@@ -170,61 +170,9 @@ export class FundsPage {
     
   }
 
-  convertUTCDateToLocalDate(date) {
+  getHistoricaDataParameters(chartType: string) {
 
-    var newDate = new Date(date.getTime()+date.getTimezoneOffset()*60*1000);
-
-    var offset = date.getTimezoneOffset() / 60;
-    var hours = date.getHours();
-
-    newDate.setHours(hours - offset);
-
-    return newDate;   
-  }
-
-  getChartTime(strDate : string) {
-
-//    let date = new Date(strDate);
-    var date = this.convertUTCDateToLocalDate(new Date(strDate));
-    return ( date.getTime() / ( 24 * 3600 * 1000  ) + 25569 );
-
-  }
- 
-  getFormattedDate(date) {
-    var year = date.getFullYear();
-  
-    var month = (1 + date.getMonth()).toString();
-    month = month.length > 1 ? month : '0' + month;
-  
-    var day = date.getDate().toString();
-    day = day.length > 1 ? day : '0' + day;
-    
-    return year + month + day;
-  }
-  
-  getFormattedTime(date) {
-    
-    var morning = new Date(
-          date.getFullYear(),
-          date.getMonth(),
-          date.getDate(),
-          0,0,0);
-          
-    var secondsFromMorning = (date.getTime() - morning.getTime()) / 1000;
-
-    return secondsFromMorning / (24 * 3600);
-
-  }
-
-  getChartDateTime(date) {
-
-    return parseFloat(this.getFormattedDate(date)) + this.getFormattedTime(date);
-    
-  }
-
-  getHistoricaDataParameters() {
-
-    switch(this.chartType) {
+    switch(chartType) {
 
       case "1M":
         return this.getMonthsHistoricaDataParameters(1);
@@ -281,13 +229,6 @@ export class FundsPage {
     startDate.setHours(0,0,0,0);
     var endDate = new Date();
     return { start: startDate.toISOString(), end: endDate.toISOString(), resolution: 'DAY' };
-  }
-
-  hh_mm_ss (date) {
-    var hour = "" + date.getHours(); if (hour.length == 1) { hour = "0" + hour; }
-    var minute = "" + date.getMinutes(); if (minute.length == 1) { minute = "0" + minute; }
-    var second = "" + date.getSeconds(); if (second.length == 1) { second = "0" + second; }
-    return hour + minute + second;
   }
 
   getSectorColor(symbol: string) {

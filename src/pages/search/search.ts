@@ -4,7 +4,15 @@ import { Keyboard } from '@ionic-native/keyboard';
 
 import { DetailPage } from '../detail/detail';
 
-import { FdsgProvider } from '../../providers/fdsg/fdsg';
+//import { FdsgProvider } from '../../providers/fdsg/fdsg';
+
+import { AutoCompleteService } from '../../providers/FinancialAPI'
+
+
+import { SERVER, API_KEY } from '../../config/config';
+
+const SUGGEST_EXCHANGES: string = 'NYS,NAS,AMEX';
+const SUGGEST_SECURITY_TYPES: string = 'STO,X-STO.COMMON,X-STO.PREF,ETF,IND,X-FUN.LIPPER,X-DEPOSITORY.RECEIPT,X-STO.RIGHT';
 
 const regExPatterns = [
   /SPDR\b/i,
@@ -39,7 +47,7 @@ export class SearchPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private fdsgProvider: FdsgProvider,
+    private autoCompleteService: AutoCompleteService,
     private keyboard: Keyboard) {
   }
 
@@ -48,11 +56,11 @@ export class SearchPage {
   }
 
   getItems(ev) {
-    console.log('get items for event: ' + ev.target.value);
-    this.fdsgProvider.autoComplete(ev.target.value)
+
+    this.autoCompleteService.setConfiguration(SERVER, API_KEY);
+    this.autoCompleteService.autoComplete(ev.target.value, SUGGEST_EXCHANGES, SUGGEST_SECURITY_TYPES)
       .subscribe(resp => {
-        var data : any = (resp as any).data;
-        this.results = data
+        this.results = resp.data;
       }
     );
   }
