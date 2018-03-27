@@ -7,6 +7,8 @@ export { QuoteService } from './QuoteService';
 export { Paging } from './models/Paging';
 export { ResultWindow } from './models/ResultWindow';
 export { PagingMeta } from './models/PagingMeta';
+export { Quote } from './models/Quote';
+export { SnapQuotes } from './models/snap-quotes';
 export { HistoricalQuote } from './models/HistoricalQuote';
 export { HistoricalQuotes } from './models/HistoricalQuotes';
 export { AutoCompleteSearchResult } from './models/AutoCompleteSearchResult';

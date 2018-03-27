@@ -1,0 +1,18 @@
+<ion-title padding>Fund Holdings</ion-title>
+
+<!-- <ion-list>
+
+    <ion-item *ngFor="let holding of holdings">
+        <div ng-click="deviceOption(device.id)">{{holding.companyName}}</div>                                            
+    </ion-item>
+
+</ion-list> -->
+
+    <ion-scroll >
+        <ion-list>
+             <ion-item *ngFor="let holding of holdings" class="item" href="#">
+                 <div>{{holding.companyName}}</div>
+             </ion-item>
+        </ion-list>
+     </ion-scroll>
+

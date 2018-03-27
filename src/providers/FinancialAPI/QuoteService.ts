@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs/Rx';
 
-import { HistoricalQuotes } from './index';
+import { HistoricalQuotes, SnapQuotes } from '.';
 
+const SNAP_QUOTE_URL: string = '/quotes/v1/snap-quotes';
 const HISTORICAL_QUOTE_URL: string = '/quotes/v1/historical-quotes';
 
 @Injectable()
@@ -36,6 +37,21 @@ export class QuoteService {
         }
       }
     ) as Observable<HistoricalQuotes>;
+
+  }
+
+  getSnapQuotes(identifiers: string, userId: string, fields: string = "") : Observable<SnapQuotes> {
+
+    return this.httpClient.get(this.server + SNAP_QUOTE_URL,
+       {
+        headers: new HttpHeaders().set('Authorization', this.authorizationKey),
+        params: {
+            identifiers: identifiers,
+            userId: userId,
+            fields: fields
+        }
+      }
+    ) as Observable<SnapQuotes>;
 
   }
 

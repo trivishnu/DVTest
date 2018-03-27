@@ -8,6 +8,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { NotificationsPage } from '../pages/notifications/notifications';
+import { SectorSpdrService } from '../providers/SectorSpdrAPI';
 
 @Component({
   templateUrl: 'app.html'
@@ -23,7 +24,10 @@ export class SpdrApp {
     private modalCtrl: ModalController,
     private events: Events,
     private push: Push,
-    private nativeStorage: NativeStorage) {
+    private nativeStorage: NativeStorage,
+    private sectorSpdrService: SectorSpdrService) {
+
+    this.sectorSpdrService.initialize();
 
     platform.ready().then(() => {
       if (this.platform.is('cordova')) {

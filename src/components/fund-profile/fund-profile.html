@@ -1,0 +1,29 @@
+<ion-title padding>Fund Profile</ion-title>
+
+<ion-list>
+  <ion-item>
+    <ion-label >as of {{asOfDate}}</ion-label>
+  </ion-item>
+  <ion-item>
+      <ion-label color="primary">Last</ion-label>
+      <ion-label>{{last}}</ion-label>
+  </ion-item>
+  <ion-item>
+      <ion-label color="primary">Change</ion-label>
+      <ion-label [ngClass]="changeClass">{{change}}</ion-label>
+  </ion-item>
+  <ion-item>
+      <ion-label color="primary">% Change</ion-label>
+      <ion-label [ngClass]="changeClass">{{changePercent}}</ion-label>
+  </ion-item>
+  <ion-item>
+      <ion-label color="primary">Volume</ion-label>
+      <ion-label >{{volume}}</ion-label>
+  </ion-item>
+
+  <!-- <ion-item>
+      <ion-label color="primary">Weight</ion-label>
+      <ion-label >{{weight}}</ion-label>
+  </ion-item> -->
+
+</ion-list>

@@ -18,6 +18,7 @@ import { SummaryPage } from '../pages/summary/summary';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { LoginPage } from '../pages/login/login';
 import { DetailPage } from '../pages/detail/detail';
+import { FundPropertiesPage } from '../pages/fund-properties/fund-properties';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -32,6 +33,12 @@ import { Keyboard } from '@ionic-native/keyboard';
 
 import { FinancialAPIModule } from '../providers/FinancialAPI/FinancialAPIModule'
 import { ChartService } from '../providers/fdsg/chartService';
+import { SectorSpdrService } from '../providers/SectorSpdrAPI';
+
+import { FundDetailsComponent } from '../components/fund-details/fund-details';
+import { FundHoldingsComponent } from '../components/fund-holdings/fund-holdings';
+import { FundProfileComponent } from '../components/fund-profile/fund-profile';
+import { FundSnapshotComponent } from '../components/fund-snapshot/fund-snapshot';
 
 @NgModule({
   declarations: [
@@ -48,7 +55,12 @@ import { ChartService } from '../providers/fdsg/chartService';
     TabsPage,
     NotificationsPage,
     LoginPage,
-    DetailPage
+    DetailPage,
+    FundPropertiesPage,
+    FundDetailsComponent,
+    FundHoldingsComponent,
+    FundProfileComponent,
+    FundSnapshotComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +84,8 @@ import { ChartService } from '../providers/fdsg/chartService';
     TabsPage,
     NotificationsPage,
     LoginPage,
-    DetailPage
+    DetailPage,
+    FundPropertiesPage
   ],
   providers: [
     StatusBar,
@@ -86,7 +99,8 @@ import { ChartService } from '../providers/fdsg/chartService';
     HTTP,
     Keyboard,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ChartService
+    ChartService,
+    SectorSpdrService
   ]
 })
 export class AppModule {}
