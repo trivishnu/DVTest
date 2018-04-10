@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FundDetails } from '../../providers/SectorSpdrAPI/models/FundDetails';
+import { Component, Input } from '@angular/core';
+import { FundDetails } from '../../providers/SectorSpdrAPI';
 import { SectorSpdrService } from '../../providers/SectorSpdrAPI';
 
 /**
@@ -14,7 +14,7 @@ import { SectorSpdrService } from '../../providers/SectorSpdrAPI';
 })
 export class FundDetailsComponent {
 
-  symbol : string;
+  @Input() symbol : string;
 
   distributionFrequency: string;
   expenseRatio: string;
@@ -22,12 +22,11 @@ export class FundDetailsComponent {
   shortSelling: string;
   options: string;
 
+  sectorName: string;
   description : string;
   weight: string;
 
   constructor(private sectorSpdrService: SectorSpdrService) {
-
-    this.symbol = 'XLE';
 
   }
 
@@ -39,14 +38,9 @@ export class FundDetailsComponent {
     });
 
     var sector = this.sectorSpdrService.getSectorInfo(this.symbol);
+    this.sectorName = sector.sectorName;
     this.description = sector.description;
     this.weight = sector.weight;
-
-    // this.sectorSpdrService.getSectorsList()
-    // .subscribe(resp => {
-    //   console.log("ngOnInit", resp);
-    // });
-
   }
 
   updateFields(fundDetails : FundDetails) {

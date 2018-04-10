@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { QuoteService } from '../../providers/FinancialAPI'
 
 import { SERVER, API_KEY } from '../../config/config';
@@ -15,7 +15,7 @@ import { SERVER, API_KEY } from '../../config/config';
 })
 export class FundProfileComponent {
 
-  symbol : string;
+  @Input() symbol : string;
 
   last: string;
   change: string;
@@ -27,8 +27,6 @@ export class FundProfileComponent {
 
   constructor(private quoteService: QuoteService) {
 
-    this.symbol = 'XLE';
-
   }
 
   ngOnInit() {
@@ -36,12 +34,10 @@ export class FundProfileComponent {
     this.quoteService.setConfiguration(SERVER, API_KEY);
     this.quoteService.getSnapQuotes("US:" + this.symbol, "SectorSpdr")
     .subscribe(resp => {
-      console.log(resp);
       if( resp.data.length > 0 ) {
         var quote = resp.data[0];
 
         var lastTimeStamp = new Date(quote.lastTimestamp);
-        console.log("asOfDate datetime", lastTimeStamp);
         this.asOfDate = "as of " + this.formatTime(lastTimeStamp) + " ET " +  this.formatDate(lastTimeStamp);
 
         this.last = "$" + quote.last.toFixed(2);

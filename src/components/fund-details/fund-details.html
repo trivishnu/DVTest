@@ -1,4 +1,4 @@
-<ion-title padding>Fund Details</ion-title>
+<ion-title padding>{{sectorName}}</ion-title>
 
 <ion-item text-wrap>
     {{description}}
@@ -8,28 +8,28 @@
 <ion-list>
     <ion-item>
         <ion-label color="primary">Distributions</ion-label>
-        <ion-label >{{distributionFrequency}}</ion-label>
+        <ion-label text-right >{{distributionFrequency}}</ion-label>
     </ion-item>
     <ion-item>
         <ion-label color="primary">Expense Ratio</ion-label>
-        <ion-label >{{expenseRatio}}</ion-label>
+        <ion-label text-right >{{expenseRatio}}</ion-label>
     </ion-item>
     <ion-item>
         <ion-label color="primary"># of Holdings</ion-label>
-        <ion-label >{{numberOfStocks}}</ion-label>
+        <ion-label text-right >{{numberOfStocks}}</ion-label>
     </ion-item>
     <ion-item>
         <ion-label color="primary">Short Selling	</ion-label>
-        <ion-label >{{shortSelling}}</ion-label>
+        <ion-label text-right >{{shortSelling}}</ion-label>
     </ion-item>
     <ion-item>
         <ion-label color="primary">Options</ion-label>
-        <ion-label >{{options}}</ion-label>
+        <ion-label text-right >{{options}}</ion-label>
     </ion-item>
 
     <ion-item>
         <ion-label color="primary">Weight</ion-label>
-        <ion-label >{{weight}}</ion-label>
+        <ion-label text-right >{{weight}}</ion-label>
     </ion-item>
 
 </ion-list>

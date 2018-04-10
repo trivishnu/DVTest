@@ -11,7 +11,6 @@ import { SummaryPage } from '../summary/summary';
 import { SearchPage } from '../search/search';
 import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
-import { FundPropertiesPage } from '../fund-properties/fund-properties';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -22,8 +21,7 @@ export class TabsPage {
   tab1Root = FundsPage;
   tab2Root = TrackerPage;
   tab3Root = EducationPage;
-//  tab4Root = WatchlistPage;
-  tab4Root = FundPropertiesPage;
+  tab4Root = WatchlistPage;
 
   constructor(
     public actionSheetCtl: ActionSheetController,

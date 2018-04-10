@@ -1,15 +1,15 @@
 // Services
-export { AutoCompleteService } from './AutoCompleteService';
-export { QuoteService } from './QuoteService';
+export { AutoCompleteService } from './autoComplete.service';
+export { QuoteService } from './quote.service';
 
 // Models
 
-export { Paging } from './models/Paging';
-export { ResultWindow } from './models/ResultWindow';
-export { PagingMeta } from './models/PagingMeta';
-export { Quote } from './models/Quote';
+export { Paging } from './models/paging';
+export { ResultWindow } from './models/result-window';
+export { PagingMeta } from './models/paging-meta';
+export { Quote } from './models/quote';
 export { SnapQuotes } from './models/snap-quotes';
-export { HistoricalQuote } from './models/HistoricalQuote';
-export { HistoricalQuotes } from './models/HistoricalQuotes';
-export { AutoCompleteSearchResult } from './models/AutoCompleteSearchResult';
-export { AutoCompleteSearchResults } from './models/AutoCompleteSearchResults';
+export { HistoricalQuote } from './models/historical-quote';
+export { HistoricalQuotes } from './models/historical-quotes';
+export { AutoCompleteSearchResult } from './models/autoComplete-searchResult';
+export { AutoCompleteSearchResults } from './models/autoComplete-searchResults';

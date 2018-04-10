@@ -8,8 +8,8 @@ export class FundSnapshot {
     indexDividend : string;
     indexDividendYield : string;
     previousClose : string;
-    fiftyTwoWeekHigh : string;
-    fiftyTwoWeekLow : string;
-    dayHigh : string;
-    dayLow : string;
+    fiftyTwoWeekHigh : number;
+    fiftyTwoWeekLow : number;
+    dayHigh : number;
+    dayLow : number;
 }

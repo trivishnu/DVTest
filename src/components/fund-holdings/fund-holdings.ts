@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { SectorSpdrService, Holding, SectorHoldings } from '../../providers/SectorSpdrAPI';
 
@@ -14,7 +14,7 @@ import { SectorSpdrService, Holding, SectorHoldings } from '../../providers/Sect
 })
 export class FundHoldingsComponent {
 
-  symbol : string;
+  @Input() symbol : string;
 
   asOfDate : string;
   asOfTime : string;
@@ -24,19 +24,12 @@ export class FundHoldingsComponent {
 
   constructor(private sectorSpdrService: SectorSpdrService) {
 
-    this.symbol = 'XLE';
-
-
-    this.groceries = [];
-
-    this.holdings = [];
   }
 
   ngOnInit() {
 
     this.sectorSpdrService.getFundHoldings(this.symbol)
     .subscribe(resp => {
-      console.log(resp);
      this.updateFields(resp);
     });
 
@@ -49,7 +42,6 @@ export class FundHoldingsComponent {
     this.asOfTime = sectorHoldings.asOfTime;
     this.holdings = sectorHoldings.items;
 
-    console.log(this.holdings);
   }
 
 }

@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>XLE</ion-title>
+    <ion-title>{{sectorSymbol}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,20 +17,24 @@
     <ion-slides pager="true">
 
         <ion-slide>
-          <fund-details></fund-details>
+          <fund-details [symbol]="sectorSymbol"></fund-details>
         </ion-slide>
      
         <ion-slide>
-          <fund-profile></fund-profile>
+          <fund-profile [symbol]="sectorSymbol"></fund-profile>
         </ion-slide>
      
         <ion-slide>
-          <fund-snapshot></fund-snapshot>
+          <fund-snapshot [symbol]="sectorSymbol"></fund-snapshot>
         </ion-slide>
      
         <ion-slide>
-          <fund-holdings></fund-holdings>
+          <fund-holdings [symbol]="sectorSymbol"></fund-holdings>
         </ion-slide>
      
+        <ion-slide>
+            <fund-distribution [symbol]="sectorSymbol"></fund-distribution>
+        </ion-slide>
+       
      </ion-slides>
 </ion-content>

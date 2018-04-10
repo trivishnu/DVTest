@@ -1,0 +1,38 @@
+<!-- <h1>Fund Distributions</h1> -->
+<h4>10 Year Distributions Overview</h4>
+
+<ion-select [(ngModel)]="distributionYearIndex" (ionChange)="distributionYearChange($event)">
+    <ion-option  *ngFor="let dividendDistribution of dividendDistributions let i=index" value="{{i}}">Year {{dividendDistribution.year}}</ion-option>
+</ion-select>
+
+<div padding *ngIf="selectedDistribution !== undefined">
+    <ion-list>
+        <ion-item>
+          <ion-label color="primary">Rate Share</ion-label>
+          <ion-label text-right >{{selectedDistribution.rate}}</ion-label>
+      </ion-item>
+      <ion-item>
+          <ion-label color="primary">Ordinary Income</ion-label>
+          <ion-label text-right >{{selectedDistribution.ordinaryIncome}}</ion-label>
+      </ion-item>
+  </ion-list>
+  
+</div>
+
+
+<h4>Dividend Details</h4>
+
+ <ion-select [(ngModel)]="dividendYearIndex" (ionChange)="dividendYearChange($event)">
+     <ion-option  *ngFor="let dividendDistribution of dividendDistributions let i=index" value="{{i}}">Year {{dividendDistribution.year}}</ion-option>
+     <ion-option value="100">Last Four Dividends</ion-option>
+ </ion-select>
+ 
+ <div padding *ngIf="selectedDividends !== undefined">
+     <ion-list>
+        <ion-item *ngFor="let dividend of selectedDividends" class="item" href="#">
+            <ion-label color="primary">{{dividend.exDividendDate}}</ion-label>
+            <ion-label text-right >{{dividend.ratePerShare}}</ion-label>
+          </ion-item>
+  </ion-list>
+   
+ </div>

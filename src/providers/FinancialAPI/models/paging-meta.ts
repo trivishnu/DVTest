@@ -1,5 +1,5 @@
-import { Paging } from "./Paging";
-import { ResultWindow } from "./ResultWindow";
+import { Paging } from "./paging";
+import { ResultWindow } from "./result-window";
 
 export interface PagingMeta {
     paging: Paging;

@@ -39,6 +39,8 @@ import { FundDetailsComponent } from '../components/fund-details/fund-details';
 import { FundHoldingsComponent } from '../components/fund-holdings/fund-holdings';
 import { FundProfileComponent } from '../components/fund-profile/fund-profile';
 import { FundSnapshotComponent } from '../components/fund-snapshot/fund-snapshot';
+import { FiftyTwoWeeksChartComponent } from '../components/fifty-two-weeks-chart/fifty-two-weeks-chart'
+import { FundDistributionComponent } from '../components/fund-distribution/fund-distribution';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { FundSnapshotComponent } from '../components/fund-snapshot/fund-snapshot
     FundDetailsComponent,
     FundHoldingsComponent,
     FundProfileComponent,
-    FundSnapshotComponent
+    FundSnapshotComponent,
+    FiftyTwoWeeksChartComponent,
+    FundDistributionComponent
   ],
   imports: [
     BrowserModule,

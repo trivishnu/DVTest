@@ -1,41 +1,50 @@
 <ion-title padding>Fund Snapshot</ion-title>
 
+<fifty-two-weeks-chart
+    [fiftyTwoWeekLow]="fiftyTwoWeekLow" 
+    [fiftyTwoWeekHigh]="fiftyTwoWeekHigh"
+    [dayLow] = "dayLow"
+    [dayHigh] = "dayHigh"
+    [last] = "last"
+    [color] = "sectorColor"
+    ></fifty-two-weeks-chart>
+
 <ion-list>
   <ion-item>
       <ion-label color="primary">Market Cap</ion-label>
-      <ion-label>{{marketCap}}</ion-label>
+      <ion-label text-right>{{marketCap}}</ion-label>
   </ion-item>
   <ion-item>
       <ion-label color="primary">Outstanding Shares</ion-label>
-      <ion-label>{{sharesOutstanding}}</ion-label>
+      <ion-label text-right>{{sharesOutstanding}}</ion-label>
   </ion-item>
   <ion-item>
       <ion-label color="primary">Exchange</ion-label>
-      <ion-label>{{exchange}}</ion-label>
+      <ion-label text-right>{{exchange}}</ion-label>
   </ion-item>
   <ion-item>
       <ion-label color="primary">Average Volume</ion-label>
-      <ion-label >{{averageVolume}}</ion-label>
+      <ion-label text-right >{{averageVolume}}</ion-label>
   </ion-item>
   <ion-item>
       <ion-label color="primary">Index</ion-label>
-      <ion-label >{{index}}</ion-label>
+      <ion-label text-right >{{index}}</ion-label>
   </ion-item>
   <ion-item>
     <ion-label color="primary">Index Value</ion-label>
-    <ion-label >{{indexValue}}</ion-label>
+    <ion-label text-right >{{indexValue}}</ion-label>
 </ion-item>
 <ion-item>
     <ion-label color="primary">Index Dividend</ion-label>
-    <ion-label >{{indexDividend}}</ion-label>
+    <ion-label text-right >{{indexDividend}}</ion-label>
   </ion-item>
   <ion-item>
     <ion-label color="primary">Index Dividend Yield</ion-label>
-    <ion-label >{{indexDividendYield}}</ion-label>
+    <ion-label text-right >{{indexDividendYield}}</ion-label>
   </ion-item>
   <ion-item>
     <ion-label color="primary">Previous Close</ion-label>
-    <ion-label >{{previousClose}}</ion-label>
+    <ion-label text-right >{{previousClose}}</ion-label>
   </ion-item>
 
 </ion-list>
