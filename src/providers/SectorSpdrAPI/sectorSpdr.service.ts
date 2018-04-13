@@ -14,7 +14,7 @@ const FUND_SNAPSHOT_URL: string = '/sectorspdr/IDCO.Products.Etf.Profile/Profile
 const FUND_HOLDINGS_URL: string = '/sectorspdr/api/holdings/';
 const SECTOR_TRACKER_URL: string = '/sectorspdr/api/IDCO.Client.Spdrs.SectorTracker/SectorTrackerApi';
 const DIVIDEND_DISTRIBUTIONS_URL: string = '/sectorspdr/IDCO.Client.Spdrs.Distributions/Distributions/Distributions';
-const FUND_DOCUMENTS_URL: string = '/sectorspdr/IDCO.Client.Spdrs.DocumentLibrary/Document/GetFundDocuments?symbol=XLE';
+const FUND_DOCUMENTS_URL: string = '/sectorspdr/IDCO.Client.Spdrs.DocumentLibrary/Document/GetFundDocuments';
 // const SECTOR_OVERVIEW_URL: string = '/sectorspdr/api/IDCO.Client.Spdrs.SectorTracker/SectorOverviewApi?period=';
 
 @Injectable()
@@ -108,7 +108,7 @@ export class SectorSpdrService {
           snapshot.marketCap = dataSection.Value + " " + dataSection.Unit;
         }
         else if ( dataSection.Name ===  "Shares Outstanding" ) {
-          snapshot.sharesOutstanding = dataSection.Value;
+          snapshot.sharesOutstanding = dataSection.Value + " " + dataSection.Unit;
         }
         else if ( dataSection.Name ===  "Exchange Name" ) {
           snapshot.exchange = dataSection.Value;
@@ -173,26 +173,6 @@ export class SectorSpdrService {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
   getDividendDistributions(symbol: string, yearsCount: number = 10) : Observable<DividendDistribution[]>  {
 
     var parameters = {
@@ -202,13 +182,10 @@ export class SectorSpdrService {
 
     var url = this.buildUrl(this.server + DIVIDEND_DISTRIBUTIONS_URL, parameters);
 
-console.log("url", url);
-    
     return this.httpClient.get(url)
     .pipe(map(resp => {
 
       var data = resp as any;
-console.log("Pre map", resp);
       return data.Distributions.map(res => {
         var d = res as any;
         var dividendDistribution = new DividendDistribution();
@@ -264,16 +241,32 @@ console.log("Pre map", resp);
     };
 
     var url = this.buildUrl(this.server + FUND_DOCUMENTS_URL, parameters);
-    
-    return this.httpClient.get<FundDocument[]>(url)
-    .pipe(map(data => data.map(res => {
-      var d = res as any;
-      var document = new FundDocument();
-      document.title = d.Title;
-      document.url = d.Url;
-      document.asOfDate = d.AsOfDate;
-      return document;
-    })));
+
+
+    return this.httpClient.get(url)
+    .pipe(map(resp => {
+
+      var data = resp as any;
+      var firstSector = data[0];
+      return firstSector.Files.map(d => {
+          var document = new FundDocument();
+          document.title = d.Title;
+          document.url = d.Url;
+          document.asOfDate = d.AsOfDate;
+          return document;
+        })
+    }));
+
+    // console.log("url", url);
+    // return this.httpClient.get<FundDocument[]>(url)
+    // .pipe(map(data => data.map(res => {
+    //   var d = res as any;
+    //   var document = new FundDocument();
+    //   document.title = d.Title;
+    //   document.url = d.Url;
+    //   document.asOfDate = d.AsOfDate;
+    //   return document;
+    // })));
 
   }
 

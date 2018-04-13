@@ -41,6 +41,10 @@ import { FundProfileComponent } from '../components/fund-profile/fund-profile';
 import { FundSnapshotComponent } from '../components/fund-snapshot/fund-snapshot';
 import { FiftyTwoWeeksChartComponent } from '../components/fifty-two-weeks-chart/fifty-two-weeks-chart'
 import { FundDistributionComponent } from '../components/fund-distribution/fund-distribution';
+import { FundDocumentsComponent } from '../components/fund-documents/fund-documents';
+
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { DocumentViewPage } from '../pages/document-view/document-view';
 
 @NgModule({
   declarations: [
@@ -59,19 +63,22 @@ import { FundDistributionComponent } from '../components/fund-distribution/fund-
     LoginPage,
     DetailPage,
     FundPropertiesPage,
+    DocumentViewPage,
     FundDetailsComponent,
     FundHoldingsComponent,
     FundProfileComponent,
     FundSnapshotComponent,
     FiftyTwoWeeksChartComponent,
-    FundDistributionComponent
+    FundDistributionComponent,
+    FundDocumentsComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(SpdrApp),
     ChartsModule,
-    FinancialAPIModule
+    FinancialAPIModule,
+    PdfViewerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -89,7 +96,8 @@ import { FundDistributionComponent } from '../components/fund-distribution/fund-
     NotificationsPage,
     LoginPage,
     DetailPage,
-    FundPropertiesPage
+    FundPropertiesPage,
+    DocumentViewPage
   ],
   providers: [
     StatusBar,
