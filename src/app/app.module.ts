@@ -18,6 +18,7 @@ import { SummaryPage } from '../pages/summary/summary';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { LoginPage } from '../pages/login/login';
 import { DetailPage } from '../pages/detail/detail';
+import { FundPropertiesPage } from '../pages/fund-properties/fund-properties';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -32,6 +33,18 @@ import { Keyboard } from '@ionic-native/keyboard';
 
 import { FinancialAPIModule } from '../providers/FinancialAPI/FinancialAPIModule'
 import { ChartService } from '../providers/fdsg/chartService';
+import { SectorSpdrService } from '../providers/SectorSpdrAPI';
+
+import { FundDetailsComponent } from '../components/fund-details/fund-details';
+import { FundHoldingsComponent } from '../components/fund-holdings/fund-holdings';
+import { FundProfileComponent } from '../components/fund-profile/fund-profile';
+import { FundSnapshotComponent } from '../components/fund-snapshot/fund-snapshot';
+import { FiftyTwoWeeksChartComponent } from '../components/fifty-two-weeks-chart/fifty-two-weeks-chart'
+import { FundDistributionComponent } from '../components/fund-distribution/fund-distribution';
+import { FundDocumentsComponent } from '../components/fund-documents/fund-documents';
+
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { DocumentViewPage } from '../pages/document-view/document-view';
 
 @NgModule({
   declarations: [
@@ -48,14 +61,24 @@ import { ChartService } from '../providers/fdsg/chartService';
     TabsPage,
     NotificationsPage,
     LoginPage,
-    DetailPage
+    DetailPage,
+    FundPropertiesPage,
+    DocumentViewPage,
+    FundDetailsComponent,
+    FundHoldingsComponent,
+    FundProfileComponent,
+    FundSnapshotComponent,
+    FiftyTwoWeeksChartComponent,
+    FundDistributionComponent,
+    FundDocumentsComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(SpdrApp),
     ChartsModule,
-    FinancialAPIModule
+    FinancialAPIModule,
+    PdfViewerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -72,7 +95,9 @@ import { ChartService } from '../providers/fdsg/chartService';
     TabsPage,
     NotificationsPage,
     LoginPage,
-    DetailPage
+    DetailPage,
+    FundPropertiesPage,
+    DocumentViewPage
   ],
   providers: [
     StatusBar,
@@ -86,7 +111,8 @@ import { ChartService } from '../providers/fdsg/chartService';
     HTTP,
     Keyboard,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ChartService
+    ChartService,
+    SectorSpdrService
   ]
 })
 export class AppModule {}

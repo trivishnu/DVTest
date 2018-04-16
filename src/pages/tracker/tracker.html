@@ -7,7 +7,29 @@
 </ion-header>
 
 <ion-content padding>
-  <div style="display: block">
+
+  <p>
+     
+  </p>
+  <ion-item>
+      <ion-label color="primary">S&amp;P 500</ion-label>
+      <ion-label  text-right>{{sAndPTracker.changeString}}</ion-label>
+  </ion-item>
+
+  <ion-list>
+    <button ion-item *ngFor="let tracker of sectorTrackers"
+      [navPush]="fundPropertiesPage"
+      [navParams]="tracker.symbol">
+      <!-- <h2 item-left>{{tracker.symbol}}</h2> -->
+      <ion-label color="primary">{{tracker.displayName}}</ion-label>
+      <ion-label  text-right>{{tracker.changeString}}</ion-label>
+    </button>
+  </ion-list>
+
+  <!-- <div style="display: block">
+
+
+
       <canvas baseChart width="50%"
                   [data]="doughnutChartData"
                   [labels]="doughnutChartLabels"
@@ -16,5 +38,6 @@
                   [legend]="doughnutLegendDisplayed"
                   (chartHover)="chartHovered($event)"
                   (chartClick)="chartClicked($event)"></canvas>
-    </div>
-</ion-content>
+    </div> -->
+
+  </ion-content>

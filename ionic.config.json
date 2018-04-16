@@ -4,5 +4,9 @@
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
-  }
+  },
+  "proxies": [{
+    "path": "/sectorspdr/",
+    "proxyUrl": "http://www.sectorspdr.com/sectorspdr/"
+  }]
 }
