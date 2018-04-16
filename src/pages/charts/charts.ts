@@ -12,10 +12,10 @@ declare var FDSChartJS: any;
 //import * as FDSChartJS from '@fds/fdschartjs'
 
 @Component({
-  selector: 'page-funds',
-  templateUrl: 'funds.html'
+  selector: 'page-charts',
+  templateUrl: 'charts.html'
 })
-export class FundsPage {
+export class ChartsPage {
 
   chartType: string;
   symbol: string;

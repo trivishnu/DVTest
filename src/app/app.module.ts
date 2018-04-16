@@ -7,7 +7,7 @@ import { ChartsModule } from 'ng2-charts';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
-import { FundsPage } from '../pages/funds/funds';
+import { ChartsPage } from '../pages/charts/charts';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TrackerPage } from '../pages/tracker/tracker';
 import { EducationPage } from '../pages/education/education';
@@ -51,7 +51,7 @@ import { DocumentViewPage } from '../pages/document-view/document-view';
     SpdrApp,
     AboutPage,
     ContactPage,
-    FundsPage,
+    ChartsPage,
     TrackerPage,
     EducationPage,
     WatchlistPage,
@@ -85,7 +85,7 @@ import { DocumentViewPage } from '../pages/document-view/document-view';
     SpdrApp,
     AboutPage,
     ContactPage,
-    FundsPage,
+    ChartsPage,
     TrackerPage,
     EducationPage,
     WatchlistPage,

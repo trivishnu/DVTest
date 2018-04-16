@@ -1,11 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { ActionSheetController, NavController, Tabs, Events } from 'ionic-angular';
+import { ActionSheetController, NavController, Tabs } from 'ionic-angular';
 
-import { FundsPage } from '../funds/funds';
+import { ChartsPage } from '../charts/charts';
 import { TrackerPage } from '../tracker/tracker';
-import { EducationPage } from '../education/education';
 import { WatchlistPage } from '../watchlist/watchlist';
+import { EducationPage } from '../education/education';
 import { OverviewPage } from '../overview/overview';
 import { SummaryPage } from '../summary/summary';
 import { SearchPage } from '../search/search';
@@ -18,20 +18,12 @@ import { ContactPage } from '../contact/contact';
 export class TabsPage {
   @ViewChild('appTabs') tabsRef: Tabs;
 
-  tab1Root = FundsPage;
+  tab1Root = ChartsPage;
   tab2Root = TrackerPage;
-  tab3Root = EducationPage;
-  tab4Root = WatchlistPage;
 
   constructor(
     public actionSheetCtl: ActionSheetController,
-    public navCtrl: NavController,
-    events: Events) {
-
-    events.subscribe('navigation:watchlist', () => {
-      // primarily used when user clicks the 3D Touch to jump to a specific tab
-      this.tabsRef.select(3);
-    });
+    public navCtrl: NavController) {
   }
 
   showMore() {
@@ -50,6 +42,20 @@ export class TabsPage {
           handler: () => {
             console.log('Weekly Summary clicked');
             this.navCtrl.push(SummaryPage);
+          }
+        },
+        {
+          text: 'Watchlist',
+          handler: () => {
+            console.log('Watchlist clicked');
+            this.navCtrl.push(WatchlistPage);
+          }
+        },
+        {
+          text: 'Education',
+          handler: () => {
+            console.log('Education clicked');
+            this.navCtrl.push(EducationPage);
           }
         },
         {
