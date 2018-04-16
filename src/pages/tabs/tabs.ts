@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { ActionSheetController, NavController, Tabs } from 'ionic-angular';
+import { ActionSheetController, NavController, Tabs, ModalController } from 'ionic-angular';
 
 import { ChartsPage } from '../charts/charts';
 import { TrackerPage } from '../tracker/tracker';
@@ -11,6 +11,7 @@ import { SummaryPage } from '../summary/summary';
 import { SearchPage } from '../search/search';
 import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
+import { WheelPage } from '../wheel/wheel';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -23,7 +24,13 @@ export class TabsPage {
 
   constructor(
     public actionSheetCtl: ActionSheetController,
-    public navCtrl: NavController) {
+    public navCtrl: NavController,
+    public modalCtrl: ModalController) {
+  }
+
+  showWheel() {
+    let wheelModal = this.modalCtrl.create(WheelPage);
+    wheelModal.present();
   }
 
   showMore() {

@@ -19,6 +19,7 @@ import { NotificationsPage } from '../pages/notifications/notifications';
 import { LoginPage } from '../pages/login/login';
 import { DetailPage } from '../pages/detail/detail';
 import { FundPropertiesPage } from '../pages/fund-properties/fund-properties';
+import { WheelPage } from '../pages/wheel/wheel';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -64,6 +65,7 @@ import { DocumentViewPage } from '../pages/document-view/document-view';
     DetailPage,
     FundPropertiesPage,
     DocumentViewPage,
+    WheelPage,
     FundDetailsComponent,
     FundHoldingsComponent,
     FundProfileComponent,
@@ -97,7 +99,8 @@ import { DocumentViewPage } from '../pages/document-view/document-view';
     LoginPage,
     DetailPage,
     FundPropertiesPage,
-    DocumentViewPage
+    DocumentViewPage,
+    WheelPage
   ],
   providers: [
     StatusBar,
