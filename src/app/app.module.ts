@@ -7,7 +7,7 @@ import { ChartsModule } from 'ng2-charts';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
-import { FundsPage } from '../pages/funds/funds';
+import { ChartsPage } from '../pages/charts/charts';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TrackerPage } from '../pages/tracker/tracker';
 import { EducationPage } from '../pages/education/education';
@@ -19,6 +19,7 @@ import { NotificationsPage } from '../pages/notifications/notifications';
 import { LoginPage } from '../pages/login/login';
 import { DetailPage } from '../pages/detail/detail';
 import { FundPropertiesPage } from '../pages/fund-properties/fund-properties';
+import { WheelPage } from '../pages/wheel/wheel';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -51,7 +52,7 @@ import { DocumentViewPage } from '../pages/document-view/document-view';
     SpdrApp,
     AboutPage,
     ContactPage,
-    FundsPage,
+    ChartsPage,
     TrackerPage,
     EducationPage,
     WatchlistPage,
@@ -64,6 +65,7 @@ import { DocumentViewPage } from '../pages/document-view/document-view';
     DetailPage,
     FundPropertiesPage,
     DocumentViewPage,
+    WheelPage,
     FundDetailsComponent,
     FundHoldingsComponent,
     FundProfileComponent,
@@ -85,7 +87,7 @@ import { DocumentViewPage } from '../pages/document-view/document-view';
     SpdrApp,
     AboutPage,
     ContactPage,
-    FundsPage,
+    ChartsPage,
     TrackerPage,
     EducationPage,
     WatchlistPage,
@@ -97,7 +99,8 @@ import { DocumentViewPage } from '../pages/document-view/document-view';
     LoginPage,
     DetailPage,
     FundPropertiesPage,
-    DocumentViewPage
+    DocumentViewPage,
+    WheelPage
   ],
   providers: [
     StatusBar,

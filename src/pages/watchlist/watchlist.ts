@@ -19,15 +19,6 @@ export class WatchlistPage {
 
   ionViewDidEnter() {
     console.log('ionViewDidEnter WatchlistPage');
-
-    // workaround added due to this scenario:
-    // - Start App for first time
-    // - Minimize app
-    // - Use 3DTouch to go to watchlist
-    // - Shows watchlist page but tab icon is still set to the funds tab
-    // - Minimize app
-    // - Tap icon to resume app, watchlist page is shown and watchlist tab icon is selected
-    this.navCtrl.parent.select(3);
   }
 
   notifications() {

@@ -5,6 +5,11 @@ https://confluence.mdgms.com/display/SSPDRS/Home
 - The current LTS version of [Node](https://nodejs.org/en/download/) for your platform
 - Ionic CLI
 - Cordova CLI
+- npm configured to use FactSet npm repository
+
+> npm config set registry http://artifactory.factset.com/artifactory/api/npm/npm/
+
+> npm config set @fds:registry http://artifactory.factset.com/artifactory/api/npm/npm-fds/
 
 > npm install -g ionic cordova
 
