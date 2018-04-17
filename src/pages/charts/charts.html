@@ -4,27 +4,27 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content >
+<ion-content no-bounce>
 
-<div padding>
-  <ion-segment [(ngModel)]="symbol"  (ionChange)="onSectorChange()">
-    <ion-segment-button *ngFor="let sector of sectors" value="{{sector.symbol}}">{{sector.symbol}}</ion-segment-button>
-  </ion-segment>
+  <div padding>
+    <ion-segment [(ngModel)]="symbol" (ionChange)="onSectorChange()">
+      <ion-segment-button *ngFor="let sector of sectors" value="{{sector.symbol}}">{{sector.symbol}}</ion-segment-button>
+    </ion-segment>
   </div>
 
-<div padding>
-  <ion-segment [(ngModel)]="chartType" (ionChange)="onChartTypeChange()">
-    <ion-segment-button value="1D">1D</ion-segment-button>
-    <ion-segment-button value="1M">1M</ion-segment-button>
-    <ion-segment-button value="3M">3M</ion-segment-button>
-    <ion-segment-button value="6M">6M</ion-segment-button>
-    <ion-segment-button value="YTD">YTD</ion-segment-button>
-    <ion-segment-button value="1Y">1Y</ion-segment-button>
-    <ion-segment-button value="5Y">5Y</ion-segment-button>
-    <ion-segment-button value="10Y">10Y</ion-segment-button>
-  </ion-segment>
-</div>
+  <div padding>
+    <ion-segment [(ngModel)]="chartType" (ionChange)="onChartTypeChange()">
+      <ion-segment-button value="1D">1D</ion-segment-button>
+      <ion-segment-button value="1M">1M</ion-segment-button>
+      <ion-segment-button value="3M">3M</ion-segment-button>
+      <ion-segment-button value="6M">6M</ion-segment-button>
+      <ion-segment-button value="YTD">YTD</ion-segment-button>
+      <ion-segment-button value="1Y">1Y</ion-segment-button>
+      <ion-segment-button value="5Y">5Y</ion-segment-button>
+      <ion-segment-button value="10Y">10Y</ion-segment-button>
+    </ion-segment>
+  </div>
 
-<div id="chart"></div>
+  <div id="chart"></div>
 
 </ion-content>

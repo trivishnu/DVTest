@@ -47,8 +47,8 @@ export class ChartsPage {
 
     this.chartType = "1M";
     this.symbol = "XLE";
-    this.windowWidth = platform.width();
-    this.windowHeight = platform.height()-250;
+    this.windowWidth = platform.width() * 0.95;
+    this.windowHeight = platform.height() * 0.25;
   }
 
   ionViewDidLoad() {
@@ -68,7 +68,13 @@ export class ChartsPage {
 
     var chartDiv = this.elementRef.nativeElement.querySelector('#chart');
 
-    this.chart = new FDSChartJS(chartDiv, { appName: 'fdsg-app', theme: 1, disableLogging: true, height: this.windowHeight });
+    this.chart = new FDSChartJS(chartDiv, {
+      appName: 'fdsg-app',
+      theme: 1,
+      disableLogging: true,
+      height: this.windowHeight,
+      width: this.windowWidth
+    });
 
     var plot = new FDSChartJS.models.plot({
       id: "plot"
