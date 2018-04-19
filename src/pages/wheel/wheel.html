@@ -1,17 +1,36 @@
-<ion-content padding>
+<ion-content padding no-bounce>
   <ion-grid style="height: 100%">
     <ion-row justify-content-center align-items-center style="height: 300px">
-      I AM A WHEEL
+      Content Goes Here
     </ion-row>
   </ion-grid>
 </ion-content>
 
 <ion-footer>
-  <ion-grid style="height: 100%">
-    <ion-row justify-content-center align-items-center style="height: 100%">
-      <button ion-button icon-only clear (click)="dismissOverlay()">
+
+  <div class="wheel-container">
+    <svg class="svg-wheel" viewBox="0 0 32 32">
+      <circle r="16" cx="16" cy="16" />
+    </svg>
+    <!--
+    <svg width="100%" height="300">
+        <circle cx="50%" cy="300" r="150"/>
+        <polygon points="170,130 194,130 182,165" style="fill:lime;stroke:purple;stroke-width:1" />
+    </svg>
+    -->
+  </div>
+  <div class="indicator-container">
+    <svg class="svg-indicator">
+        <polygon points="170,130 194,130 182,165" style="fill:lime;stroke:purple;stroke-width:2" />
+    </svg>
+  </div>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row justify-content-center align-items-center>
+        <button ion-button icon-only clear (click)="dismissOverlay()">
           <ion-icon name="ios-close-circle-outline"></ion-icon>
         </button>
-    </ion-row>
-  </ion-grid>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
 </ion-footer>
