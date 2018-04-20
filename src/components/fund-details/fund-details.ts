@@ -24,7 +24,7 @@ export class FundDetailsComponent {
 
   sectorName: string;
   description : string;
-  weight: string;
+  weight: number;
 
   constructor(private sectorSpdrService: SectorSpdrService) {
 

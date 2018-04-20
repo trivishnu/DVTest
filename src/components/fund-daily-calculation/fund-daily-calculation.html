@@ -1,0 +1,44 @@
+<ion-title padding>Daily Calculation</ion-title>
+
+<div padding *ngIf="dailyCalculation !== undefined">
+
+<ion-item text-wrap>
+    as of {{dailyCalculation.lastUpdateTime}} {{dailyCalculation.lastUpdateDate}}
+</ion-item>
+
+
+<ion-list>
+    <ion-item>
+        <ion-label color="primary">Nav</ion-label>
+        <ion-label text-right >{{dailyCalculation.netAssetValue}}</ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label color="primary">Last Trade</ion-label>
+        <ion-label text-right >{{dailyCalculation.lastTrade}}</ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label color="primary">Last Trade to Nav Change</ion-label>
+        <ion-label text-right >{{dailyCalculation.lastTradeToNetAssetValueChange}}</ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label color="primary">Last Trade to Nav Change Percent</ion-label>
+        <ion-label text-right >{{dailyCalculation.lastTradeToNetAssetValuePctChange}}%</ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label color="primary">Bid/Offer Midpoint</ion-label>
+        <ion-label text-right >{{dailyCalculation.mid}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+        <ion-label color="primary">Bid/Offer Midpoint to Nav Change</ion-label>
+        <ion-label text-right >{{dailyCalculation.midToNetAssetValueChange}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+        <ion-label color="primary">Bid/Offer Midpoint to Nav Change Percent</ion-label>
+        <ion-label text-right >{{dailyCalculation.midToNetAssetValuePctChange}}%</ion-label>
+    </ion-item>
+
+</ion-list>
+
+</div>

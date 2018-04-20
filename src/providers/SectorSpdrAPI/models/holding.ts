@@ -1,10 +1,10 @@
 export class Holding {
     symbol : string;
     companyName : string;
-    indexWeight : string;
-    last : string;
-    change : string;
-    percentChange : string;
+    indexWeight : number;
+    last : number;
+    change : number;
+    percentChange : number;
     volume : string;
     price52WeeksRange : string;
 }
