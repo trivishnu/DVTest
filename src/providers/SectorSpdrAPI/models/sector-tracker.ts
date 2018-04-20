@@ -1,6 +1,6 @@
 export class SectorTracker {
     symbol : string;
     displayName : string;
-    changeString : string;
+    changePercent : number;
     change : string;
 }

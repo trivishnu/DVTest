@@ -7,6 +7,6 @@
   },
   "proxies": [{
     "path": "/sectorspdr/",
-    "proxyUrl": "http://www.sectorspdr.com/sectorspdr/"
+    "proxyUrl": "http://sectorspdr.show.idmanagedsolutions.com/sectorspdr/"
   }]
 }

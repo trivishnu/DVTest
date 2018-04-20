@@ -3,10 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs/Rx';
 import { map } from 'rxjs/operators';
 
-import { FundDetails, SectorHoldings, FundSnapshot, SectorTracker, DividendDistribution, FundDocument } from './index';
+import { FundDetails, SectorHoldings, FundSnapshot, SectorTracker, DividendDistribution, FundDocument, DailyCalculation } from './index';
 import { Sector } from './models/sector';
 import { Holding } from './models/holding';
 import { Dividend } from './models/dividend';
+import { FundPerformance } from './models/fund-performance';
+import { FundPerformances } from './models/fund-performances';
 
 const SECTORS_LIST_URL: string = '/sectorspdr/api/IDCO.Client.Spdrs.SectorPie/SectorPieApi';
 const FUND_DETAILS_URL: string = '/sectorspdr/api/fund-details/';
@@ -16,6 +18,10 @@ const SECTOR_TRACKER_URL: string = '/sectorspdr/api/IDCO.Client.Spdrs.SectorTrac
 const DIVIDEND_DISTRIBUTIONS_URL: string = '/sectorspdr/IDCO.Client.Spdrs.Distributions/Distributions/Distributions';
 const FUND_DOCUMENTS_URL: string = '/sectorspdr/IDCO.Client.Spdrs.DocumentLibrary/Document/GetFundDocuments';
 // const SECTOR_OVERVIEW_URL: string = '/sectorspdr/api/IDCO.Client.Spdrs.SectorTracker/SectorOverviewApi?period=';
+const QUARTER_END_PERFORMANCE_URL = '/sectorspdr/api/performance/{symbol}/quarterend';
+const MONTH_END_PERFORMANCE_URL = '/sectorspdr/api/performance/{symbol}/monthend';
+const DIVIDENDS_SCHEDULE_URL = '/sectorspdr/IDCO.Client.Spdrs.DocumentLibrary/Document/GetDividendSchedule';
+const DAILY_CALCULATION_URL = '/sectorspdr/api/daily-calculation/';
 
 @Injectable()
 export class SectorSpdrService {
@@ -50,7 +56,7 @@ export class SectorSpdrService {
       sector.symbol = s.Symbol;
       sector.sectorName = s.SectorName;
       sector.dateOfLoad = s.DateOfLoad;
-      sector.weight = s.Weight;
+      sector.weight = this.numberFromPercent(s.Weight);
       sector.description = s.SectorDescription;
       return sector;
     })));
@@ -77,10 +83,10 @@ export class SectorSpdrService {
           var holding = new Holding();
           holding.symbol = holdingData.Symbol
           holding.companyName = holdingData.CompanyName
-          holding.indexWeight = holdingData.IndexWeight
-          holding.last = holdingData.Last
-          holding.change = holdingData.Change
-          holding.percentChange = holdingData.PercentChange
+          holding.indexWeight = this.numberFromPercent(holdingData.IndexWeight);
+          holding.last = Number(holdingData.Last);
+          holding.change = Number(holdingData.Change);
+          holding.percentChange = this.numberFromPercent(holdingData.PercentChange);
           holding.volume = holdingData.Volume
           holding.price52WeeksRange = holdingData.Price52WeeksRange
 
@@ -117,19 +123,19 @@ export class SectorSpdrService {
           snapshot.averageVolume = dataSection.Value + " " + dataSection.Unit;
         }
         else if ( dataSection.Name ===  "Index Value" ) {
-          snapshot.indexValue = dataSection.Value;
+          snapshot.indexValue = this.numberFromCurrency(dataSection.Value);
           var startIndex = dataSection.DisplayName.indexOf("(");
           var endIndex = dataSection.DisplayName.indexOf(")");
           snapshot.index = dataSection.DisplayName.substring(startIndex + 1, endIndex);
         }
         else if ( dataSection.Name ===  "Index Dividend" ) {
-          snapshot.indexDividend = dataSection.Value;
+          snapshot.indexDividend = this.numberFromCurrency(dataSection.Value);
         }
         else if ( dataSection.Name ===  "Index Dividend Yield" ) {
-          snapshot.indexDividendYield = dataSection.Value;
+          snapshot.indexDividendYield = this.numberFromPercent(dataSection.Value);
         }
         else if ( dataSection.Name ===  "Previous Close" ) {
-          snapshot.previousClose = dataSection.Value;
+          snapshot.previousClose = this.numberFromCurrency(dataSection.Value);
         }
         else if ( dataSection.Name ===  "52 Week High" ) {
           snapshot.fiftyTwoWeekHigh = this.numberFromCurrency(value);
@@ -165,7 +171,7 @@ export class SectorSpdrService {
       var sectorTracker = new SectorTracker();
       sectorTracker.symbol = s.Symbol;
       sectorTracker.displayName = s.DisplayName;
-      sectorTracker.changeString = s.ChangeString;
+      sectorTracker.changePercent = this.numberFromPercent(s.ChangeString);
       sectorTracker.change = s.Change;
       return sectorTracker;
     })));
@@ -270,6 +276,111 @@ export class SectorSpdrService {
 
   }
 
+  getQuarterEndPerformances(symbol: string) : Observable<FundPerformances> {
+
+    var url = this.server + QUARTER_END_PERFORMANCE_URL;
+    url = url.replace("{symbol}", symbol);
+
+    return this.httpClient.get(url)
+    .pipe(map(resp => {
+
+      var d = resp as any;
+      var performances = new FundPerformances();
+      performances.asOfDate = d.asOfDate;
+      performances.performances = d.performanceItems.map(d => {
+        var performance = new FundPerformance();
+        performance.performanceType = d.sheetMappingId;
+        performance.oneMonth = d.oneMonth;
+        performance.latestQuarter = d.latestQuarter;
+        performance.calendarYTD = d.calendarYTD;
+        performance.annualizedOneYear = d.annualizedOneYear;
+        performance.annualizedThreeYear = d.annualizedThreeYear;
+        performance.annualizedFiveYear = d.annualizedFiveYear;
+        performance.annualizedTenYear = d.annualizedTenYear;
+        performance.annualizedInceptionToDate = d.annualizedInceptionToDate;
+        performance.liquidationType = d.liquidationType;
+        performance.totalReturnType = d.totalReturnType;
+        return performance;
+      })
+
+      return performances;
+
+    }));
+
+  }
+
+  getMonthEndPerformances(symbol: string) : Observable<FundPerformances> {
+
+    var url = this.server + MONTH_END_PERFORMANCE_URL;
+    url = url.replace("{symbol}", symbol);
+
+    return this.httpClient.get(url)
+    .pipe(map(resp => {
+
+      var d = resp as any;
+      var performances = new FundPerformances();
+      performances.asOfDate = d.asOfDate;
+      performances.performances = d.performanceItems.map(d => {
+        var performance = new FundPerformance();
+        performance.performanceType = d.sheetMappingId;
+        performance.oneMonth = this.numberFromPercent(d.oneMonth);
+        performance.latestQuarter = this.numberFromPercent(d.latestQuarter);
+        performance.calendarYTD = this.numberFromPercent(d.calendarYTD);
+        performance.annualizedOneYear = this.numberFromPercent(d.annualizedOneYear);
+        performance.annualizedThreeYear = this.numberFromPercent(d.annualizedThreeYear);
+        performance.annualizedFiveYear = this.numberFromPercent(d.annualizedFiveYear);
+        performance.annualizedTenYear = this.numberFromPercent(d.annualizedTenYear);
+        performance.annualizedInceptionToDate = this.numberFromPercent(d.annualizedInceptionToDate);
+        performance.liquidationType = d.liquidationType;
+        performance.totalReturnType = d.totalReturnType;
+        return performance;
+      })
+
+      return performances;
+
+    }));
+
+  }
+
+  getDailyCalculation(symbol: string) : Observable<DailyCalculation>{
+
+    return this.httpClient.get(this.server + DAILY_CALCULATION_URL + symbol)
+    .pipe(map(data => {
+      var dailyCalculation = new DailyCalculation();
+      var calculationData = data as any;
+      dailyCalculation.lastTrade = Number(calculationData.LastTrade);
+      dailyCalculation.lastTradeToNetAssetValueChange = Number(calculationData.LastTradeToNetAssetValueChange);
+      dailyCalculation.lastTradeToNetAssetValuePctChange = this.numberFromPercent(calculationData.LastTradeToNetAssetValuePctChange);
+      dailyCalculation.lastUpdateDate = calculationData.LastUpdateDate;
+      dailyCalculation.lastUpdateTime = calculationData.LastUpdateTime;
+      dailyCalculation.mid = Number(calculationData.Mid);
+      dailyCalculation.midToNetAssetValueChange = Number(calculationData.MidToNetAssetValueChange);
+      dailyCalculation.midToNetAssetValuePctChange = this.numberFromPercent(calculationData.MidToNetAssetValuePctChange);
+      dailyCalculation.netAssetValue = Number(calculationData.NetAssetValue);
+
+      return dailyCalculation;
+    }))
+
+  }
+
+  getDividendsScheduleDocuments() : Observable<FundDocument[]> {
+
+    return this.httpClient.get(this.server + DIVIDENDS_SCHEDULE_URL)
+    .pipe(map(resp => {
+
+      var data = resp as any;
+      var firstSector = data[0];
+      return firstSector.Files.map(d => {
+          var document = new FundDocument();
+          document.title = d.Title;
+          document.url = d.Url;
+          document.asOfDate = d.AsOfDate;
+          return document;
+        })
+    }));
+
+  }
+
   buildUrl(url, parameters){
     var qs = "";
     for(var key in parameters) {
@@ -281,6 +392,17 @@ export class SectorSpdrService {
       url = url + "?" + qs;
     }
     return url;
+  }
+
+
+  getSectorInfo(symbol: string) : Sector{
+
+    for (let sector of this.sectors) {
+      if ( sector.symbol == symbol )
+        return sector;
+    }
+    return undefined;
+
   }
 
   formatCurrency(value: number) {
@@ -300,14 +422,11 @@ export class SectorSpdrService {
     return Number(text.replace(/[^0-9\.-]+/g,""));
   }
 
-  getSectorInfo(symbol: string) : Sector{
 
-    for (let sector of this.sectors) {
-      if ( sector.symbol == symbol )
-        return sector;
-    }
-    return undefined;
-
+  numberFromPercent(text: string){
+    var index = text.indexOf("%");
+    var numberString = text.replace('%', '');
+    return Number(numberString);
   }
 
 

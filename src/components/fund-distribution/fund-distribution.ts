@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { SectorSpdrService } from '../../providers/SectorSpdrAPI';
+import { NavController } from 'ionic-angular';
+import { SectorSpdrService, FundDocument } from '../../providers/SectorSpdrAPI';
 import { DividendDistribution, Dividend } from '../../providers/SectorSpdrAPI';
+import { DocumentViewPage } from '../../pages/document-view/document-view';
 
 /**
  * Generated class for the FundDistributionComponent component.
@@ -22,7 +24,9 @@ export class FundDistributionComponent {
   selectedDistribution : DividendDistribution;
   selectedDividends : Dividend[];
 
-  constructor(private sectorSpdrService: SectorSpdrService) {
+  dividendScheduleDocument : FundDocument;
+
+  constructor(public navCtrl: NavController, private sectorSpdrService: SectorSpdrService) {
 
   }
 
@@ -35,6 +39,14 @@ export class FundDistributionComponent {
       if( this.dividendDistributions.length >  0 ) {
         this.selectedDistribution = this.dividendDistributions[this.distributionYearIndex];
         this.selectedDividends = this.dividendDistributions[this.dividendYearIndex].dividends;
+      }
+    });
+
+    this.sectorSpdrService.getDividendsScheduleDocuments()
+    .subscribe(scheduleDocuments => {
+
+      if( scheduleDocuments.length > 0) {
+        this.dividendScheduleDocument = scheduleDocuments[0];
       }
     });
 
@@ -73,6 +85,15 @@ export class FundDistributionComponent {
     else {
       this.selectedDividends = this.dividendDistributions[this.dividendYearIndex].dividends;
     }
+  }
+
+  documentSelected(document : FundDocument) {
+
+    this.navCtrl.push(DocumentViewPage, {
+      title: document.title,
+      url: document.url
+    });
+
   }
 
 }

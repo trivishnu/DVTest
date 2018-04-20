@@ -43,6 +43,8 @@ import { FundSnapshotComponent } from '../components/fund-snapshot/fund-snapshot
 import { FiftyTwoWeeksChartComponent } from '../components/fifty-two-weeks-chart/fifty-two-weeks-chart'
 import { FundDistributionComponent } from '../components/fund-distribution/fund-distribution';
 import { FundDocumentsComponent } from '../components/fund-documents/fund-documents';
+import { FundPerformanceComponent } from '../components/fund-performance/fund-performance';
+import { FundDailyCalculationComponent } from '../components/fund-daily-calculation/fund-daily-calculation'
 
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { DocumentViewPage } from '../pages/document-view/document-view';
@@ -72,7 +74,9 @@ import { DocumentViewPage } from '../pages/document-view/document-view';
     FundSnapshotComponent,
     FiftyTwoWeeksChartComponent,
     FundDistributionComponent,
-    FundDocumentsComponent
+    FundDocumentsComponent,
+    FundPerformanceComponent,
+    FundDailyCalculationComponent
   ],
   imports: [
     BrowserModule,

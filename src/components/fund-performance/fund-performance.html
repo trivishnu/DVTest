@@ -1,0 +1,53 @@
+<h4 padding>Fund Performance</h4>
+
+<ion-segment padding [(ngModel)]="performancePeriod"  (ionChange)="onPerformancePeriodChange()">
+  <ion-segment-button value="Quarter">Quarter</ion-segment-button>
+  <ion-segment-button value="Month">Month</ion-segment-button>
+</ion-segment>
+
+<div padding *ngIf="performances !== undefined">
+ 
+  <ion-item>
+    <ion-select [(ngModel)]="performanceTypeIndex"  (ionChange)="onPerformanceTypeChange($event)">
+      <ion-option  *ngFor="let performanceType of performanceTypes let i=index" value="{{i}}">{{performanceType}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <div padding *ngIf="selectedPerformance !== undefined">
+    <ion-list>
+      <ion-item>
+        <ion-label color="primary">1 Month</ion-label>
+        <ion-label text-right >{{selectedPerformance.oneMonth}}%</ion-label>
+      </ion-item>
+      <ion-item>
+          <ion-label color="primary">Latest Quarter</ion-label>
+          <ion-label text-right >{{selectedPerformance.latestQuarter}}%</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary">Year To Date</ion-label>
+        <ion-label text-right >{{selectedPerformance.calendarYTD}}%</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary">1 Year</ion-label>
+        <ion-label text-right >{{selectedPerformance.annualizedOneYear}}%</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary">3 Year</ion-label>
+        <ion-label text-right >{{selectedPerformance.annualizedThreeYear}}%</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary">5 Year</ion-label>
+        <ion-label text-right >{{selectedPerformance.annualizedFiveYear}}%</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary">10 Year</ion-label>
+        <ion-label text-right >{{selectedPerformance.annualizedTenYear}}%</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary">Since Inception</ion-label>
+        <ion-label text-right >{{selectedPerformance.annualizedInceptionToDate}}%</ion-label>
+      </ion-item>
+</ion-list>
+  </div>
+
+</div>

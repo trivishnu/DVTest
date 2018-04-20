@@ -6,6 +6,8 @@ import { FundSnapshotComponent } from './fund-snapshot/fund-snapshot';
 import { FiftyTwoWeeksChartComponent } from './fifty-two-weeks-chart/fifty-two-weeks-chart';
 import { FundDistributionComponent } from './fund-distribution/fund-distribution';
 import { FundDocumentsComponent } from './fund-documents/fund-documents';
+import { FundPerformanceComponent } from './fund-performance/fund-performance';
+import { FundDailyCalculationComponent } from './fund-daily-calculation/fund-daily-calculation';
 
 @NgModule({
 	declarations: [
@@ -15,7 +17,9 @@ import { FundDocumentsComponent } from './fund-documents/fund-documents';
         FundSnapshotComponent,
         FiftyTwoWeeksChartComponent,
         FundDistributionComponent,
-        FundDocumentsComponent
+        FundDocumentsComponent,
+    FundPerformanceComponent,
+    FundDailyCalculationComponent
     ],
 	imports: [],
 	exports: [
@@ -25,7 +29,9 @@ import { FundDocumentsComponent } from './fund-documents/fund-documents';
         FundSnapshotComponent,
         FiftyTwoWeeksChartComponent,
         FundDistributionComponent,
-        FundDocumentsComponent
+        FundDocumentsComponent,
+    FundPerformanceComponent,
+    FundDailyCalculationComponent
     ]
 })
 export class ComponentsModule {}

@@ -14,7 +14,7 @@
 
 <ion-content>
 
-    <ion-slides pager="true">
+    <ion-slides pager="true" style="height:auto">
 
         <ion-slide>
           <fund-details [symbol]="sectorSymbol"></fund-details>
@@ -29,6 +29,10 @@
         </ion-slide>
      
         <ion-slide>
+            <fund-daily-calculation [symbol]="sectorSymbol"></fund-daily-calculation>
+        </ion-slide>
+       
+        <ion-slide>
           <fund-holdings [symbol]="sectorSymbol"></fund-holdings>
         </ion-slide>
      
@@ -39,6 +43,10 @@
         <ion-slide>
             <fund-documents [symbol]="sectorSymbol"></fund-documents>
         </ion-slide>
-       
+     
+        <ion-slide>
+          <fund-performance [symbol]="sectorSymbol"></fund-performance>
+      </ion-slide>
+     
      </ion-slides>
 </ion-content>

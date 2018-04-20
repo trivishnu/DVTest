@@ -30,7 +30,7 @@ export class FundHoldingsComponent {
 
     this.sectorSpdrService.getFundHoldings(this.symbol)
     .subscribe(resp => {
-     this.updateFields(resp);
+      this.updateFields(resp);
     });
 
   }
