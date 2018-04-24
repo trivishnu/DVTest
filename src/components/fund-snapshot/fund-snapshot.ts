@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { SectorSpdrService, FundSnapshot } from '../../providers/SectorSpdrAPI';
 import { QuoteService } from '../../providers/FinancialAPI';
+import { SECTOR_SPDR_SERVER } from '../../config/config';
 
 /**
  * Generated class for the FundSnapshotComponent component.
@@ -21,10 +22,10 @@ export class FundSnapshotComponent {
   exchange: string;
   averageVolume: string;
   index: string;
-  indexValue: string;
-  indexDividend: string;
-  indexDividendYield: string;
-  previousClose : string;
+  indexValue: number;
+  indexDividend: number;
+  indexDividendYield: number;
+  previousClose : number;
   fiftyTwoWeekHigh : number;
   fiftyTwoWeekLow : number;
   dayHigh : number;
@@ -46,7 +47,7 @@ export class FundSnapshotComponent {
   ];
 
   constructor(private sectorSpdrService: SectorSpdrService, private quoteService: QuoteService) {
-
+    sectorSpdrService.setConfiguration(SECTOR_SPDR_SERVER);
   }
 
   ngOnInit() {

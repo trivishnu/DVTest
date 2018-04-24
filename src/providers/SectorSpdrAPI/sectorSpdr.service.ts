@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs/Rx';
 import { map } from 'rxjs/operators';
+import { Platform } from 'ionic-angular';
+
+import {HttpAngularProvider} from '../http-angular/http-angular';
+import {HttpNativeProvider} from '../http-native/http-native';
 
 import { FundDetails, SectorHoldings, FundSnapshot, SectorTracker, DividendDistribution, FundDocument, DailyCalculation } from './index';
 import { Sector } from './models/sector';
@@ -26,18 +30,23 @@ const DAILY_CALCULATION_URL = '/sectorspdr/api/daily-calculation/';
 @Injectable()
 export class SectorSpdrService {
 
+  public http: HttpNativeProvider | HttpAngularProvider;
+
   server : string;
 
   sectors: Sector[];
 
-  constructor(public httpClient: HttpClient) {
+  constructor(private platform: Platform, private angularHttp: HttpAngularProvider, private nativeHttp: HttpNativeProvider) {
 
+    this.http = this.platform.is('cordova') ? this.nativeHttp : this.angularHttp;
 //    this.server = 'http://www.sectorspdr.com';
     this.server = '';
   }
 
   setConfiguration(server: string) {
-    this.server = server;
+    if( this.platform.is('cordova') ) {
+      this.server = server;
+    }
   }
 
   initialize() {
@@ -49,29 +58,32 @@ export class SectorSpdrService {
 
   getSectorsList() : Observable<Sector[]> {
 
-    return this.httpClient.get<Object[]>(this.server + SECTORS_LIST_URL)
-    .pipe(map(data => data.map(res => {
-      var s = res as any;
-      var sector = new Sector();
-      sector.symbol = s.Symbol;
-      sector.sectorName = s.SectorName;
-      sector.dateOfLoad = s.DateOfLoad;
-      sector.weight = this.numberFromPercent(s.Weight);
-      sector.description = s.SectorDescription;
-      return sector;
-    })));
+    return this.http.get(this.server + SECTORS_LIST_URL)
+    .pipe(map(resp => {
+        var data = resp as any;
+        return data.map(s => {
+          var sector = new Sector();
+          sector.symbol = s.Symbol;
+          sector.sectorName = s.SectorName;
+          sector.dateOfLoad = s.DateOfLoad;
+          sector.weight = this.numberFromPercent(s.Weight);
+          sector.description = s.SectorDescription;
+          return sector;
+        })
+      })
+    );
 
   }
 
   getFundDetails(symbol: string) : Observable<FundDetails> {
 
-    return this.httpClient.get(this.server + FUND_DETAILS_URL + symbol) as Observable<FundDetails>;
+    return this.http.get(this.server + FUND_DETAILS_URL + symbol) as Observable<FundDetails>;
 
   }
   
   getFundHoldings(symbol: string) : Observable<SectorHoldings>{
 
-    return this.httpClient.get(this.server + FUND_HOLDINGS_URL + symbol)
+    return this.http.get(this.server + FUND_HOLDINGS_URL + symbol)
     .pipe(map(data => {
       var holdings = new SectorHoldings();
       var sectorData = data as any;
@@ -100,7 +112,7 @@ export class SectorSpdrService {
   
   getSnapshot(symbol: string) : Observable<FundSnapshot>{
 
-    return this.httpClient.get(this.server + FUND_SNAPSHOT_URL + symbol)
+    return this.http.get(this.server + FUND_SNAPSHOT_URL + symbol)
     .pipe(map(results => {
 
       var snapshotData = results as any[];
@@ -165,17 +177,19 @@ export class SectorSpdrService {
 
     var url = this.buildUrl(this.server + SECTOR_TRACKER_URL, parameters);
     
-    return this.httpClient.get<Object[]>(url)
-    .pipe(map(data => data.map(res => {
-      var s = res as any;
-      var sectorTracker = new SectorTracker();
-      sectorTracker.symbol = s.Symbol;
-      sectorTracker.displayName = s.DisplayName;
-      sectorTracker.changePercent = this.numberFromPercent(s.ChangeString);
-      sectorTracker.change = s.Change;
-      return sectorTracker;
-    })));
-
+    return this.http.get(url)
+    .pipe(map(resp => {
+      var data = resp as any;
+      return data.map(s => {
+        var sectorTracker = new SectorTracker();
+        sectorTracker.symbol = s.Symbol;
+        sectorTracker.displayName = s.DisplayName;
+        sectorTracker.changePercent = this.numberFromPercent(s.ChangeString);
+        sectorTracker.change = s.Change;
+        return sectorTracker;
+        })
+    }));
+    
   }
 
 
@@ -188,7 +202,7 @@ export class SectorSpdrService {
 
     var url = this.buildUrl(this.server + DIVIDEND_DISTRIBUTIONS_URL, parameters);
 
-    return this.httpClient.get(url)
+    return this.http.get(url)
     .pipe(map(resp => {
 
       var data = resp as any;
@@ -249,7 +263,7 @@ export class SectorSpdrService {
     var url = this.buildUrl(this.server + FUND_DOCUMENTS_URL, parameters);
 
 
-    return this.httpClient.get(url)
+    return this.http.get(url)
     .pipe(map(resp => {
 
       var data = resp as any;
@@ -281,7 +295,7 @@ export class SectorSpdrService {
     var url = this.server + QUARTER_END_PERFORMANCE_URL;
     url = url.replace("{symbol}", symbol);
 
-    return this.httpClient.get(url)
+    return this.http.get(url)
     .pipe(map(resp => {
 
       var d = resp as any;
@@ -314,7 +328,7 @@ export class SectorSpdrService {
     var url = this.server + MONTH_END_PERFORMANCE_URL;
     url = url.replace("{symbol}", symbol);
 
-    return this.httpClient.get(url)
+    return this.http.get(url)
     .pipe(map(resp => {
 
       var d = resp as any;
@@ -344,7 +358,7 @@ export class SectorSpdrService {
 
   getDailyCalculation(symbol: string) : Observable<DailyCalculation>{
 
-    return this.httpClient.get(this.server + DAILY_CALCULATION_URL + symbol)
+    return this.http.get(this.server + DAILY_CALCULATION_URL + symbol)
     .pipe(map(data => {
       var dailyCalculation = new DailyCalculation();
       var calculationData = data as any;
@@ -365,7 +379,7 @@ export class SectorSpdrService {
 
   getDividendsScheduleDocuments() : Observable<FundDocument[]> {
 
-    return this.httpClient.get(this.server + DIVIDENDS_SCHEDULE_URL)
+    return this.http.get(this.server + DIVIDENDS_SCHEDULE_URL)
     .pipe(map(resp => {
 
       var data = resp as any;

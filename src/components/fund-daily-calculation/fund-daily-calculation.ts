@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { SectorSpdrService, DailyCalculation } from '../../providers/SectorSpdrAPI';
+import { SECTOR_SPDR_SERVER } from '../../config/config';
 
 /**
  * Generated class for the FundDailyCalculationComponent component.
@@ -18,7 +19,7 @@ export class FundDailyCalculationComponent {
   dailyCalculation : DailyCalculation;
 
   constructor(private sectorSpdrService: SectorSpdrService) {
-
+    sectorSpdrService.setConfiguration(SECTOR_SPDR_SERVER);
   }
 
   ngOnInit() {

@@ -5,6 +5,7 @@ import { SectorSpdrService, SectorTracker } from '../../providers/SectorSpdrAPI'
 
 // import { TapticEngine } from '@ionic-native/taptic-engine';
 import { FundPropertiesPage } from '../fund-properties/fund-properties';
+import { SECTOR_SPDR_SERVER } from '../../config/config';
 
 
 @IonicPage()
@@ -52,7 +53,8 @@ export class TrackerPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private sectorSpdrService: SectorSpdrService) {
-  }
+      sectorSpdrService.setConfiguration(SECTOR_SPDR_SERVER);
+    }
 
   ionViewDidLoad() {
 

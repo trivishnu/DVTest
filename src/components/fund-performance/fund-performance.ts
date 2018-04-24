@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { SectorSpdrService, FundPerformances } from '../../providers/SectorSpdrAPI';
 import { FundPerformance } from '../../providers/SectorSpdrAPI/models/fund-performance';
 import { Console } from '@angular/core/src/console';
+import { SECTOR_SPDR_SERVER } from '../../config/config';
 
 /**
  * Generated class for the FundPerformanceComponent component.
@@ -26,7 +27,7 @@ export class FundPerformanceComponent {
   performancePeriod : string = "Quarter";
 
   constructor(private sectorSpdrService: SectorSpdrService) {
-
+    sectorSpdrService.setConfiguration(SECTOR_SPDR_SERVER);
   }
 
   ngOnInit() {

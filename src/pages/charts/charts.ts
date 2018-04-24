@@ -3,7 +3,7 @@ import { NavController, Platform } from 'ionic-angular';
 
 import { QuoteService } from '../../providers/FinancialAPI'
 
-import { SERVER, API_KEY } from '../../config/config';
+import { FINANCIAL_API_SERVER, API_KEY } from '../../config/config';
 import { ChartService } from '../../providers/fdsg/chartService';
 
 // import { QuoteService } from ''
@@ -155,7 +155,7 @@ export class ChartsPage {
     var params = this.getHistoricaDataParameters(this.chartType);
     //    console.log("params", params);
 
-    this.quoteService.setConfiguration(SERVER, API_KEY);
+    this.quoteService.setConfiguration(FINANCIAL_API_SERVER, API_KEY);
     this.quoteService.getHistoricalQuotes("US:" + this.symbol, params.start, params.end, params.resolution)
       .subscribe(historicalQuotes => {
 
