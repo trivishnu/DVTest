@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 
 import { SectorSpdrService, Holding, SectorHoldings } from '../../providers/SectorSpdrAPI';
-import { SECTOR_SPDR_SERVER } from '../../config/config';
 
 /**
  * Generated class for the FundHoldingsComponent component.
@@ -24,7 +23,6 @@ export class FundHoldingsComponent {
   groceries: String[];
 
   constructor(private sectorSpdrService: SectorSpdrService) {
-    sectorSpdrService.setConfiguration(SECTOR_SPDR_SERVER);
   }
 
   ngOnInit() {

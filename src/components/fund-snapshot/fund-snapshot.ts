@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { SectorSpdrService, FundSnapshot } from '../../providers/SectorSpdrAPI';
 import { QuoteService } from '../../providers/FinancialAPI';
-import { SECTOR_SPDR_SERVER } from '../../config/config';
 
 /**
  * Generated class for the FundSnapshotComponent component.
@@ -47,7 +46,6 @@ export class FundSnapshotComponent {
   ];
 
   constructor(private sectorSpdrService: SectorSpdrService, private quoteService: QuoteService) {
-    sectorSpdrService.setConfiguration(SECTOR_SPDR_SERVER);
   }
 
   ngOnInit() {

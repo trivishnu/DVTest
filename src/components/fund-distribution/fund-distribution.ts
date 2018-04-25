@@ -3,7 +3,6 @@ import { NavController } from 'ionic-angular';
 import { SectorSpdrService, FundDocument } from '../../providers/SectorSpdrAPI';
 import { DividendDistribution, Dividend } from '../../providers/SectorSpdrAPI';
 import { DocumentViewPage } from '../../pages/document-view/document-view';
-import { SECTOR_SPDR_SERVER } from '../../config/config';
 
 /**
  * Generated class for the FundDistributionComponent component.
@@ -28,7 +27,6 @@ export class FundDistributionComponent {
   dividendScheduleDocument : FundDocument;
 
   constructor(public navCtrl: NavController, private sectorSpdrService: SectorSpdrService) {
-    sectorSpdrService.setConfiguration(SECTOR_SPDR_SERVER);
   }
 
   ngOnInit() {

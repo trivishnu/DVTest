@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { SectorSpdrService, FundDocument } from '../../providers/SectorSpdrAPI';
 import { DocumentViewPage } from '../../pages/document-view/document-view';
 import { NavController } from 'ionic-angular';
-import { SECTOR_SPDR_SERVER } from '../../config/config';
 
 /**
  * Generated class for the FundDocumentsComponent component.
@@ -22,7 +21,6 @@ export class FundDocumentsComponent {
   documentViewPage = DocumentViewPage;
 
   constructor(public navCtrl: NavController, private sectorSpdrService: SectorSpdrService) {
-    sectorSpdrService.setConfiguration(SECTOR_SPDR_SERVER);
   }
 
   ngOnInit() {

@@ -53,8 +53,8 @@ export class FundProfileComponent {
         else {
           this.changeClass = "neural";
         }
-        this.change = changeSign + "$" + quote.change.toFixed(2);
-        this.changePercent = changeSign + quote.changePercent.toFixed(2) + "%";
+        this.change = changeSign + "$" + Math.abs(quote.change).toFixed(2);
+        this.changePercent = changeSign + Math.abs(quote.changePercent).toFixed(2) + "%";
         this.volume = this.formatLargeNumber(quote.volume);
       }
     });

@@ -13,6 +13,7 @@ import { Holding } from './models/holding';
 import { Dividend } from './models/dividend';
 import { FundPerformance } from './models/fund-performance';
 import { FundPerformances } from './models/fund-performances';
+import { SECTOR_SPDR_SERVER } from '../../config/config';
 
 const SECTORS_LIST_URL: string = '/sectorspdr/api/IDCO.Client.Spdrs.SectorPie/SectorPieApi';
 const FUND_DETAILS_URL: string = '/sectorspdr/api/fund-details/';
@@ -38,16 +39,23 @@ export class SectorSpdrService {
 
   constructor(private platform: Platform, private angularHttp: HttpAngularProvider, private nativeHttp: HttpNativeProvider) {
 
-    this.http = this.platform.is('cordova') ? this.nativeHttp : this.angularHttp;
+    if( this.platform.is('cordova') ) {
+      this.server = SECTOR_SPDR_SERVER;
+      this.http = this.nativeHttp;
+    }
+    else {
+      this.server = '';
+      this.http = this.angularHttp;
+    }
+
 //    this.server = 'http://www.sectorspdr.com';
-    this.server = '';
   }
 
-  setConfiguration(server: string) {
-    if( this.platform.is('cordova') ) {
-      this.server = server;
-    }
-  }
+  // setConfiguration(server: string) {
+  //   if( this.platform.is('cordova') ) {
+  //     this.server = server;
+  //   }
+  // }
 
   initialize() {
 
