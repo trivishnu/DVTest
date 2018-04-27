@@ -60,6 +60,8 @@ export class TrackerPage {
 
   ionViewWillEnter() {
 
+    this.sectorSpdrService.initialize();
+
     this.sectorSpdrService.getSectorTracker("1D")
     .subscribe(resp => {
       this.sectorTrackers = resp;
