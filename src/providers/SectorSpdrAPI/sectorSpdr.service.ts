@@ -48,14 +48,7 @@ export class SectorSpdrService {
       this.http = this.angularHttp;
     }
 
-//    this.server = 'http://www.sectorspdr.com';
   }
-
-  // setConfiguration(server: string) {
-  //   if( this.platform.is('cordova') ) {
-  //     this.server = server;
-  //   }
-  // }
 
   initialize() {
 
