@@ -27,7 +27,6 @@ export class FundDetailsComponent {
   weight: number;
 
   constructor(private sectorSpdrService: SectorSpdrService) {
-
   }
 
   ngOnInit() {

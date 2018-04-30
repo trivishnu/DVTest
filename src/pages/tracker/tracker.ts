@@ -52,13 +52,15 @@ export class TrackerPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private sectorSpdrService: SectorSpdrService) {
-  }
+    }
 
   ionViewDidLoad() {
 
   }
 
   ionViewWillEnter() {
+
+    this.sectorSpdrService.initialize();
 
     this.sectorSpdrService.getSectorTracker("1D")
     .subscribe(resp => {

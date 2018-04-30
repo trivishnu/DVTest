@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { QuoteService } from '../../providers/FinancialAPI'
 
-import { SERVER, API_KEY } from '../../config/config';
+import { FINANCIAL_API_SERVER, API_KEY } from '../../config/config';
 
 /**
  * Generated class for the FundProfileComponent component.
@@ -31,7 +31,7 @@ export class FundProfileComponent {
 
   ngOnInit() {
 
-    this.quoteService.setConfiguration(SERVER, API_KEY);
+    this.quoteService.setConfiguration(FINANCIAL_API_SERVER, API_KEY);
     this.quoteService.getSnapQuotes("US:" + this.symbol, "SectorSpdr")
     .subscribe(resp => {
       if( resp.data.length > 0 ) {
@@ -53,8 +53,8 @@ export class FundProfileComponent {
         else {
           this.changeClass = "neural";
         }
-        this.change = changeSign + "$" + quote.change.toFixed(2);
-        this.changePercent = changeSign + quote.changePercent.toFixed(2) + "%";
+        this.change = changeSign + "$" + Math.abs(quote.change).toFixed(2);
+        this.changePercent = changeSign + Math.abs(quote.changePercent).toFixed(2) + "%";
         this.volume = this.formatLargeNumber(quote.volume);
       }
     });

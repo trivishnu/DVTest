@@ -18,7 +18,6 @@ export class FundDailyCalculationComponent {
   dailyCalculation : DailyCalculation;
 
   constructor(private sectorSpdrService: SectorSpdrService) {
-
   }
 
   ngOnInit() {

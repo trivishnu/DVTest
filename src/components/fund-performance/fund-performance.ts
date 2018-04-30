@@ -26,7 +26,6 @@ export class FundPerformanceComponent {
   performancePeriod : string = "Quarter";
 
   constructor(private sectorSpdrService: SectorSpdrService) {
-
   }
 
   ngOnInit() {

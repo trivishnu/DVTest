@@ -21,7 +21,6 @@ export class FundDocumentsComponent {
   documentViewPage = DocumentViewPage;
 
   constructor(public navCtrl: NavController, private sectorSpdrService: SectorSpdrService) {
-
   }
 
   ngOnInit() {

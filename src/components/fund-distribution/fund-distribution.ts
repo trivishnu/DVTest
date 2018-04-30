@@ -27,7 +27,6 @@ export class FundDistributionComponent {
   dividendScheduleDocument : FundDocument;
 
   constructor(public navCtrl: NavController, private sectorSpdrService: SectorSpdrService) {
-
   }
 
   ngOnInit() {

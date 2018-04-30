@@ -23,7 +23,6 @@ export class FundHoldingsComponent {
   groceries: String[];
 
   constructor(private sectorSpdrService: SectorSpdrService) {
-
   }
 
   ngOnInit() {

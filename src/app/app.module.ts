@@ -32,6 +32,9 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { HTTP } from '@ionic-native/http';
 import { Keyboard } from '@ionic-native/keyboard';
 
+import {HttpAngularProvider} from '../providers/http-angular/http-angular';
+import {HttpNativeProvider} from '../providers/http-native/http-native';
+
 import { FinancialAPIModule } from '../providers/FinancialAPI/FinancialAPIModule'
 import { ChartService } from '../providers/fdsg/chartService';
 import { SectorSpdrService } from '../providers/SectorSpdrAPI';
@@ -119,6 +122,8 @@ import { DocumentViewPage } from '../pages/document-view/document-view';
     Keyboard,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ChartService,
+    HttpAngularProvider,
+    HttpNativeProvider,
     SectorSpdrService
   ]
 })

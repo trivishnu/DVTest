@@ -9,7 +9,7 @@ import { DetailPage } from '../detail/detail';
 import { AutoCompleteService } from '../../providers/FinancialAPI'
 
 
-import { SERVER, API_KEY } from '../../config/config';
+import { FINANCIAL_API_SERVER, API_KEY } from '../../config/config';
 
 const SUGGEST_EXCHANGES: string = 'NYS,NAS,AMEX';
 const SUGGEST_SECURITY_TYPES: string = 'STO,X-STO.COMMON,X-STO.PREF,ETF,IND,X-FUN.LIPPER,X-DEPOSITORY.RECEIPT,X-STO.RIGHT';
@@ -57,7 +57,7 @@ export class SearchPage {
 
   getItems(ev) {
 
-    this.autoCompleteService.setConfiguration(SERVER, API_KEY);
+    this.autoCompleteService.setConfiguration(FINANCIAL_API_SERVER, API_KEY);
     this.autoCompleteService.autoComplete(ev.target.value, SUGGEST_EXCHANGES, SUGGEST_SECURITY_TYPES)
       .subscribe(resp => {
         this.results = resp.data;
