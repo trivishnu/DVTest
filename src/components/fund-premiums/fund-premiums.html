@@ -1,0 +1,27 @@
+<h4>Premiums and Discount Distributions</h4>
+
+<div padding *ngIf="distributions !== undefined">
+
+    <ion-item text-wrap>
+        as of  {{distributions.lastUpdateTime}} {{distributions.lastUpdateDate}}
+    </ion-item>
+
+    <ion-item>
+        <ion-select text-wrap [(ngModel)]="distributionYearIndex" (ionChange)="distributionYearChange($event)">
+            <ion-option  *ngFor="let yearPremium of distributions.years let i=index" value="{{i}}">Year {{yearPremium.year}}</ion-option>
+        </ion-select>
+    </ion-item>
+
+    <div padding *ngIf="selectedYear !== undefined">
+        <ion-list>
+
+            <ion-item *ngFor="let quarter of selectedYear.quarters">
+                <ion-label color="primary">{{quarter.quarterEnding}}</ion-label>
+                <ion-label text-right >{{quarter.lowAboveNav}}</ion-label>
+            </ion-item>
+
+        </ion-list>
+      
+    </div>
+
+</div>
