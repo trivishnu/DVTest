@@ -3,6 +3,7 @@ import { Platform, NavController } from 'ionic-angular';
 
 import { NativeStorage } from '@ionic-native/native-storage';
 import { AppVersion } from '@ionic-native/app-version';
+import { Network } from '@ionic-native/network';
 
 @Component({
   selector: 'page-about',
@@ -11,11 +12,13 @@ import { AppVersion } from '@ionic-native/app-version';
 export class AboutPage {
   pushToken: string;
   version: string;
+  networkStatus: string;
 
   constructor(public navCtrl: NavController,
     private nativeStorage: NativeStorage,
     private appVersion: AppVersion,
-    private platform: Platform) {
+    private platform: Platform,
+    private network: Network) {
 
   }
 
@@ -32,8 +35,9 @@ export class AboutPage {
         .then(
           version => this.version = version
         );
-    }
 
+      this.networkStatus = this.network.type;
+    }
   }
 
 }
