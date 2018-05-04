@@ -8,6 +8,7 @@ import { FundDistributionComponent } from './fund-distribution/fund-distribution
 import { FundDocumentsComponent } from './fund-documents/fund-documents';
 import { FundPerformanceComponent } from './fund-performance/fund-performance';
 import { FundDailyCalculationComponent } from './fund-daily-calculation/fund-daily-calculation';
+import { FundPremiumsComponent } from './fund-premiums/fund-premiums';
 
 @NgModule({
 	declarations: [
@@ -19,7 +20,8 @@ import { FundDailyCalculationComponent } from './fund-daily-calculation/fund-dai
         FundDistributionComponent,
         FundDocumentsComponent,
     FundPerformanceComponent,
-    FundDailyCalculationComponent
+    FundDailyCalculationComponent,
+    FundPremiumsComponent
     ],
 	imports: [],
 	exports: [
@@ -31,7 +33,8 @@ import { FundDailyCalculationComponent } from './fund-daily-calculation/fund-dai
         FundDistributionComponent,
         FundDocumentsComponent,
     FundPerformanceComponent,
-    FundDailyCalculationComponent
+    FundDailyCalculationComponent,
+    FundPremiumsComponent
     ]
 })
 export class ComponentsModule {}

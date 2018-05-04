@@ -47,7 +47,6 @@ export class FundPerformanceComponent {
           performanceType = performanceType.concat(" (" + performance.totalReturnType + ")" );
           this.performanceTypes.push(performanceType);
         }
-        console.log("Performance Types", this.performanceTypes);
 
         if( this.performancePeriod == "Quarter" ) {
           this.performances = this.quarterEndPerformances;

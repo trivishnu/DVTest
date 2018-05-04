@@ -7,7 +7,7 @@ import { Platform } from 'ionic-angular';
 import {HttpAngularProvider} from '../http-angular/http-angular';
 import {HttpNativeProvider} from '../http-native/http-native';
 
-import { FundDetails, SectorHoldings, FundSnapshot, SectorTracker, DividendDistribution, FundDocument, DailyCalculation } from './index';
+import { FundDetails, SectorHoldings, FundSnapshot, SectorTracker, DividendDistribution, FundDocument, DailyCalculation, PremiumDistribution, YearPremium, QuarterPremium } from './index';
 import { Sector } from './models/sector';
 import { Holding } from './models/holding';
 import { Dividend } from './models/dividend';
@@ -27,6 +27,7 @@ const QUARTER_END_PERFORMANCE_URL = '/sectorspdr/api/performance/{symbol}/quarte
 const MONTH_END_PERFORMANCE_URL = '/sectorspdr/api/performance/{symbol}/monthend';
 const DIVIDENDS_SCHEDULE_URL = '/sectorspdr/IDCO.Client.Spdrs.DocumentLibrary/Document/GetDividendSchedule';
 const DAILY_CALCULATION_URL = '/sectorspdr/api/daily-calculation/';
+const PREMIUM_DISCOUNT_FREQUENCY_DISTRIBUTION = '/sectorspdr/api/frequency-distribution/';
 
 @Injectable()
 export class SectorSpdrService {
@@ -374,6 +375,41 @@ export class SectorSpdrService {
       dailyCalculation.netAssetValue = Number(calculationData.NetAssetValue);
 
       return dailyCalculation;
+    }))
+
+  }
+  
+  getPremiumDiscountFrequencyDistributions(symbol: string) : Observable<PremiumDistribution>{
+
+    return this.http.get(this.server + PREMIUM_DISCOUNT_FREQUENCY_DISTRIBUTION + symbol)
+    .pipe(map(data => {
+      var premiumDistribution = new PremiumDistribution();
+      var distribuionData = data as any;
+      premiumDistribution.lastUpdateDate = distribuionData.LastUpdateDate;
+      premiumDistribution.lastUpdateTime = distribuionData.LastUpdateTime;
+      premiumDistribution.years = distribuionData.Years.map(
+        yearlyDistributionData => {
+
+          var yearPremium = new YearPremium();
+          yearPremium.year = yearlyDistributionData.Year;
+          yearPremium.quarters = yearlyDistributionData.Quarters.map(d => {
+
+            var quarterPremium = new QuarterPremium();
+            quarterPremium.quarterEnding = d.QuarterEnding;
+            quarterPremium.lowAboveNav = Number(d.LowAboveNav);
+            quarterPremium.mediumAboveNav = Number(d.MediumAboveNav);
+            quarterPremium.highAboveNav = Number(d.HighAboveNav);
+            quarterPremium.lowBelowNav = Number(d.LowBelowNav);
+            quarterPremium.mediumBelowNav = Number(d.MediumBelowNav);
+            quarterPremium.highBelowNav = Number(d.HighBelowNav);
+
+            return quarterPremium;
+          });
+
+          return yearPremium
+        }
+      );
+      return premiumDistribution;
     }))
 
   }
