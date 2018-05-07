@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs/Rx';
 import { map } from 'rxjs/operators';
 import { Platform } from 'ionic-angular';
@@ -28,6 +27,7 @@ const MONTH_END_PERFORMANCE_URL = '/sectorspdr/api/performance/{symbol}/monthend
 const DIVIDENDS_SCHEDULE_URL = '/sectorspdr/IDCO.Client.Spdrs.DocumentLibrary/Document/GetDividendSchedule';
 const DAILY_CALCULATION_URL = '/sectorspdr/api/daily-calculation/';
 const PREMIUM_DISCOUNT_FREQUENCY_DISTRIBUTION = '/sectorspdr/api/frequency-distribution/';
+const ALL_FUNDS_PERFORMANCE = '/sectorspdr/api/IDCO.Client.Spdrs.AllFundsPerformance/AllFundsPerformanceApi';
 
 @Injectable()
 export class SectorSpdrService {
@@ -432,6 +432,45 @@ export class SectorSpdrService {
 
   }
 
+
+  getAllFundsPerformance(dataType: number, timemode: string) : Observable<FundPerformances> {
+
+
+    var parameters = {
+      dataType: dataType,
+      timemode : timemode
+    };
+
+    var url = this.buildUrl(this.server + ALL_FUNDS_PERFORMANCE, parameters);
+
+    return this.http.get(url)
+    .pipe(map(resp => {
+
+      var d = resp as any;
+      var performances = new FundPerformances();
+      performances.asOfDate = d.asOfDate;
+      performances.performances = d.data.map(d => {
+        var performance = new FundPerformance();
+        performance.symbol = d.Symbol;
+        performance.performanceType = dataType;
+        performance.oneMonth = this.numberFromPercent(d.OneMonth);
+        performance.latestQuarter = this.numberFromPercent(d.LatestQuarter);
+        performance.calendarYTD = this.numberFromPercent(d.CalendarYTD);
+        performance.annualizedOneYear = this.numberFromPercent(d.AnnualizedOneYear);
+        performance.annualizedThreeYear = this.numberFromPercent(d.AnnualizedThreeYear);
+        performance.annualizedFiveYear = this.numberFromPercent(d.AnnualizedFiveYear);
+        performance.annualizedTenYear = this.numberFromPercent(d.AnnualizedTenYear);
+        performance.annualizedInceptionToDate = this.numberFromPercent(d.AnnualizedInceptionToDate);
+        return performance;
+      })
+
+      return performances;
+
+    }));
+
+  }
+
+
   buildUrl(url, parameters){
     var qs = "";
     for(var key in parameters) {
@@ -475,7 +514,6 @@ export class SectorSpdrService {
 
 
   numberFromPercent(text: string){
-    var index = text.indexOf("%");
     var numberString = text.replace('%', '');
     return Number(numberString);
   }

@@ -12,6 +12,7 @@ import { SearchPage } from '../search/search';
 import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
 import { WheelPage } from '../wheel/wheel';
+import { AllFundsPerformancePage } from '../all-fund-performance/all-funds-performance'
 
 @Component({
   templateUrl: 'tabs.html'
@@ -70,6 +71,12 @@ export class TabsPage {
           handler: () => {
             console.log('Symbol Search clicked');
             this.navCtrl.push(SearchPage);
+          }
+        },
+        {
+          text: 'All Funds Performance',
+          handler: () => {
+            this.navCtrl.push(AllFundsPerformancePage);
           }
         },
         {
