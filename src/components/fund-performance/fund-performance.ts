@@ -3,12 +3,7 @@ import { SectorSpdrService, FundPerformances } from '../../providers/SectorSpdrA
 import { FundPerformance } from '../../providers/SectorSpdrAPI/models/fund-performance';
 import { Console } from '@angular/core/src/console';
 
-/**
- * Generated class for the FundPerformanceComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+
 @Component({
   selector: 'fund-performance',
   templateUrl: 'fund-performance.html'

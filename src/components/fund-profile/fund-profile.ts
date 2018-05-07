@@ -3,12 +3,7 @@ import { QuoteService } from '../../providers/FinancialAPI'
 
 import { FINANCIAL_API_SERVER, API_KEY } from '../../config/config';
 
-/**
- * Generated class for the FundProfileComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+
 @Component({
   selector: 'fund-profile',
   templateUrl: 'fund-profile.html'

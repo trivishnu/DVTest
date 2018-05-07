@@ -1,11 +1,5 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 
-/**
- * Generated class for the FiftyTwoWeeksChartComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'fifty-two-weeks-chart',
   templateUrl: 'fifty-two-weeks-chart.html'

@@ -3,12 +3,7 @@ import { SectorSpdrService, FundDocument } from '../../providers/SectorSpdrAPI';
 import { DocumentViewPage } from '../../pages/document-view/document-view';
 import { NavController } from 'ionic-angular';
 
-/**
- * Generated class for the FundDocumentsComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+
 @Component({
   selector: 'fund-documents',
   templateUrl: 'fund-documents.html'
