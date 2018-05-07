@@ -1,0 +1,43 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>All Funds Performance</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-segment padding [(ngModel)]="performancePeriod"  (ionChange)="onPerformancePeriodChange()">
+        <ion-segment-button value="quarter">Quarter</ion-segment-button>
+        <ion-segment-button value="month">Month</ion-segment-button>
+    </ion-segment>
+
+
+    <div>
+        <ion-segment padding [(ngModel)]="performanceTypeIndex"  (ionChange)="onPerformanceTypeChange()">
+            <ion-segment-button value="1">Net Asset Value </ion-segment-button>
+            <ion-segment-button value="2">Market Value</ion-segment-button>
+            <ion-segment-button value="3">Pre-Liquidation</ion-segment-button>
+            <ion-segment-button value="4">Post-Liquidation</ion-segment-button>
+        </ion-segment>
+    </div>
+
+    <div padding *ngIf="fundPerformances !== undefined">
+
+    <ion-item>
+      <ion-label color="primary">As Of</ion-label>
+      <ion-label  text-right>{{fundPerformances.asOfDate}}</ion-label>
+    </ion-item>
+
+    <ion-list>
+        <ion-item *ngFor="let performance of fundPerformances.performances" class="item" href="#">
+            <ion-label color="primary">{{performance.symbol}}</ion-label>
+            <ion-label  text-right>{{performance.oneMonth}}%</ion-label>
+        </ion-item>
+      </ion-list>
+
+    </div>
+
+</ion-content>

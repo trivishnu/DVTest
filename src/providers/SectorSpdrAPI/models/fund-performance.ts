@@ -1,4 +1,6 @@
 export class FundPerformance {
+    symbol : string;
+    sectorName : string;
     performanceType : number;
     oneMonth : number;
     latestQuarter : number;

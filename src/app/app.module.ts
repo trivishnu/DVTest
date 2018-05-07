@@ -20,6 +20,7 @@ import { LoginPage } from '../pages/login/login';
 import { DetailPage } from '../pages/detail/detail';
 import { FundPropertiesPage } from '../pages/fund-properties/fund-properties';
 import { WheelPage } from '../pages/wheel/wheel';
+import { AllFundsPerformancePage } from '../pages/all-fund-performance/all-funds-performance'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -71,6 +72,7 @@ import { DocumentViewPage } from '../pages/document-view/document-view';
     DetailPage,
     FundPropertiesPage,
     DocumentViewPage,
+    AllFundsPerformancePage,
     WheelPage,
     FundDetailsComponent,
     FundHoldingsComponent,
@@ -109,7 +111,8 @@ import { DocumentViewPage } from '../pages/document-view/document-view';
     DetailPage,
     FundPropertiesPage,
     DocumentViewPage,
-    WheelPage
+    WheelPage,
+    AllFundsPerformancePage
   ],
   providers: [
     StatusBar,

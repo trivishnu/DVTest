@@ -2,12 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FundDetails } from '../../providers/SectorSpdrAPI';
 import { SectorSpdrService } from '../../providers/SectorSpdrAPI';
 
-/**
- * Generated class for the FundDetailsComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+
 @Component({
   selector: 'fund-details',
   templateUrl: 'fund-details.html'

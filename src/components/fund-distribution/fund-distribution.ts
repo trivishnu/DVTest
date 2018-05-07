@@ -4,12 +4,7 @@ import { SectorSpdrService, FundDocument } from '../../providers/SectorSpdrAPI';
 import { DividendDistribution, Dividend } from '../../providers/SectorSpdrAPI';
 import { DocumentViewPage } from '../../pages/document-view/document-view';
 
-/**
- * Generated class for the FundDistributionComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+
 @Component({
   selector: 'fund-distribution',
   templateUrl: 'fund-distribution.html'
