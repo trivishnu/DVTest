@@ -6,45 +6,46 @@
 
 </ion-header>
 
-<ion-content>
+<ion-content no-bounce>
 
-    <ion-slides pager="true" style="height:auto">
+  <ion-slides pager="true" loop="true">
 
-        <ion-slide>
-          <fund-details [symbol]="sectorSymbol"></fund-details>
-        </ion-slide>
-     
-        <ion-slide>
-          <fund-profile [symbol]="sectorSymbol"></fund-profile>
-        </ion-slide>
-     
-        <ion-slide>
-          <fund-snapshot [symbol]="sectorSymbol"></fund-snapshot>
-        </ion-slide>
-     
-        <ion-slide>
-            <fund-daily-calculation [symbol]="sectorSymbol"></fund-daily-calculation>
-        </ion-slide>
-       
-        <ion-slide>
-          <fund-holdings [symbol]="sectorSymbol"></fund-holdings>
-        </ion-slide>
-     
-        <ion-slide>
-            <fund-distribution [symbol]="sectorSymbol"></fund-distribution>
-        </ion-slide>
-     
-        <ion-slide>
-            <fund-documents [symbol]="sectorSymbol"></fund-documents>
-        </ion-slide>
-     
-        <ion-slide>
-          <fund-performance [symbol]="sectorSymbol"></fund-performance>
-        </ion-slide>
-     
-        <ion-slide>
-            <fund-premiums [symbol]="sectorSymbol"></fund-premiums>
-        </ion-slide>
-       
-     </ion-slides>
+    <ion-slide>
+      <fund-details [symbol]="sectorSymbol"></fund-details>
+    </ion-slide>
+
+    <ion-slide>
+      <fund-profile [symbol]="sectorSymbol"></fund-profile>
+    </ion-slide>
+
+    <ion-slide>
+      <fund-snapshot [symbol]="sectorSymbol"></fund-snapshot>
+    </ion-slide>
+
+    <ion-slide>
+      <fund-daily-calculation [symbol]="sectorSymbol"></fund-daily-calculation>
+    </ion-slide>
+
+    <ion-slide>
+      <fund-holdings [symbol]="sectorSymbol"></fund-holdings>
+    </ion-slide>
+
+    <ion-slide>
+      <fund-distribution [symbol]="sectorSymbol"></fund-distribution>
+    </ion-slide>
+
+    <ion-slide>
+      <fund-documents [symbol]="sectorSymbol"></fund-documents>
+    </ion-slide>
+
+    <ion-slide>
+      <fund-performance [symbol]="sectorSymbol"></fund-performance>
+    </ion-slide>
+
+    <ion-slide>
+      <fund-premiums [symbol]="sectorSymbol"></fund-premiums>
+    </ion-slide>
+
+  </ion-slides>
+  
 </ion-content>

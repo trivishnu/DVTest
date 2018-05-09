@@ -98,4 +98,5 @@
     <plugin name="cordova-plugin-advanced-http" spec="^1.9.1" />
     <allow-navigation href="http://192.168.197.1:8100" />
     <allow-navigation href="http://172.17.102.135:8100" />
+    <allow-navigation href="http://172.17.102.143:8100" />
 </widget>
