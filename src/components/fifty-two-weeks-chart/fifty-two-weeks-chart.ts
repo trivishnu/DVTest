@@ -11,8 +11,8 @@ export class FiftyTwoWeeksChartComponent {
   @Input() dayHigh : number;
   @Input() dayLow : number;
   @Input() last : number;
-  @Input() color : number;
-  
+  @Input() color : string;
+
   todayLowStart : number = 0;
   todayRangeWidth : number = 0;
   todayLowLabelEnd : number = 0;
@@ -22,7 +22,7 @@ export class FiftyTwoWeeksChartComponent {
 
   ngOnInit() {
 
-    this.sColor = '#' + this.color.toString(16);
+    this.sColor = this.color;
     this.setChartFields();
   }
 
