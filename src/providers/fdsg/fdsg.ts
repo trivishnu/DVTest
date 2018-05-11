@@ -11,7 +11,7 @@ const API_KEY: string = 'IDMS-CLIENTKEY Dk0vjumHmzzZF89noZ04B60xnQzUdNisncWxN7UV
 export class FdsgProvider {
   public searchResults: '{"meta": {}, "data": {}}';
 
-    constructor(public httpClient: HttpClient) {
+  constructor(public httpClient: HttpClient) {
     // using a plugin for HTTP Client requests
     // https://github.com/silkimen/cordova-plugin-advanced-http
 
@@ -21,36 +21,30 @@ export class FdsgProvider {
   }
 
   autoComplete(searchInput: string) {
-
-
     return this.httpClient.get(SUGGEST_URL,
-       {
-          params: {
-            search: searchInput,
-            exchanges: SUGGEST_EXCHANGES,
-            securityTypes: SUGGEST_SECURITY_TYPES
-          },
-          headers: new HttpHeaders().set('Authorization', API_KEY)
+      {
+        params: {
+          search: searchInput,
+          exchanges: SUGGEST_EXCHANGES,
+          securityTypes: SUGGEST_SECURITY_TYPES
+        },
+        headers: new HttpHeaders().set('Authorization', API_KEY)
       }
     );
-
   }
 
   getHistoricalQuotes(identifier: string, startDateTime: string, endDateTime: string, resolution: string) {
-
-
     return this.httpClient.get(HISTORICAL_QUOTE_URL,
-       {
+      {
         headers: new HttpHeaders().set('Authorization', API_KEY),
         params: {
-            identifier: identifier,
-            startTimestamp: startDateTime,
-            endTimestamp: endDateTime,
-            resolution: resolution
+          identifier: identifier,
+          startTimestamp: startDateTime,
+          endTimestamp: endDateTime,
+          resolution: resolution
         }
       }
     );
-
   }
 
 }
