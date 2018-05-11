@@ -54,6 +54,8 @@ import { FundPremiumsComponent } from '../components/fund-premiums/fund-premiums
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { DocumentViewPage } from '../pages/document-view/document-view';
 
+import { DirectivesModule } from '../directives/directives.module';
+
 @NgModule({
   declarations: [
     SpdrApp,
@@ -91,7 +93,8 @@ import { DocumentViewPage } from '../pages/document-view/document-view';
     IonicModule.forRoot(SpdrApp),
     ChartsModule,
     FinancialAPIModule,
-    PdfViewerModule
+    PdfViewerModule,
+    DirectivesModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

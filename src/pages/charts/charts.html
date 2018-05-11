@@ -25,6 +25,12 @@
     </ion-segment>
   </div>
 
-  <div id="chart"></div>
+  <div
+   id="chart"
+   pinch
+       (pinchstart)="onPinchStart($event)"
+       (pinchend)="onPinchEnd($event)"
+       (pinchmove)="onPinchMove($event)"
+   ></div>
 
 </ion-content>
