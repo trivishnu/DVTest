@@ -53,7 +53,7 @@ export class SpdrApp {
     pushObject.on('registration').subscribe((data: any) => {
       console.log('device token -> ' + data.registrationId);
       //TODO: send device token to server on the alerts provider
-      this.nativeStorage.setItem('pushToken', { registrationId: data.registrationId });
+      this.nativeStorage.setItem('pushToken', {registrationId: data.registrationId});
     });
 
     pushObject.on('error').subscribe(error => console.error('Error with Push plugin' + error));
@@ -113,4 +113,5 @@ export class SpdrApp {
 
     toast.present();
   }
+
 }

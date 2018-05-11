@@ -27,6 +27,16 @@ export class ChartsPage {
   windowHeight: any;
   windowWidth: any;
 
+  labels : number[] = [];
+  values : number[] = [];
+
+  private scale = 1;
+
+  private isScaling = false;
+  private isZoomedIn = false;
+  private boundingRect;
+  private pinchCoords;
+
   sectors = [
     { symbol: 'XLE', color: 0xFFCA05 },
     { symbol: 'XLU', color: 0xFF9A00 },
@@ -75,6 +85,9 @@ export class ChartsPage {
       height: this.windowHeight,
       width: this.windowWidth
     });
+  
+
+    this.boundingRect = chartDiv.getBoundingClientRect();
 
     var plot = new FDSChartJS.models.plot({
       id: "plot"
@@ -153,25 +166,79 @@ export class ChartsPage {
   refreshChart() {
 
     var params = this.getHistoricaDataParameters(this.chartType);
-    //    console.log("params", params);
 
     this.quoteService.setConfiguration(FINANCIAL_API_SERVER, API_KEY);
     this.quoteService.getHistoricalQuotes("US:" + this.symbol, params.start, params.end, params.resolution)
       .subscribe(historicalQuotes => {
 
-        var labels = historicalQuotes.data.map(p => this.chartService.getChartTime(p.lastTimestamp));
-        var values = historicalQuotes.data.map(p => p.last);
+        this.labels = historicalQuotes.data.map(p => this.chartService.getChartTime(p.lastTimestamp));
+        this.values = historicalQuotes.data.map(p => p.last);
 
-        this.series.getData().x.replace(0, labels);
-        this.series.getData().y.replace(0, values);
         this.series.setAttribute('Label', 'app', this.symbol);
         this.series.setAttribute('SeriesColor', 'app', this.getSectorColor(this.symbol));
+
+        this.series.getData().x.replace(0, this.labels);
+        this.series.getData().y.replace(0, this.values);
+
 
         // Display chart. Per FactSet Charting group, use invalidate instead of draw
         this.chart.invalidate();
       }
       );
 
+  }
+
+  zoomChart() {
+
+
+    var xData : number[] = [];
+    var yData : number[] = [];
+
+    var size = this.labels.length;
+
+    var ratio  = ( this.pinchCoords.x - this.boundingRect.left  ) / ( this.boundingRect.right - this.boundingRect.left )
+    // Find the index of label relative to the pinch location on the chart
+    var midIndex = ratio * size;
+
+
+    // Show 1/4 of chart when zoomed in
+    var halfIndexWidth = size / 4;
+
+    // Start index of zoom
+    var startIndex = Math.trunc(midIndex  - halfIndexWidth);
+    if( startIndex <  0 ){
+      startIndex = 0;
+    }
+
+    // End index of zoom
+    var endIndex = Math.trunc(midIndex + halfIndexWidth);
+    if( endIndex > size - 1 ) {
+      endIndex = size - 1;
+    }
+
+    // Get the data for zoomed in case
+    for( var i = startIndex ; i < endIndex  ; i++  ) {
+      xData.push(this.labels[i]);
+      yData.push(this.values[i]);
+    }
+
+    // Display zoomed in chart
+    this.series.getData().x.replace(0, xData);
+    this.series.getData().y.replace(0, yData);
+
+    this.chart.invalidate();
+
+    this.isZoomedIn = true;
+  }
+
+  resetzoom() {
+
+    this.series.getData().x.replace(0, this.labels);
+    this.series.getData().y.replace(0, this.values);
+
+
+    this.chart.invalidate();
+    this.isZoomedIn = false;
   }
 
   getHistoricaDataParameters(chartType: string) {
@@ -245,5 +312,61 @@ export class ChartsPage {
     return 0x0000;
 
   }
+
+
+  public onPinchStart(e) {
+
+    // flag that sets the class to disable scrolling
+    this.isScaling = true;
+
+        // calculate the pinch midpoint, it is subsequently used to set the transform-origin
+    this.pinchCoords = this.getPinchingCoords(e);
+
+// console.log("Coordinates", this.pinchCoords);
+// this.xcord = this.pinchCoords.x;
+// this.ycord = this.pinchCoords.y;
+  }
+
+
+  // called at (pinchend) and (pinchcancel)
+  public onPinchEnd(e) {
+
+    // flip the flag, enable scrolling
+    this.isScaling = false;
+
+    if( e.scale > 0 &&  !this.isZoomedIn ) {
+      this.zoomChart();
+    }
+    else if( e.scale < 1 && this.isZoomedIn ) {
+      this.resetzoom();
+    }
+
+  }
+
+  public onPinchMove(e) {
+
+    // set the scale so we can track it globally
+    this.scale = e.scale;
+
+  }
+
+    // compute the coords of the pinch
+    private getPinchingCoords(e) {
+
+      let arr = [], coords: any = {};
+  
+      for (let i = 0, j = e.touches.length; i < j; i++) {
+  
+        let finger = e.touches[i];
+        arr.push(finger.clientX, finger.clientY);
+  
+      }
+  
+      coords.x = Math.floor((arr[0] + arr[2]) / 2);
+      coords.y = Math.floor((arr[1] + arr[3]) / 2);
+  
+      return coords;
+  
+    }
 
 }
