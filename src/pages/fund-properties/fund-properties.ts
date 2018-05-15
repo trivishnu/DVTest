@@ -14,6 +14,7 @@ export class FundPropertiesPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private sectorSpdrService: SectorSpdrService) {
+      this.sectorSymbol = this.navParams.get('symbol');
   }
 
   ionViewWillEnter() {
@@ -21,10 +22,6 @@ export class FundPropertiesPage {
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.backgroundColor = ""  + this.sectorSpdrService.getSectorColor(this.sectorSymbol);
     }
-  }
-
-  ngOnInit() {
-    this.sectorSymbol = this.navParams.data;
   }
 
 }
