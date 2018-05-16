@@ -27,6 +27,8 @@ const DIVIDENDS_SCHEDULE_URL = '/sectorspdr/IDCO.Client.Spdrs.DocumentLibrary/Do
 const DAILY_CALCULATION_URL = '/sectorspdr/api/daily-calculation/';
 const PREMIUM_DISCOUNT_FREQUENCY_DISTRIBUTION = '/sectorspdr/api/frequency-distribution/';
 const ALL_FUNDS_PERFORMANCE = '/sectorspdr/api/IDCO.Client.Spdrs.AllFundsPerformance/AllFundsPerformanceApi';
+const EXPENSE_RATIO_URL = '/sectorspdr/api/expense-ratio';
+
 const SECTOR_COLORS = [
   { symbol: 'XLE', color: '#FFCA05' },
   { symbol: 'XLU', color: '#FF9A00' },
@@ -412,6 +414,10 @@ export class SectorSpdrService {
 
       }));
 
+  }
+
+  getExpenseRatio() {
+    return this.http.get(this.server + EXPENSE_RATIO_URL);
   }
 
   buildUrl(url, parameters) {
