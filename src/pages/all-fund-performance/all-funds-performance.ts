@@ -23,7 +23,6 @@ export class AllFundsPerformancePage {
     this.sectorSpdrService.getExpenseRatio()
     .subscribe(resp => {
       this.expenseRatio = resp as number;
-      console.log(this.expenseRatio);
     });
 
   }
