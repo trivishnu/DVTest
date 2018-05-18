@@ -1,29 +1,24 @@
-<ion-title padding>Fund Profile</ion-title>
-
 <ion-list>
-  <ion-item>
+  <ion-list-header color="secondary">
+    Fund Profile
+  </ion-list-header>
+  <ion-item color="secondary">
     <ion-label >as of {{asOfDate}}</ion-label>
   </ion-item>
-  <ion-item>
-      <ion-label color="primary">Last</ion-label>
+  <ion-item color="secondary">
+      <ion-label>Last</ion-label>
       <ion-label text-right>{{last}}</ion-label>
   </ion-item>
-  <ion-item>
-      <ion-label color="primary">Change</ion-label>
+  <ion-item color="secondary">
+      <ion-label>Change</ion-label>
       <ion-label text-right [ngClass]="changeClass">{{change}}</ion-label>
   </ion-item>
-  <ion-item>
-      <ion-label color="primary">% Change</ion-label>
+  <ion-item color="secondary">
+      <ion-label>% Change</ion-label>
       <ion-label text-right [ngClass]="changeClass">{{changePercent}}</ion-label>
   </ion-item>
-  <ion-item>
-      <ion-label color="primary">Volume</ion-label>
+  <ion-item color="secondary">
+      <ion-label>Volume</ion-label>
       <ion-label text-right >{{volume}}</ion-label>
   </ion-item>
-
-  <!-- <ion-item>
-      <ion-label color="primary">Weight</ion-label>
-      <ion-label >{{weight}}</ion-label>
-  </ion-item> -->
-
 </ion-list>

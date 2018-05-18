@@ -9,7 +9,7 @@ import { SectorSpdrService } from '../../providers/SectorSpdrAPI';
 })
 export class FundDetailsComponent {
 
-  @Input() symbol : string;
+  @Input() symbol: string;
 
   distributionFrequency: string;
   expenseRatio: string;
@@ -18,18 +18,17 @@ export class FundDetailsComponent {
   options: string;
 
   sectorName: string;
-  description : string;
+  description: string;
   weight: number;
 
   constructor(private sectorSpdrService: SectorSpdrService) {
   }
 
   ngOnInit() {
-
     this.sectorSpdrService.getFundDetails(this.symbol)
-    .subscribe(resp => {
-      this.updateFields(resp);
-    });
+      .subscribe(resp => {
+        this.updateFields(resp);
+      });
 
     var sector = this.sectorSpdrService.getSectorInfo(this.symbol);
     this.sectorName = sector.sectorName;
@@ -37,7 +36,7 @@ export class FundDetailsComponent {
     this.weight = sector.weight;
   }
 
-  updateFields(fundDetails : FundDetails) {
+  updateFields(fundDetails: FundDetails) {
 
     this.distributionFrequency = fundDetails.distributionFrequency;
     this.expenseRatio = Number(fundDetails.expenseRatio).toFixed(2) + '%';
@@ -45,6 +44,5 @@ export class FundDetailsComponent {
     this.shortSelling = fundDetails.shortSelling ? 'Yes' : 'No';
     this.options = fundDetails.options ? 'Yes' : 'No';
   }
-
 
 }

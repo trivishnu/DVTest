@@ -2,17 +2,17 @@ import { Component, ViewChild } from '@angular/core';
 
 import { ActionSheetController, NavController, Tabs, ModalController } from 'ionic-angular';
 
-import { ChartsPage } from '../charts/charts';
 import { TrackerPage } from '../tracker/tracker';
-import { WatchlistPage } from '../watchlist/watchlist';
 import { EducationPage } from '../education/education';
-import { OverviewPage } from '../overview/overview';
 import { SummaryPage } from '../summary/summary';
-import { SearchPage } from '../search/search';
 import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
-import { WheelPage } from '../wheel/wheel';
-import { AllFundsPerformancePage } from '../all-fund-performance/all-funds-performance'
+import { HowToPurchasePage } from '../how-to-purchase/how-to-purchase';
+import { DisclaimersAndRisksPage } from '../disclaimers-and-risks/disclaimers-and-risks';
+import { PrivacyPage } from '../privacy/privacy';
+import { TermsAndConditionsPage } from '../terms-and-conditions/terms-and-conditions';
+//import { WatchlistPage } from '../watchlist/watchlist';
+//import { SearchPage } from '../search/search';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -20,7 +20,7 @@ import { AllFundsPerformancePage } from '../all-fund-performance/all-funds-perfo
 export class TabsPage {
   @ViewChild('appTabs') tabsRef: Tabs;
 
-  tab1Root = ChartsPage;
+  tab1Root = EducationPage;
   tab2Root = TrackerPage;
 
   constructor(
@@ -29,54 +29,44 @@ export class TabsPage {
     public modalCtrl: ModalController) {
   }
 
-  showWheel() {
-    let wheelModal = this.modalCtrl.create(WheelPage);
-    wheelModal.present();
-  }
-
   showMore() {
     let actionSheet = this.actionSheetCtl.create({
-      title: 'More Actions',
+      title: 'More',
       buttons: [
         {
-          text: 'Market Overview',
+          text: 'Contact Us',
           handler: () => {
-            console.log('Market Overview clicked');
-            this.navCtrl.push(OverviewPage);
+            this.navCtrl.push(ContactPage);
           }
         },
         {
-          text: 'Weekly Summary',
+          text: 'How To Purchase',
           handler: () => {
-            console.log('Weekly Summary clicked');
+            this.navCtrl.push(HowToPurchasePage);
+          }
+        },
+        {
+          text: 'US Market Weekly Summary',
+          handler: () => {
             this.navCtrl.push(SummaryPage);
           }
         },
         {
-          text: 'Watchlist',
+          text: 'Disclaimer/Risks',
           handler: () => {
-            console.log('Watchlist clicked');
-            this.navCtrl.push(WatchlistPage);
+            this.navCtrl.push(DisclaimersAndRisksPage);
           }
         },
         {
-          text: 'Education',
+          text: 'Privacy Statement',
           handler: () => {
-            console.log('Education clicked');
-            this.navCtrl.push(EducationPage);
+            this.navCtrl.push(PrivacyPage);
           }
         },
         {
-          text: 'Symbol Search',
+          text: 'Terms & Conditions',
           handler: () => {
-            console.log('Symbol Search clicked');
-            this.navCtrl.push(SearchPage);
-          }
-        },
-        {
-          text: 'All Funds Performance',
-          handler: () => {
-            this.navCtrl.push(AllFundsPerformancePage);
+            this.navCtrl.push(TermsAndConditionsPage);
           }
         },
         {
@@ -86,13 +76,20 @@ export class TabsPage {
             this.navCtrl.push(AboutPage);
           }
         },
-        {
-          text: 'Contact',
-          handler: () => {
-            console.log('Contact clicked');
-            this.navCtrl.push(ContactPage);
-          }
-        },
+//        {
+//          text: 'Watchlist',
+//          handler: () => {
+//            console.log('Watchlist clicked');
+//            this.navCtrl.push(WatchlistPage);
+//          }
+//        },
+//        {
+//          text: 'Symbol Search',
+//          handler: () => {
+//            console.log('Symbol Search clicked');
+//            this.navCtrl.push(SearchPage);
+//          }
+//        },
         {
           text: 'Cancel',
           role: 'cancel',
