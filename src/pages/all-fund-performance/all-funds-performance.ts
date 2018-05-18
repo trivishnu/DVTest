@@ -13,8 +13,18 @@ export class AllFundsPerformancePage {
   performancePeriod : string = "quarter";
   performanceTypeIndex : string = "1";
   fundPerformances : FundPerformances;
+  expenseRatio : number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private sectorSpdrService: SectorSpdrService) {
+  }
+
+  ngOnInit() {
+
+    this.sectorSpdrService.getExpenseRatio()
+    .subscribe(resp => {
+      this.expenseRatio = resp as number;
+    });
+
   }
 
   ionViewDidLoad() {

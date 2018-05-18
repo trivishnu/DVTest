@@ -9,6 +9,11 @@
 
 <ion-content padding>
 
+    <ion-item>
+        <ion-label color="primary">Expense Ratio</ion-label>
+        <ion-label  text-right>{{expenseRatio}}%</ion-label>
+    </ion-item>
+
     <ion-segment padding [(ngModel)]="performancePeriod"  (ionChange)="onPerformancePeriodChange()">
         <ion-segment-button value="quarter">Quarter</ion-segment-button>
         <ion-segment-button value="month">Month</ion-segment-button>
