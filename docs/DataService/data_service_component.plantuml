@@ -1,0 +1,18 @@
+@startuml
+
+cloud "Internet" {
+  [CMS]
+  [FDSG API]
+}
+
+component "FundPropertiesPage" {
+  [fund-details] --> DataService : getDetails(symbol)
+  [fund-profile] --> DataService : getProfile(symbol)
+  [fund-snapshot] --> DataService : getSnapshot(symbol)
+  component "DataService" {
+    [CMS Provider] --> [CMS] : HTTP
+    [FDSG Provider] --> [FDSG API] : HTTP
+  }
+}
+
+@enduml

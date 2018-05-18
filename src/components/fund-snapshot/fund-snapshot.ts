@@ -8,7 +8,7 @@ import { QuoteService } from '../../providers/FinancialAPI';
 })
 export class FundSnapshotComponent {
 
-  @Input() symbol : string;
+  @Input() symbol: string;
 
   marketCap: string;
   sharesOutstanding: string;
@@ -18,38 +18,48 @@ export class FundSnapshotComponent {
   indexValue: number;
   indexDividend: number;
   indexDividendYield: number;
-  previousClose : number;
-  fiftyTwoWeekHigh : number;
-  fiftyTwoWeekLow : number;
-  dayHigh : number;
-  dayLow : number;
-  last : number;
+  previousClose: number;
+  fiftyTwoWeekHigh: number;
+  fiftyTwoWeekLow: number;
+  dayHigh: number;
+  dayLow: number;
+  last: number;
   sectorColor: string;
+  retry: number = 0;
 
   constructor(private sectorSpdrService: SectorSpdrService, private quoteService: QuoteService) {
   }
 
-  ngOnInit() {
-
-    this.sectorColor = this.sectorSpdrService.getSectorColor(this.symbol);
-
-    this.sectorSpdrService.getSnapshot(this.symbol)
-    .subscribe(resp => {
-      this.updateFields(resp);
-    });
-
-    this.quoteService.getSnapQuotes("US:" + this.symbol, "SectorSpdr")
-    .subscribe(resp => {
-      if( resp.data.length > 0 ) {
-        var quote = resp.data[0];
-        this.last = quote.last;
-      }
-    });
-
+  ngOnChanges() {
+    this.requestData();
   }
 
-  updateFields(snapshot : FundSnapshot) {
+  requestData() {
+    this.sectorColor = this.sectorSpdrService.getSectorColor(this.symbol);
 
+    this.quoteService.getSnapQuotes("US:" + this.symbol, "SectorSpdr")
+      .subscribe(resp => {
+        if (resp.data.length > 0) {
+          var quote = resp.data[0];
+          this.last = quote.last;
+        }
+      });
+
+    this.sectorSpdrService.getSnapshot(this.symbol)
+      .subscribe(
+        resp => {
+          this.updateFields(resp);
+          this.retry = 0;
+        },
+        error => {
+          if (this.retry <= 3) {
+            this.retry++;
+            this.requestData();
+          }
+        });
+  }
+
+  updateFields(snapshot: FundSnapshot) {
     this.marketCap = snapshot.marketCap;
     this.sharesOutstanding = snapshot.sharesOutstanding;
     this.exchange = snapshot.exchange;
@@ -63,7 +73,6 @@ export class FundSnapshotComponent {
     this.fiftyTwoWeekLow = snapshot.fiftyTwoWeekLow;
     this.dayHigh = snapshot.dayHigh;
     this.dayLow = snapshot.dayLow;
-
   }
 
 }
