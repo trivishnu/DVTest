@@ -1,46 +1,45 @@
-<button *ngIf="dividendScheduleDocument" (click)='documentSelected(dividendScheduleDocument);'>
-  <ion-label color="primary">{{dividendScheduleDocument.title}}</ion-label>
-</button>
+<div padding style="background-color: #383F49;">
+  <button ion-button *ngIf="dividendScheduleDocument" (click)='documentSelected(dividendScheduleDocument);' color="dark">
+    {{dividendScheduleDocument.title}}
+  </button>
 
-<!-- <h1>Fund Distributions</h1> -->
-<h4>10 Year Distributions Overview</h4>
+  <!-- <h1>Fund Distributions</h1> -->
+  <h4>10 Year Distributions Overview</h4>
 
-<ion-item>
-    <ion-select text-wrap [(ngModel)]="distributionYearIndex" (ionChange)="distributionYearChange($event)">
-        <ion-option  *ngFor="let dividendDistribution of dividendDistributions let i=index" value="{{i}}">Year {{dividendDistribution.year}}</ion-option>
+  <ion-item color="secondary">
+    <ion-select text-wrap [(ngModel)]="distributionYearIndex" (ionChange)="distributionYearChange($event)" color="secondary">
+      <ion-option *ngFor="let dividendDistribution of dividendDistributions let i=index" value="{{i}}">Year {{dividendDistribution.year}}</ion-option>
     </ion-select>
-</ion-item>
+  </ion-item>
 
-<div padding *ngIf="selectedDistribution !== undefined">
+  <div padding *ngIf="selectedDistribution !== undefined">
     <ion-list>
-        <ion-item>
-          <ion-label color="primary">Rate Share</ion-label>
-          <ion-label text-right >{{selectedDistribution.rate}}</ion-label>
+      <ion-item color="secondary">
+        <ion-label>Rate Share</ion-label>
+        <ion-label text-right>{{selectedDistribution.rate}}</ion-label>
       </ion-item>
-      <ion-item>
-          <ion-label color="primary">Ordinary Income</ion-label>
-          <ion-label text-right >{{selectedDistribution.ordinaryIncome}}</ion-label>
+      <ion-item color="secondary">
+        <ion-label>Ordinary Income</ion-label>
+        <ion-label text-right>{{selectedDistribution.ordinaryIncome}}</ion-label>
       </ion-item>
-  </ion-list>
-  
-</div>
+    </ion-list>
+  </div>
 
+  <h4>Dividend Details</h4>
 
-<h4>Dividend Details</h4>
-
-<ion-item>
+  <ion-item color="secondary">
     <ion-select text-wrap [(ngModel)]="dividendYearIndex" (ionChange)="dividendYearChange($event)">
-        <ion-option  *ngFor="let dividendDistribution of dividendDistributions let i=index" value="{{i}}">Year {{dividendDistribution.year}}</ion-option>
-        <ion-option value="100">Last Four Dividends</ion-option>
+      <ion-option *ngFor="let dividendDistribution of dividendDistributions let i=index" value="{{i}}">Year {{dividendDistribution.year}}</ion-option>
+      <ion-option value="100">Last Four Dividends</ion-option>
     </ion-select>
-</ion-item>
- 
- <div padding *ngIf="selectedDividends !== undefined">
-     <ion-list>
-        <ion-item *ngFor="let dividend of selectedDividends" class="item" href="#">
-            <ion-label color="primary">{{dividend.exDividendDate}}</ion-label>
-            <ion-label text-right >{{dividend.ratePerShare}}</ion-label>
-          </ion-item>
-  </ion-list>
-   
- </div>
+  </ion-item>
+
+  <div padding *ngIf="selectedDividends !== undefined">
+    <ion-list>
+      <ion-item *ngFor="let dividend of selectedDividends" class="item" href="#" color="secondary">
+        <ion-label>{{dividend.exDividendDate}}</ion-label>
+        <ion-label text-right>{{dividend.ratePerShare}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</div>

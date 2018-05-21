@@ -1,8 +1,10 @@
 <ion-scroll style="height: 100%;" scrollY="true">
-  <h4>Fund Holdings</h4>
   <ion-list>
-    <ion-item *ngFor="let holding of holdings" class="item" href="#">
-      <div>{{holding.companyName}}</div>
+    <ion-list-header color="secondary">
+      Fund Holdings
+    </ion-list-header>
+    <ion-item *ngFor="let holding of holdings" class="item" href="#" color="secondary">
+      {{holding.companyName}}
     </ion-item>
   </ion-list>
 </ion-scroll>

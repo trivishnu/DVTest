@@ -10,5 +10,5 @@ export interface Quote {
     low: number;
     volume: number;
     previousClose: number;
+    valid: boolean;
   }
-  

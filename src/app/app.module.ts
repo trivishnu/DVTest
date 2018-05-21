@@ -19,8 +19,11 @@ import { NotificationsPage } from '../pages/notifications/notifications';
 import { LoginPage } from '../pages/login/login';
 import { DetailPage } from '../pages/detail/detail';
 import { FundPropertiesPage } from '../pages/fund-properties/fund-properties';
-import { WheelPage } from '../pages/wheel/wheel';
 import { AllFundsPerformancePage } from '../pages/all-fund-performance/all-funds-performance'
+import { HowToPurchasePage } from '../pages/how-to-purchase/how-to-purchase';
+import { DisclaimersAndRisksPage } from '../pages/disclaimers-and-risks/disclaimers-and-risks';
+import { PrivacyPage } from '../pages/privacy/privacy';
+import { TermsAndConditionsPage } from '../pages/terms-and-conditions/terms-and-conditions';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -75,7 +78,10 @@ import { DirectivesModule } from '../directives/directives.module';
     FundPropertiesPage,
     DocumentViewPage,
     AllFundsPerformancePage,
-    WheelPage,
+    HowToPurchasePage,
+    DisclaimersAndRisksPage,
+    PrivacyPage,
+    TermsAndConditionsPage,
     FundDetailsComponent,
     FundHoldingsComponent,
     FundProfileComponent,
@@ -114,8 +120,11 @@ import { DirectivesModule } from '../directives/directives.module';
     DetailPage,
     FundPropertiesPage,
     DocumentViewPage,
-    WheelPage,
-    AllFundsPerformancePage
+    AllFundsPerformancePage,
+    HowToPurchasePage,
+    DisclaimersAndRisksPage,
+    PrivacyPage,
+    TermsAndConditionsPage
   ],
   providers: [
     StatusBar,

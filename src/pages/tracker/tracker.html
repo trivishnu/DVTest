@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar [color]="'dark'">
     <ion-title>Sector Tracker</ion-title>
   </ion-navbar>
 
@@ -8,18 +8,15 @@
 
 <ion-content padding>
 
-  <p>
-
-  </p>
-  <ion-item>
-    <ion-label color="primary">S&amp;P 500</ion-label>
-    <ion-label text-right>{{sAndPTracker.changeString}}</ion-label>
-  </ion-item>
-
   <ion-list>
+    <ion-item color="secondary">
+      <ion-label col-9>S&amp;P 500</ion-label>
+      <ion-label text-right>{{sAndPTracker.changeString}}</ion-label>
+    </ion-item>
     <button ion-item *ngFor="let tracker of sectorTrackers"
-    [navPush]="fundPropertiesPage" [navParams]="getSymbolParam(tracker.symbol)">
-      <ion-label color="primary">{{tracker.displayName}}</ion-label>
+    [navPush]="fundPropertiesPage" [navParams]="getSymbolParam(tracker.symbol)"
+    color="secondary">
+      <ion-label col-9>{{tracker.displayName}}</ion-label>
       <ion-label  text-right>{{tracker.changePercent}}%</ion-label>
     </button>
   </ion-list>

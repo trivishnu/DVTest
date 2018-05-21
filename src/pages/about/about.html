@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="dark">
     <ion-title>
       About
     </ion-title>
@@ -8,15 +8,15 @@
 
 <ion-content>
   <ion-item-group>
-    <ion-item-divider color="light">App Version</ion-item-divider>
-    <ion-item text-wrap>v{{version}}</ion-item>
+    <ion-item-divider color="dark">App Version</ion-item-divider>
+    <ion-item text-wrap color="secondary">v{{version}}</ion-item>
   </ion-item-group>
   <ion-item-group>
-    <ion-item-divider color="light">Push Token</ion-item-divider>
-    <ion-item ngClass="selectable" text-wrap>{{pushToken}}</ion-item>
+    <ion-item-divider color="dark">Push Token</ion-item-divider>
+    <ion-item ngClass="selectable" text-wrap color="secondary">{{pushToken}}</ion-item>
   </ion-item-group>
   <ion-item-group>
-    <ion-item-divider color="light">Network Status</ion-item-divider>
-    <ion-item text-wrap>{{networkStatus}}</ion-item>
+    <ion-item-divider color="dark">Network Status</ion-item-divider>
+    <ion-item text-wrap color="secondary">{{networkStatus}}</ion-item>
   </ion-item-group>
 </ion-content>

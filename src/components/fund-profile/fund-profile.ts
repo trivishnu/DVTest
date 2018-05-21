@@ -10,95 +10,82 @@ import { FINANCIAL_API_SERVER, API_KEY } from '../../config/config';
 })
 export class FundProfileComponent {
 
-  @Input() symbol : string;
+  @Input() symbol: string;
 
   last: string;
   change: string;
   changePercent: string;
   volume: string;
-  asOfDate : string;
+  asOfDate: string;
 
-  changeClass : string;
+  changeClass: string;
 
   constructor(private quoteService: QuoteService) {
 
   }
 
   ngOnInit() {
-
     this.quoteService.setConfiguration(FINANCIAL_API_SERVER, API_KEY);
     this.quoteService.getSnapQuotes("US:" + this.symbol, "SectorSpdr")
-    .subscribe(resp => {
-      if( resp.data.length > 0 ) {
-        var quote = resp.data[0];
+      .subscribe(resp => {
+        if (resp.data.length > 0) {
+          var quote = resp.data[0];
+          
+          if (quote.valid !== false) {
+            var lastTimeStamp = new Date(quote.lastTimestamp);
+            this.asOfDate = "as of " + this.formatTime(lastTimeStamp) + " ET " + this.formatDate(lastTimeStamp);
 
-        var lastTimeStamp = new Date(quote.lastTimestamp);
-        this.asOfDate = "as of " + this.formatTime(lastTimeStamp) + " ET " +  this.formatDate(lastTimeStamp);
-
-        this.last = "$" + quote.last.toFixed(2);
-        var changeSign = "";
-        if( quote.change > 0){
-          changeSign = "+";
-          this.changeClass = "positive";
+            this.last = "$" + quote.last.toFixed(2);
+            var changeSign = "";
+            if (quote.change > 0) {
+              changeSign = "+";
+              this.changeClass = "positive";
+            }
+            else if (quote.change < 0) {
+              changeSign = "-";
+              this.changeClass = "negative";
+            }
+            else {
+              this.changeClass = "neural";
+            }
+            this.change = changeSign + "$" + Math.abs(quote.change).toFixed(2);
+            this.changePercent = changeSign + Math.abs(quote.changePercent).toFixed(2) + "%";
+            this.volume = this.formatLargeNumber(quote.volume);
+          }
         }
-        else if ( quote.change < 0) {
-          changeSign = "-";
-          this.changeClass = "negative";
-        }
-        else {
-          this.changeClass = "neural";
-        }
-        this.change = changeSign + "$" + Math.abs(quote.change).toFixed(2);
-        this.changePercent = changeSign + Math.abs(quote.changePercent).toFixed(2) + "%";
-        this.volume = this.formatLargeNumber(quote.volume);
-      }
-    });
-
-      // this.sectorSpdrService.getSectorsList()
-    // .subscribe(resp => {
-    //   console.log("ngOnInit", resp);
-    // });
+      });
 
   }
 
-
-
   formatDate(date: Date) {
-      
     var mm = date.getMonth() + 1; // getMonth() is zero-based
     var dd = date.getDate();
-  
-    return [(mm>9 ? '' : '0') + mm,
-            (dd>9 ? '' : '0') + dd,
-            date.getFullYear(),
-           ].join('/');
+
+    return [(mm > 9 ? '' : '0') + mm,
+    (dd > 9 ? '' : '0') + dd,
+    date.getFullYear(),
+    ].join('/');
   };
 
   formatTime(date: Date) {
-
     var h = (date.getHours() % 12) || 12; // show midnight & noon as 12
     return (
       h + ':' + date.getMinutes() +
-      ( date.getHours() < 12 ? ' AM' : ' PM' )
+      (date.getHours() < 12 ? ' AM' : ' PM')
     );
-    
   }
 
   formatLargeNumber(value: number) {
-
     var suffix = "";
-    if( value >= 1000000) {
+    if (value >= 1000000) {
       value = value / 1000000;
       suffix = " M";
     }
-    else if( value >= 1000) {
+    else if (value >= 1000) {
       value = value / 1000;
       suffix = " K";
     }
     return value.toFixed(2) + suffix;
-
   }
 
-
 }
-
