@@ -1,6 +1,6 @@
 <div padding style="background-color: #383F49;">
-  <button *ngIf="dividendScheduleDocument" (click)='documentSelected(dividendScheduleDocument);' color="secondary">
-    <ion-label>{{dividendScheduleDocument.title}}</ion-label>
+  <button ion-button *ngIf="dividendScheduleDocument" (click)='documentSelected(dividendScheduleDocument);' color="dark">
+    {{dividendScheduleDocument.title}}
   </button>
 
   <!-- <h1>Fund Distributions</h1> -->
