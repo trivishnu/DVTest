@@ -33,7 +33,7 @@ export class SpdrApp {
         this.initPushNotification();
         threeDeeTouch.isAvailable().then(isAvailable => this.configureThreeDeeTouch(isAvailable));
         this.initNetworkStatus();
-        statusBar.styleDefault();
+        statusBar.styleBlackTranslucent();
         splashScreen.hide();
       }
     });
