@@ -4,7 +4,7 @@
     <description>Sector SPDRs Mobile App</description>
     <author email="mobile.development@factset.com" href="http://www.factset.com">FactSet Digitial Solutions Mobile Team</author>
     <content src="index.html" />
-    <access origin="*" />
+    <access allows-arbitrary-loads-for-media="true" allows-arbitrary-loads-in-web-content="true" allows-local-networking="true" origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -97,6 +97,9 @@
     <allow-navigation href="http://192.168.197.1:8100" />
     <allow-navigation href="http://172.17.102.135:8100" />
     <allow-navigation href="http://172.17.102.143:8100" />
+    <allow-navigation href="http://www.sectorspdr.com" />
+    <allow-navigation href="https://api.test.idmanagedsolutions.com" />
     <engine name="browser" spec="~5.0.3" />
     <engine name="ios" spec="~4.5.4" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
 </widget>

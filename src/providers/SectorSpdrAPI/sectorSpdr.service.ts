@@ -235,7 +235,6 @@ export class SectorSpdrService {
 
     var url = this.buildUrl(this.server + FUND_DOCUMENTS_URL, parameters);
 
-
     return this.http.get(url)
       .pipe(map(resp => {
 
@@ -244,7 +243,7 @@ export class SectorSpdrService {
         return firstSector.Files.map(d => {
           var document = new FundDocument();
           document.title = d.Title;
-          document.url = d.Url;
+          document.url = this.server + d.Url;
           document.asOfDate = d.AsOfDate;
           return document;
         })

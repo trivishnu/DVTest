@@ -35,6 +35,7 @@ import { Push } from '@ionic-native/push';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { HTTP } from '@ionic-native/http';
 import { Keyboard } from '@ionic-native/keyboard';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import {HttpAngularProvider} from '../providers/http-angular/http-angular';
 import {HttpNativeProvider} from '../providers/http-native/http-native';
@@ -137,6 +138,7 @@ import { DirectivesModule } from '../directives/directives.module';
     NativeStorage,
     HTTP,
     Keyboard,
+    InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ChartService,
     HttpAngularProvider,
