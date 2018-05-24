@@ -1,12 +1,38 @@
 <ion-header>
 
   <ion-navbar [color]="'dark'">
-    <ion-title>Sector Tracker</ion-title>
-  </ion-navbar>
+      <ion-title style="width: 100%"><img src="assets/imgs/sector_spdr_logo_small.svg" style="width:100px"><div style="width: 100%;height:2px;background: blue"></div></ion-title>
+      
+    </ion-navbar>
 
 </ion-header>
 
+
 <ion-content padding>
+
+
+  <ion-grid>
+
+    <ion-row wrap *ngFor="let i of rows">
+        <ion-col *ngFor="let tracker of sectorTrackers | slice:(i*2):(i+1)*2" width-50>
+            <div class="row responsive-sm">
+              <sector-tracker *ngIf="tracker.symbol !== ''" style="width: 100%;"
+                [tracker] = "tracker"
+                (trackerSelected) = "handleTrackerSelected($event)"
+              >
+              </sector-tracker>
+              <s-and-p-tracker *ngIf="tracker.symbol === ''" style="width: 100%;">
+              </s-and-p-tracker>
+            </div>
+        </ion-col>
+    </ion-row>
+
+  </ion-grid>
+      
+</ion-content>
+
+
+<!-- <ion-content padding>
 
   <ion-list>
     <ion-item color="secondary">
@@ -21,4 +47,4 @@
     </button>
   </ion-list>
 
-</ion-content>
+</ion-content> -->

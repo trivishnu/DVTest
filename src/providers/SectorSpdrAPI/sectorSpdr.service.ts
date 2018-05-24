@@ -29,17 +29,19 @@ const PREMIUM_DISCOUNT_FREQUENCY_DISTRIBUTION = '/sectorspdr/api/frequency-distr
 const ALL_FUNDS_PERFORMANCE = '/sectorspdr/api/IDCO.Client.Spdrs.AllFundsPerformance/AllFundsPerformanceApi';
 const EXPENSE_RATIO_URL = '/sectorspdr/api/expense-ratio';
 
-const SECTOR_COLORS = [
-  { symbol: 'XLE', color: '#FFCA05' },
-  { symbol: 'XLU', color: '#FF9A00' },
-  { symbol: 'XLK', color: '#92278F' },
-  { symbol: 'XLB', color: '#8E97C7' },
-  { symbol: 'XLP', color: '#00ABBC' },
-  { symbol: 'XLY', color: '#C4CA40' },
-  { symbol: 'XLI', color: '#92C5EB' },
-  { symbol: 'XLV', color: '#00ADEE' },
-  { symbol: 'XLF', color: '#A6CE39' },
-  { symbol: 'XLRE', color: '#A40C1E' }
+const SECTOR_PROPERTIES = [
+  { symbol: 'XLE', color: '#FFCC00', icon: 'energy' },
+  { symbol: 'XLU', color: '#F39200', icon: 'utilities' },
+  { symbol: 'XLK', color: '#009FEE', icon: 'technology' },
+  { symbol: 'XLB', color: '#8F96CB', icon: 'materials' },
+  { symbol: 'XLP', color: '#009CB4', icon: 'consumer_staples' },
+  { symbol: 'XLY', color: '#DEDC00', icon: 'consumer_discretionary' },
+  { symbol: 'XLI', color: '#A3CCE4', icon: 'indutrials' },
+  { symbol: 'XLV', color: '#009FEE', icon: 'healthcare' },
+  { symbol: 'XLF', color: '#AFCA0B', icon: 'financials' },
+  { symbol: 'XLRE', color: '#D31515', icon: 'real_estate' },
+  { symbol: 'XLC', color: '#B164A5', icon: 'communications' }
+
 ];
 
 @Injectable()
@@ -181,7 +183,10 @@ export class SectorSpdrService {
         return data.map(s => {
           var sectorTracker = new SectorTracker();
           sectorTracker.symbol = s.Symbol;
-          sectorTracker.displayName = s.DisplayName;
+          var displayName = s.DisplayName as String;
+          var startIndex = displayName.indexOf(" (");
+          sectorTracker.displayName = displayName.substring(0, startIndex);
+//          sectorTracker.displayName = s.DisplayName;
           sectorTracker.changePercent = this.numberFromPercent(s.ChangeString);
           sectorTracker.change = s.Change;
           return sectorTracker;
@@ -463,12 +468,21 @@ export class SectorSpdrService {
   }
 
   getSectorColor(symbol: string) {
-    for (let sector of SECTOR_COLORS) {
+    for (let sector of SECTOR_PROPERTIES) {
       if (sector.symbol === symbol) {
         return sector.color;
       }
     }
-    return '#000000';
+    return '#DBE2E5';
+  }
+
+  getSectorIcon(symbol: string) {
+    for (let sector of SECTOR_PROPERTIES) {
+      if (sector.symbol === symbol) {
+        return sector.icon;
+      }
+    }
+    return '';
   }
 
 }
