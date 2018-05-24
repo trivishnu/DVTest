@@ -1,17 +1,13 @@
-<ion-list>
-  <ion-list-header color="secondary">
-    Fund Snapshot
-  </ion-list-header>
-  <ion-item color="secondary" text-center>
-    <fifty-two-weeks-chart
-      [fiftyTwoWeekLow]="fiftyTwoWeekLow"
-      [fiftyTwoWeekHigh]="fiftyTwoWeekHigh"
-      [dayLow]="dayLow"
-      [dayHigh]="dayHigh"
-      [last]="last"
-      [color]="sectorColor">
-    </fifty-two-weeks-chart>
-  </ion-item>
+<fifty-two-weeks-chart
+  [fiftyTwoWeekLow]="fiftyTwoWeekLow"
+  [fiftyTwoWeekHigh]="fiftyTwoWeekHigh"
+  [dayLow]="dayLow"
+  [dayHigh]="dayHigh"
+  [last]="last"
+  [color]="sectorColor">
+</fifty-two-weeks-chart>
+
+<ion-list padding>
   <ion-item color="secondary">
     <ion-label>Market Cap</ion-label>
     <ion-label text-right>{{marketCap}}</ion-label>
@@ -41,7 +37,7 @@
     <ion-label text-right>{{indexDividend | currency: 'USD'}}</ion-label>
   </ion-item>
   <ion-item color="secondary">
-    <ion-label>Index Dividend Yield</ion-label>
+    <ion-label col-9>Index Dividend Yield</ion-label>
     <ion-label text-right>{{indexDividendYield}}%</ion-label>
   </ion-item>
   <ion-item color="secondary">

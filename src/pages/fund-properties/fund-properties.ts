@@ -27,6 +27,11 @@ export class FundPropertiesPage {
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.color = ""  + this.sectorSpdrService.getSectorColor(this.sectorSymbol);
     }
+
+    var elements = document.getElementsByClassName('item-inner') as HTMLCollectionOf<HTMLElement>;
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].style.borderBottomColor = "" + this.sectorSpdrService.getSectorColor(this.sectorSymbol);
+    }
   }
 
   ionViewWillLeave(){
