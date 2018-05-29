@@ -102,4 +102,5 @@
     <engine name="browser" spec="~5.0.3" />
     <engine name="ios" spec="~4.5.4" />
     <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
+    <allow-navigation href="http://172.17.102.172:8100" />
 </widget>
