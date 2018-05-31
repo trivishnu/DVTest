@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 import { SectorSpdrService } from '../../providers/SectorSpdrAPI';
 
+@IonicPage()
 @Component({
   selector: 'page-fund-properties',
   templateUrl: 'fund-properties.html',
