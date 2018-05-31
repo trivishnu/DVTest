@@ -9,6 +9,8 @@ import { FundDocumentsComponent } from './fund-documents/fund-documents';
 import { FundPerformanceComponent } from './fund-performance/fund-performance';
 import { FundDailyCalculationComponent } from './fund-daily-calculation/fund-daily-calculation';
 import { FundPremiumsComponent } from './fund-premiums/fund-premiums';
+import { SectorTrackerComponent } from './sector-tracker/sector-tracker';
+import { SAndPTrackerComponent } from './s-and-p-tracker/s-and-p-tracker';
 
 @NgModule({
 	declarations: [
@@ -21,7 +23,9 @@ import { FundPremiumsComponent } from './fund-premiums/fund-premiums';
         FundDocumentsComponent,
     FundPerformanceComponent,
     FundDailyCalculationComponent,
-    FundPremiumsComponent
+    FundPremiumsComponent,
+    SectorTrackerComponent,
+    SAndPTrackerComponent
     ],
 	imports: [],
 	exports: [
@@ -34,7 +38,9 @@ import { FundPremiumsComponent } from './fund-premiums/fund-premiums';
         FundDocumentsComponent,
     FundPerformanceComponent,
     FundDailyCalculationComponent,
-    FundPremiumsComponent
+    FundPremiumsComponent,
+    SectorTrackerComponent,
+    SAndPTrackerComponent
     ]
 })
 export class ComponentsModule {}

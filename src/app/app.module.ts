@@ -54,6 +54,8 @@ import { FundDocumentsComponent } from '../components/fund-documents/fund-docume
 import { FundPerformanceComponent } from '../components/fund-performance/fund-performance';
 import { FundDailyCalculationComponent } from '../components/fund-daily-calculation/fund-daily-calculation'
 import { FundPremiumsComponent } from '../components/fund-premiums/fund-premiums';
+import { SectorTrackerComponent } from '../components/sector-tracker/sector-tracker';
+import { SAndPTrackerComponent } from '../components/s-and-p-tracker/s-and-p-tracker';
 
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { DocumentViewPage } from '../pages/document-view/document-view';
@@ -92,7 +94,9 @@ import { DirectivesModule } from '../directives/directives.module';
     FundDocumentsComponent,
     FundPerformanceComponent,
     FundDailyCalculationComponent,
-    FundPremiumsComponent
+    FundPremiumsComponent,
+    SectorTrackerComponent,
+    SAndPTrackerComponent
   ],
   imports: [
     BrowserModule,

@@ -17,6 +17,7 @@ export class TrackerPage {
   sectorTrackers: SectorTracker[] = [];
   fundPropertiesPage = FundPropertiesPage;
   sAndPTracker = new SectorTracker();
+  rows : number[];
 
   constructor(
     public navCtrl: NavController,
@@ -31,17 +32,26 @@ export class TrackerPage {
       .subscribe(resp => {
         this.sectorTrackers = resp;
 
+        this.rows = Array.from(Array(Math.ceil(this.sectorTrackers.length / 2)).keys())
+
         var index = 0;
         for (index = 0; index < this.sectorTrackers.length; index++) {
           if (this.sectorTrackers[index].symbol === null) {
-            this.sectorTrackers[index].symbol = "S&P\n500";
+            this.sectorTrackers[index].symbol = "";
             this.sAndPTracker = this.sectorTrackers[index];
             break;
           }
         }
         if (index < this.sectorTrackers.length) {
-          this.sectorTrackers.splice(index, 1);
+          // this.sectorTrackers.splice(index, 1);
         }
+        var xlcSector = new SectorTracker();
+        xlcSector.symbol = "XLC";
+        xlcSector.displayName = "Communication Services"
+        xlcSector.change = "0.0";
+        xlcSector.changePercent = 0.0;
+
+        this.sectorTrackers.push(xlcSector);
 
       });
   }
@@ -50,6 +60,10 @@ export class TrackerPage {
     let symbolParam: any = {};
     symbolParam.symbol = symbol;
     return symbolParam;
+  }
+
+  handleTrackerSelected(symbol) {
+    this.navCtrl.push(FundPropertiesPage, this.getSymbolParam(symbol));
   }
 
 }

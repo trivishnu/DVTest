@@ -1,0 +1,24 @@
+<div class="tile" (click)="trackerTapped()">
+    <div class="tileBar" [style.backgroundColor]="color"></div>
+    <div  class="tileInfo">
+        <ion-grid>
+            <ion-row>
+                <ion-col col-7 class="iconAndSymbol">
+                        <img [src]="icon" class="trackerGraphics" >
+                        <span [style.color]="color" class="trackerSymbol">{{tracker.symbol}}</span>
+                </ion-col>
+                <ion-col class="trackerChangePercent" col-5 align-self-end>
+                        <span float-right text-right>{{changePercent}}</span>
+                </ion-col>
+            </ion-row>
+            <ion-row align-items-center>
+                <ion-col right class="trackerName" col-10>
+                        <span class="trackerName">{{tracker.displayName}}</span>
+                </ion-col>
+                <ion-col col-2>
+                        <img [src]="changeGraphics" *ngIf="tracker.changePercent !== 0.0" class="changeGraphics">
+                    </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+</div>  
