@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { SectorSpdrService, SectorTracker } from '../../providers/SectorSpdrAPI'
 
-// import { TapticEngine } from '@ionic-native/taptic-engine';
 import { FundPropertiesPage } from '../fund-properties/fund-properties';
 
 
@@ -15,9 +14,8 @@ import { FundPropertiesPage } from '../fund-properties/fund-properties';
 export class TrackerPage {
 
   sectorTrackers: SectorTracker[] = [];
-  fundPropertiesPage = FundPropertiesPage;
   sAndPTracker = new SectorTracker();
-  rows : number[];
+  rows: number[];
 
   constructor(
     public navCtrl: NavController,
@@ -34,7 +32,7 @@ export class TrackerPage {
 
         this.rows = Array.from(Array(Math.ceil(this.sectorTrackers.length / 2)).keys())
 
-        var index = 0;
+        let index = 0;
         for (index = 0; index < this.sectorTrackers.length; index++) {
           if (this.sectorTrackers[index].symbol === null) {
             this.sectorTrackers[index].symbol = "";
@@ -42,10 +40,8 @@ export class TrackerPage {
             break;
           }
         }
-        if (index < this.sectorTrackers.length) {
-          // this.sectorTrackers.splice(index, 1);
-        }
-        var xlcSector = new SectorTracker();
+
+        const xlcSector = new SectorTracker();
         xlcSector.symbol = "XLC";
         xlcSector.displayName = "Communication Services"
         xlcSector.change = "0.0";
