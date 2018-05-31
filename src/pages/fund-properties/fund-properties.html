@@ -1,17 +1,20 @@
 <ion-header>
 
   <ion-navbar color="dark">
-    <ion-title>{{sectorSymbol}}</ion-title>
+    <ion-title><div style="display: inline-block; font-weight: bolder;" [ngClass]="symbolColorClass">{{sectorSymbol}}</div> {{sectorSection}}</ion-title>
   </ion-navbar>
 
+  <ion-toolbar>
+    <fund-banner [symbol]="sectorSymbol"></fund-banner>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content no-bounce color="dark">
 
-  <ion-slides pager="true" loop="false">
+  <ion-slides pager="true" loop="false" (ionSlideDidChange)="slideChanged()">
 
     <ion-slide>
-      <fund-banner [symbol]="sectorSymbol"></fund-banner>
+      <fund-details [symbol]="sectorSymbol"></fund-details>
     </ion-slide>
 
     <ion-slide>

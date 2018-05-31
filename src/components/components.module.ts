@@ -1,4 +1,7 @@
 import { NgModule } from '@angular/core';
+import { IonicModule } from 'ionic-angular';
+import { PipesModule } from '../pipes/pipes.module';
+
 import { FundDetailsComponent } from './fund-details/fund-details';
 import { FundHoldingsComponent } from './fund-holdings/fund-holdings';
 import { FundProfileComponent } from './fund-profile/fund-profile';
@@ -29,7 +32,9 @@ import { FundBannerComponent } from './fund-banner/fund-banner';
     SAndPTrackerComponent,
     FundBannerComponent
   ],
-  imports: [],
+  imports: [
+    IonicModule,
+    PipesModule],
   exports: [
     FundDetailsComponent,
     FundHoldingsComponent,

@@ -1,33 +1,33 @@
-<div padding style="background-color: #383F49;">
-  <ion-grid style="color: white;">
+<div padding class="banner">
+  <ion-grid>
     <ion-row nowrap align-items-center>
       <ion-col col-auto>
-        <div float-left style="font-size: 21px; white-space: nowrap;">Consumer Discretionary</div>
+        <div float-left [ngClass]="symbolColorClass">{{sectorName}}</div>
       </ion-col>
       <ion-col>
-        <div float-right style="font-size: 12px;">17 Apr, 10:28 AM ET</div>
+        <div float-right class="as-of">{{lastTimeStamp | date:'d MMM, h:mm a'}} ET</div>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <div style="height: 10px;"></div>
+        <div class="banner-spacer"></div>
       </ion-col>
     </ion-row>
     <ion-row nowrap align-items-end>
       <ion-col>
-        <div>$103.95</div>
+        <div class="price">{{last | priceFormat}}</div>
       </ion-col>
       <ion-col>
-        <div>+2.5%</div>
+        <div class="price-change" [ngClass]="changeClass">{{changeSign}}{{change | priceChangeFormat }}</div>
       </ion-col>
       <ion-col>
-        <div>+2.60</div>
+        <div class="percent-change" [ngClass]="changeClass">{{changeSign}}{{changePercent | percentChangeFormat }}</div>
       </ion-col>
       <ion-col>
-        <div>19.30M</div>
+        <div class="volume">{{volume | volumeFormat}}</div>
       </ion-col>
       <ion-col col-2>
-        <div float-right style="font-size: 12px;">Volume</div>
+        <div float-right class="volume-label">Volume</div>
       </ion-col>
     </ion-row>
   </ion-grid>

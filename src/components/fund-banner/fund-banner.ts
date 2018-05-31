@@ -4,6 +4,9 @@ import { SectorSpdrService } from '../../providers/SectorSpdrAPI';
 
 import { FINANCIAL_API_SERVER, API_KEY } from '../../config/config';
 
+const LOCAL_LANGUAGE: string = 'en-US';
+const PRICE_TIMEZONE: string = 'US/Eastern';
+
 @Component({
   selector: 'fund-banner',
   templateUrl: 'fund-banner.html'
@@ -12,14 +15,15 @@ export class FundBannerComponent {
 
   @Input() symbol: string;
 
-  last: string;
-  change: string;
-  changePercent: string;
-  volume: string;
-  asOfDate: string;
+  last: number = 103.96;
+  change: number = 2.6;
+  changePercent: number = 2.5;
+  changeSign: string = "";
+  volume: number = 18000000;
   lastTimeStamp: string;
-  changeClass: string;
-  sectorName: string;
+  changeClass: string = "neutral";
+  sectorName: string = "Consumer Discretionary";
+  symbolColorClass: string = "xly";
 
   constructor(private quoteService: QuoteService,
     private sectorSpdrService: SectorSpdrService) {
@@ -27,8 +31,17 @@ export class FundBannerComponent {
 
   ngOnInit() {
     const currentTime = new Date(Date.now());
-    var convertedDateString = currentTime.toLocaleString('en-US', { timeZone: 'US/Eastern' });
+    var convertedDateString = currentTime.toLocaleString(LOCAL_LANGUAGE, { timeZone: PRICE_TIMEZONE });
     this.lastTimeStamp = convertedDateString.replace('at ', '');
+    if (this.change > 0) {
+      this.changeSign = "+";
+      this.changeClass = "positive";
+    }
+    else if (this.change < 0) {
+      this.changeSign = "-";
+      this.changeClass = "negative";
+    }
+    this.symbolColorClass = "fund-name " + this.symbol.toLowerCase();
 
     this.quoteService.setConfiguration(FINANCIAL_API_SERVER, API_KEY);
     this.quoteService.getSnapQuotes("US:" + this.symbol, "SectorSpdr")
@@ -37,44 +50,28 @@ export class FundBannerComponent {
           var quote = resp.data[0];
 
           if (quote.valid !== false) {
-            var convertedDateString = Date.now().toLocaleString();
+            var convertedDateString = currentTime.toLocaleString(LOCAL_LANGUAGE, { timeZone: PRICE_TIMEZONE });
             this.lastTimeStamp = convertedDateString.replace('at ', '');
 
-            this.last = "$" + quote.last.toFixed(2);
-            var changeSign = "";
             if (quote.change > 0) {
-              changeSign = "+";
+              this.changeSign = "+";
               this.changeClass = "positive";
             }
             else if (quote.change < 0) {
-              changeSign = "-";
+              this.changeSign = "-";
               this.changeClass = "negative";
             }
-            else {
-              this.changeClass = "neutral";
-            }
-            this.change = changeSign + "$" + Math.abs(quote.change).toFixed(2);
-            this.changePercent = changeSign + Math.abs(quote.changePercent).toFixed(2) + "%";
-            this.volume = this.formatLargeNumber(quote.volume);
+
+            this.last = quote.last;
+            this.change = quote.change;
+            this.changePercent = quote.changePercent;
+            this.volume = quote.volume;
           }
         }
       });
 
     var sector = this.sectorSpdrService.getSectorInfo(this.symbol);
     this.sectorName = sector.sectorName;
-  }
-
-  formatLargeNumber(value: number) {
-    var suffix = "";
-    if (value >= 1000000) {
-      value = value / 1000000;
-      suffix = " M";
-    }
-    else if (value >= 1000) {
-      value = value / 1000;
-      suffix = " K";
-    }
-    return value.toFixed(2) + suffix;
   }
 
 }

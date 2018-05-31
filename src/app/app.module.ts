@@ -44,25 +44,9 @@ import { FinancialAPIModule } from '../providers/FinancialAPI/FinancialAPIModule
 import { ChartService } from '../providers/fdsg/chartService';
 import { SectorSpdrService } from '../providers/SectorSpdrAPI';
 
-import { FundDetailsComponent } from '../components/fund-details/fund-details';
-import { FundHoldingsComponent } from '../components/fund-holdings/fund-holdings';
-import { FundProfileComponent } from '../components/fund-profile/fund-profile';
-import { FundSnapshotComponent } from '../components/fund-snapshot/fund-snapshot';
-import { FiftyTwoWeeksChartComponent } from '../components/fifty-two-weeks-chart/fifty-two-weeks-chart'
-import { FundDistributionComponent } from '../components/fund-distribution/fund-distribution';
-import { FundDocumentsComponent } from '../components/fund-documents/fund-documents';
-import { FundPerformanceComponent } from '../components/fund-performance/fund-performance';
-import { FundDailyCalculationComponent } from '../components/fund-daily-calculation/fund-daily-calculation'
-import { FundPremiumsComponent } from '../components/fund-premiums/fund-premiums';
-<<<<<<< HEAD
-import { SectorTrackerComponent } from '../components/sector-tracker/sector-tracker';
-import { SAndPTrackerComponent } from '../components/s-and-p-tracker/s-and-p-tracker';
-=======
-import { FundBannerComponent } from '../components/fund-banner/fund-banner';
->>>>>>> Initial layout with placeholders setup
-
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { DocumentViewPage } from '../pages/document-view/document-view';
+import { ComponentsModule } from '../components/components.module';
 
 import { DirectivesModule } from '../directives/directives.module';
 
@@ -88,23 +72,7 @@ import { DirectivesModule } from '../directives/directives.module';
     HowToPurchasePage,
     DisclaimersAndRisksPage,
     PrivacyPage,
-    TermsAndConditionsPage,
-    FundDetailsComponent,
-    FundHoldingsComponent,
-    FundProfileComponent,
-    FundSnapshotComponent,
-    FiftyTwoWeeksChartComponent,
-    FundDistributionComponent,
-    FundDocumentsComponent,
-    FundPerformanceComponent,
-    FundDailyCalculationComponent,
-    FundPremiumsComponent,
-<<<<<<< HEAD
-    SectorTrackerComponent,
-    SAndPTrackerComponent
-=======
-    FundBannerComponent
->>>>>>> Initial layout with placeholders setup
+    TermsAndConditionsPage
   ],
   imports: [
     BrowserModule,
@@ -113,7 +81,8 @@ import { DirectivesModule } from '../directives/directives.module';
     ChartsModule,
     FinancialAPIModule,
     PdfViewerModule,
-    DirectivesModule
+    DirectivesModule,
+    ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

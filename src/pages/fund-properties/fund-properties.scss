@@ -28,4 +28,14 @@ page-fund-properties {
   .list-ios .item-block .item-inner {
     border-bottom: 1px dashed white;
   }
+
+  .toolbar-ios {
+    padding: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .fund-title {
+    white-space: nowrap;
+  }
 }

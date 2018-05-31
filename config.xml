@@ -3,7 +3,7 @@
     <name>Sector SPDRs</name>
     <description>Sector SPDRs Mobile App</description>
     <author email="mobile.development@factset.com" href="http://www.factset.com">FactSet Digitial Solutions Mobile Team</author>
-    <content original-src="index.html" src="http://172.17.102.172:8100" />
+    <content src="index.html" />
     <access allows-arbitrary-loads-for-media="true" allows-arbitrary-loads-in-web-content="true" allows-local-networking="true" origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
