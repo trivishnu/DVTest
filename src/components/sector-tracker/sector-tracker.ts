@@ -15,7 +15,8 @@ export class SectorTrackerComponent {
   color = "#000000";
   icon = '';
   changeGraphics = '';
-  
+  changePercent: string;
+
   text: string;
 
   constructor(private sectorSpdrService:SectorSpdrService) {
@@ -30,6 +31,15 @@ export class SectorTrackerComponent {
       this.changeGraphics = IMAGES_ASSETS_PATH + 'green_button_arrowup.svg';
     else if(  this.tracker.changePercent <  0.0 )
       this.changeGraphics = IMAGES_ASSETS_PATH + 'red_button_arrowdown.svg';
+
+      var changeSign = "";
+      if (this.tracker.changePercent > 0) {
+        changeSign = "+";
+      }
+      else if (this.tracker.changePercent < 0) {
+        changeSign = "-";
+      }
+      this.changePercent = changeSign + Math.abs(this.tracker.changePercent).toFixed(2) + "%";
     
   }
 
