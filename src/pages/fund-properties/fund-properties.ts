@@ -12,6 +12,7 @@ export class FundPropertiesPage {
   sectorSymbol: string;
   symbolColorClass: string;
   sectorSection: string = "";
+  titleClass: string = "";
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -28,38 +29,44 @@ export class FundPropertiesPage {
     }
   }
 
-  slideChanged() {
+  slideWillChange() {
     let currentIndex = this.slides.getActiveIndex();
     switch (currentIndex) {
       case 0:
-        this.sectorSection = "Details";
+        this.titleTransition("Details");
         break;
       case 1:
-        this.sectorSection = "Profile";
+        this.titleTransition("Profile");
         break;
       case 2:
-        this.sectorSection = "Snapshot";
+        this.titleTransition("Snapshot");
         break;
       case 3:
-        this.sectorSection = "Daily Calculation";
+        this.titleTransition("Daily Calculation");
         break;
       case 4:
-        this.sectorSection = "Holdings";
+        this.titleTransition("Holdings");
         break;
       case 5:
-        this.sectorSection = "Distributions";
+        this.titleTransition("Distributions");
         break;
       case 6:
-        this.sectorSection = "Documents";
+        this.titleTransition("Documents");
         break;
       case 7:
-        this.sectorSection = "Performance";
+        this.titleTransition("Performance");
         break;
       case 8:
-        this.sectorSection = "Premiums";
+        this.titleTransition("Premiums");
         break;
       default:
     }
+  }
+
+  titleTransition(section: string) {
+    this.titleClass = "animated fadeOutUp";
+    setTimeout(() => { this.sectorSection = section; }, 300)
+    setTimeout(() => { this.titleClass = "animated fadeInDown"; }, 300);
   }
 
 }
