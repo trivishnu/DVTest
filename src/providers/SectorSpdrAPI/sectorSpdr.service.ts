@@ -32,7 +32,7 @@ const EXPENSE_RATIO_URL = '/sectorspdr/api/expense-ratio';
 const SECTOR_PROPERTIES = [
   { symbol: 'XLE', color: '#FFCC00', icon: 'energy' },
   { symbol: 'XLU', color: '#F39200', icon: 'utilities' },
-  { symbol: 'XLK', color: '#009FEE', icon: 'technology' },
+  { symbol: 'XLK', color: '#92278F', icon: 'technology' },
   { symbol: 'XLB', color: '#8F96CB', icon: 'materials' },
   { symbol: 'XLP', color: '#009CB4', icon: 'consumer_staples' },
   { symbol: 'XLY', color: '#DEDC00', icon: 'consumer_discretionary' },
