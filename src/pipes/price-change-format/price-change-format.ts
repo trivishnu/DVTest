@@ -5,9 +5,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PriceChangeFormatPipe implements PipeTransform {
   /**
-   * send back formatted price
+   * send back formatted price change
    */
   transform(value: number, ...args) {
-    return "$" + Math.abs(value).toFixed(2);
+    let changeSign: string = "";
+    if (value > 0) {
+      changeSign = "+";
+    }
+    else if (value< 0) {
+      changeSign = "-";
+    }
+
+    return changeSign + "$" + Math.abs(value).toFixed(2);
   }
 }

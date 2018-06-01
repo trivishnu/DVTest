@@ -18,10 +18,10 @@
         <div class="price">{{last | priceFormat}}</div>
       </ion-col>
       <ion-col>
-        <div class="price-change" [ngClass]="changeClass">{{changeSign}}{{change | priceChangeFormat }}</div>
+        <div class="price-change" [ngClass]="changeClass">{{change | priceChangeFormat }}</div>
       </ion-col>
       <ion-col>
-        <div class="percent-change" [ngClass]="changeClass">{{changeSign}}{{changePercent | percentChangeFormat }}</div>
+        <div class="percent-change" [ngClass]="changeClass">{{changePercent | percentChangeFormat }}</div>
       </ion-col>
       <ion-col>
         <div class="volume">{{volume | volumeFormat}}</div>

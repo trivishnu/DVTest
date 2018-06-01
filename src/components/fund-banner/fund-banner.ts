@@ -16,9 +16,8 @@ export class FundBannerComponent {
   @Input() symbol: string;
 
   last: number = 103.96;
-  change: number = 2.6;
-  changePercent: number = 2.5;
-  changeSign: string = "";
+  change: number = 1.0;
+  changePercent: number = 1.0;
   volume: number = 18000000;
   lastTimeStamp: string;
   changeClass: string = "neutral";
@@ -34,11 +33,9 @@ export class FundBannerComponent {
     var convertedDateString = currentTime.toLocaleString(LOCAL_LANGUAGE, { timeZone: PRICE_TIMEZONE });
     this.lastTimeStamp = convertedDateString.replace('at ', '');
     if (this.change > 0) {
-      this.changeSign = "+";
       this.changeClass = "positive";
     }
     else if (this.change < 0) {
-      this.changeSign = "-";
       this.changeClass = "negative";
     }
     this.symbolColorClass = "fund-name " + this.symbol.toLowerCase();
@@ -54,11 +51,9 @@ export class FundBannerComponent {
             this.lastTimeStamp = convertedDateString.replace('at ', '');
 
             if (quote.change > 0) {
-              this.changeSign = "+";
               this.changeClass = "positive";
             }
             else if (quote.change < 0) {
-              this.changeSign = "-";
               this.changeClass = "negative";
             }
 
