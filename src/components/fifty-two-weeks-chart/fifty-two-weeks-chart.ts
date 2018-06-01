@@ -20,6 +20,7 @@ export class FiftyTwoWeeksChartComponent {
   todayLastStart: number = 0;
   sColor = "";
   todayValueAvailable = false;
+  dataAvailable = false;
 
   ngOnChanges(changes: SimpleChanges) {
     this.sColor = this.color;
@@ -38,7 +39,7 @@ export class FiftyTwoWeeksChartComponent {
       this.todayRangeWidth = todayHighEnd - this.todayLowStart;
       this.todayLowLabelEnd = this.todayLowStart - 10;
       this.todayHighLabelStart = todayHighEnd + 10;
-
+      this.dataAvailable = true;
     }
   }
 
