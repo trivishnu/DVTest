@@ -2,6 +2,17 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 import { SectorSpdrService } from '../../providers/SectorSpdrAPI';
 
+const sections: string[] = [
+  "Snapshot",
+  "Holdings",
+  "Distributions",
+  "Performance",
+  "Charting",
+  "Discount",
+  "News",
+  "Resources"
+];
+
 @IonicPage()
 @Component({
   selector: 'page-fund-properties',
@@ -14,14 +25,13 @@ export class FundPropertiesPage {
   symbolColorClass: string;
   sectorSection: string = "";
   titleClass: string = "";
-  sections: string[] = ["Snapshot", "Holdings", "Distributions", "Performance", "Charting", "Discount", "News", "Resources"];
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private sectorSpdrService: SectorSpdrService) {
     this.sectorSymbol = this.navParams.get('symbol');
     this.symbolColorClass = this.sectorSymbol.toLowerCase();
-    this.sectorSection = this.sections[0];
+    this.sectorSection = sections[0];
   }
 
   ionViewWillEnter() {
@@ -33,7 +43,7 @@ export class FundPropertiesPage {
 
   slideWillChange() {
     let currentIndex = this.slides.getActiveIndex();
-    this.titleTransition(this.sections[currentIndex]);
+    this.titleTransition(sections[currentIndex]);
   }
 
   titleTransition(section: string) {
