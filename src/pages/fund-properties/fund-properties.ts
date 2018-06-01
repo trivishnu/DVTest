@@ -43,7 +43,9 @@ export class FundPropertiesPage {
 
   slideWillChange() {
     let currentIndex = this.slides.getActiveIndex();
-    this.titleTransition(sections[currentIndex]);
+    if (currentIndex >= 0 && currentIndex < sections.length) {
+      this.titleTransition(sections[currentIndex]);
+    }
   }
 
   titleTransition(section: string) {
