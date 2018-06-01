@@ -16,7 +16,9 @@
     <ion-row wrap *ngFor="let i of rows">
       <ion-col *ngFor="let tracker of sectorTrackers | slice:(i*2):(i+1)*2" width-50>
         <div class="row responsive-sm">
-          <sector-tracker *ngIf="tracker.symbol !== ''" class="tile" [tracker]="tracker" (trackerSelected)="handleTrackerSelected($event)">
+          <sector-tracker *ngIf="tracker.symbol !== ''" class="tile"
+            [tracker]="tracker"
+            (trackerSelected)="handleTrackerSelected($event)">
           </sector-tracker>
           <s-and-p-tracker *ngIf="tracker.symbol === ''" class="tile">
           </s-and-p-tracker>
