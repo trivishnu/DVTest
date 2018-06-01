@@ -12,10 +12,10 @@
     <text x="270" y="70" alignment-baseline="top" text-anchor="start" font-size="16" fill="white">{{fiftyTwoWeekHigh | currency: 'USD'}}</text>
     <text x="270" y="85" alignment-baseline="top" text-anchor="start" font-size="12" fill="white">high</text>
 
-    <text [attr.x]="todayLastStart" y="40" alignment-baseline="top" text-anchor="middle" [attr.fill]="sColor">Today</text>
+    <text [attr.x]="todayLowStart" y="40" alignment-baseline="top" text-anchor="middle" [attr.fill]="sColor">Today</text>
 
     <rect [attr.x]="todayLowStart" y="50" [attr.width]="todayRangeWidth" height="80" fill="gray" fill-opacity="0.5"/>
-    <rect [attr.x]="todayLastStart" y="50" width="3" height="80" [attr.fill]="sColor"/>
+    <rect *ngIf="todayValueAvailable" [attr.x]="todayLastStart" y="50" width="3" height="80" [attr.fill]="sColor"/>
 
     <text [attr.x]="todayLowLabelEnd" y="115" alignment-baseline="top" text-anchor="end" font-size="16" [attr.fill]="sColor">{{dayLow | currency: 'USD'}}</text>
     <text [attr.x]="todayLowLabelEnd" y="130" alignment-baseline="top" text-anchor="end" font-size="12" [attr.fill]="sColor">low</text>

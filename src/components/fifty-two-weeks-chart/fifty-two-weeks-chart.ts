@@ -19,6 +19,7 @@ export class FiftyTwoWeeksChartComponent {
   todayHighLabelStart: number = 0;
   todayLastStart: number = 0;
   sColor = "";
+  todayValueAvailable = false;
 
   ngOnChanges(changes: SimpleChanges) {
     this.sColor = this.color;
@@ -26,13 +27,18 @@ export class FiftyTwoWeeksChartComponent {
   }
 
   setChartFields() {
-    if (this.fiftyTwoWeekLow !== undefined && this.last !== undefined) {
+    if (this.last !== undefined) {
+      this.todayLastStart = ((this.last - this.fiftyTwoWeekLow) / (this.fiftyTwoWeekHigh - this.fiftyTwoWeekLow) * 200) + 60;
+      this.todayValueAvailable = true;
+    }
+
+    if (this.fiftyTwoWeekLow !== undefined) {
       this.todayLowStart = ((this.dayLow - this.fiftyTwoWeekLow) / (this.fiftyTwoWeekHigh - this.fiftyTwoWeekLow) * 200) + 60;
       var todayHighEnd = ((this.dayHigh - this.fiftyTwoWeekLow) / (this.fiftyTwoWeekHigh - this.fiftyTwoWeekLow) * 200) + 60;
       this.todayRangeWidth = todayHighEnd - this.todayLowStart;
       this.todayLowLabelEnd = this.todayLowStart - 10;
       this.todayHighLabelStart = todayHighEnd + 10;
-      this.todayLastStart = ((this.last - this.fiftyTwoWeekLow) / (this.fiftyTwoWeekHigh - this.fiftyTwoWeekLow) * 200) + 60;
+
     }
   }
 
