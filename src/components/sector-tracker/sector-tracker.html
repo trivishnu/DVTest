@@ -8,7 +8,7 @@
                         <span [style.color]="color" class="trackerSymbol">{{tracker.symbol}}</span>
                 </ion-col>
                 <ion-col class="trackerChangePercent" col-5 align-self-end>
-                        <span float-right text-right>{{changePercent}}</span>
+                        <span float-right text-right>{{tracker.changePercent | percentChangeFormat}}</span>
                 </ion-col>
             </ion-row>
             <ion-row align-items-center>

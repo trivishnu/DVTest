@@ -5,7 +5,7 @@ import { SectorSpdrService } from '../../providers/SectorSpdrAPI';
 import { FINANCIAL_API_SERVER, API_KEY } from '../../config/config';
 
 const LOCAL_LANGUAGE: string = 'en-US';
-const PRICE_TIMEZONE: string = 'US/Eastern';
+const PRICE_TIMEZONE: string = 'America/New_York';
 
 @Component({
   selector: 'fund-banner',
