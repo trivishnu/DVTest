@@ -23,11 +23,8 @@
       <ion-col>
         <div class="percent-change" [ngClass]="changeClass">{{changePercent | percentChangeFormat }}</div>
       </ion-col>
-      <ion-col>
-        <div class="volume">{{volume | volumeFormat}}</div>
-      </ion-col>
-      <ion-col col-2>
-        <div float-right class="volume-label">Volume</div>
+      <ion-col col-auto>
+        <div class="volume">{{volume | volumeFormat}}</div> <div class="volume-label">Volume</div>
       </ion-col>
     </ion-row>
   </ion-grid>
