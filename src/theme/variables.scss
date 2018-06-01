@@ -38,7 +38,17 @@ $colors: (
   secondary:  #383F49,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #191E23
+  dark:       #191E23,
+  xly:        #C4CA40,
+  xlp:        #00ABBC,
+  xle:        #FFCA05,
+  xlf:        #A6CE39,
+  xlv:        #00ADEE,
+  xli:        #92C5EB,
+  xlb:        #8E97C7,
+  xlre:       #A40C1E,
+  xlk:        #92278F,
+  xlu:        #FF9A00,
 );
 
 $background-color: #191E23 !default;
@@ -48,6 +58,7 @@ $background-md-color: #191E23 !default;
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
+$grid-padding-width: 2px;
 
 
 

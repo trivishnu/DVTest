@@ -1,4 +1,7 @@
 import { NgModule } from '@angular/core';
+import { IonicModule } from 'ionic-angular';
+import { PipesModule } from '../pipes/pipes.module';
+
 import { FundDetailsComponent } from './fund-details/fund-details';
 import { FundHoldingsComponent } from './fund-holdings/fund-holdings';
 import { FundProfileComponent } from './fund-profile/fund-profile';
@@ -11,36 +14,41 @@ import { FundDailyCalculationComponent } from './fund-daily-calculation/fund-dai
 import { FundPremiumsComponent } from './fund-premiums/fund-premiums';
 import { SectorTrackerComponent } from './sector-tracker/sector-tracker';
 import { SAndPTrackerComponent } from './s-and-p-tracker/s-and-p-tracker';
+import { FundBannerComponent } from './fund-banner/fund-banner';
 
 @NgModule({
-	declarations: [
-        FundDetailsComponent,
-        FundHoldingsComponent,
-        FundProfileComponent,
-        FundSnapshotComponent,
-        FiftyTwoWeeksChartComponent,
-        FundDistributionComponent,
-        FundDocumentsComponent,
+  declarations: [
+    FundDetailsComponent,
+    FundHoldingsComponent,
+    FundProfileComponent,
+    FundSnapshotComponent,
+    FiftyTwoWeeksChartComponent,
+    FundDistributionComponent,
+    FundDocumentsComponent,
     FundPerformanceComponent,
     FundDailyCalculationComponent,
     FundPremiumsComponent,
     SectorTrackerComponent,
-    SAndPTrackerComponent
-    ],
-	imports: [],
-	exports: [
-        FundDetailsComponent,
-        FundHoldingsComponent,
-        FundProfileComponent,
-        FundSnapshotComponent,
-        FiftyTwoWeeksChartComponent,
-        FundDistributionComponent,
-        FundDocumentsComponent,
+    SAndPTrackerComponent,
+    FundBannerComponent
+  ],
+  imports: [
+    IonicModule,
+    PipesModule],
+  exports: [
+    FundDetailsComponent,
+    FundHoldingsComponent,
+    FundProfileComponent,
+    FundSnapshotComponent,
+    FiftyTwoWeeksChartComponent,
+    FundDistributionComponent,
+    FundDocumentsComponent,
     FundPerformanceComponent,
     FundDailyCalculationComponent,
     FundPremiumsComponent,
     SectorTrackerComponent,
-    SAndPTrackerComponent
-    ]
+    SAndPTrackerComponent,
+    FundBannerComponent
+  ]
 })
-export class ComponentsModule {}
+export class ComponentsModule { }

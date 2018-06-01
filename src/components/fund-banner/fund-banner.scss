@@ -1,0 +1,47 @@
+fund-banner {
+  .banner {
+    background-color: map-get($colors, secondary);
+  }
+
+  .fund-name {
+    font-size: 21px;
+    white-space: nowrap;
+  }
+
+  .price {
+    font-size: 18px;
+    color: white;
+  }
+
+  .price-change {
+    font-size: 18px;
+  }
+
+  .percent-change {
+    font-size: 18px;
+  }
+
+  .volume {
+    font-size: 18px;
+    color: white;
+  }
+
+  .volume-label {
+    color: white;
+  }
+
+  .as-of {
+    color: white;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .banner-spacer {
+    height: 5px;
+  }
+
+  .volume-label {
+    font-size: 13px;
+  }
+
+}
