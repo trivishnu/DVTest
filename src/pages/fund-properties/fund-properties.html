@@ -4,9 +4,12 @@
     <ion-title><div [ngClass]="titleClass"><div style="display: inline-block; font-weight: bolder;" [ngClass]="symbolColorClass">{{sectorSymbol}}</div> {{sectorSection}}</div></ion-title>
   </ion-navbar>
 
+  <div class="header-divider"></div>
+
   <ion-toolbar>
     <fund-banner [symbol]="sectorSymbol"></fund-banner>
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content no-bounce color="dark">
