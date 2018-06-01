@@ -1,6 +1,35 @@
 page-tracker {
 
+    .md,
+    .ios,
+    .wp {
+        page-home {
+            ion-header {
+                    height: 100px;//by default 56px
+                }
+        }
+    }
+
+    ion-navbar.toolbar {
+        // 18px for Status Bar, 42px for logo and rest for padding between logo and seperator
+        min-height: 70px;
+    }
+
+    .sectorSpdrTitle {
+        border-bottom: 3px solid blue;
+    }
+
+    .logoContainer {
+        padding-top: 18px;
+    }
+
+    .logo {
+        height: 42px;
+        vertical-align: bottom;
+    }
+   
     .tile {
         width: 100%;
     }
+
 }

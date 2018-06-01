@@ -1,16 +1,16 @@
 <ion-header>
 
   <ion-navbar [color]="'dark'">
-    <ion-title style="width: 100%">
-      <img src="assets/imgs/sector_spdr_logo_small.svg" style="width:100px">
-      <div style="width: 100vw;height:2px;background: blue"></div>
-    </ion-title>
-  </ion-navbar>
+      <ion-title class="sectorSpdrTitle">
+        <div class="logoContainer">
+          <img src="assets/imgs/sector_spdr_logo_small.svg" class="logo">
+        </div>
+      </ion-title>
+    </ion-navbar>
 
 </ion-header>
 
-
-<ion-content padding>
+<ion-content >
 
   <ion-grid>
     <ion-row wrap *ngFor="let i of rows">
