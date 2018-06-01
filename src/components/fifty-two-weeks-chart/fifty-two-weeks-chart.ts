@@ -21,6 +21,7 @@ export class FiftyTwoWeeksChartComponent {
   sColor = "";
   todayValueAvailable = false;
   dataAvailable = false;
+  todayAnimation = "";
 
   ngOnChanges(changes: SimpleChanges) {
     this.sColor = this.color;
@@ -40,6 +41,7 @@ export class FiftyTwoWeeksChartComponent {
       this.todayLowLabelEnd = this.todayLowStart - 10;
       this.todayHighLabelStart = todayHighEnd + 10;
       this.dataAvailable = true;
+      this.todayAnimation = "animated fadeIn";
     }
   }
 
