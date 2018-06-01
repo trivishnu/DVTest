@@ -14,13 +14,14 @@ export class FundPropertiesPage {
   symbolColorClass: string;
   sectorSection: string = "";
   titleClass: string = "";
+  sections: string[] = ["Snapshot", "Holdings", "Distributions", "Performance", "Charting", "Discount", "News", "Resources"];
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private sectorSpdrService: SectorSpdrService) {
     this.sectorSymbol = this.navParams.get('symbol');
     this.symbolColorClass = this.sectorSymbol.toLowerCase();
-    this.sectorSection = "Details";
+    this.sectorSection = this.sections[0];
   }
 
   ionViewWillEnter() {
@@ -32,36 +33,7 @@ export class FundPropertiesPage {
 
   slideWillChange() {
     let currentIndex = this.slides.getActiveIndex();
-    switch (currentIndex) {
-      case 0:
-        this.titleTransition("Details");
-        break;
-      case 1:
-        this.titleTransition("Profile");
-        break;
-      case 2:
-        this.titleTransition("Snapshot");
-        break;
-      case 3:
-        this.titleTransition("Daily Calculation");
-        break;
-      case 4:
-        this.titleTransition("Holdings");
-        break;
-      case 5:
-        this.titleTransition("Distributions");
-        break;
-      case 6:
-        this.titleTransition("Documents");
-        break;
-      case 7:
-        this.titleTransition("Performance");
-        break;
-      case 8:
-        this.titleTransition("Premiums");
-        break;
-      default:
-    }
+    this.titleTransition(this.sections[currentIndex]);
   }
 
   titleTransition(section: string) {

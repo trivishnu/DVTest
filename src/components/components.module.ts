@@ -15,6 +15,8 @@ import { FundPremiumsComponent } from './fund-premiums/fund-premiums';
 import { SectorTrackerComponent } from './sector-tracker/sector-tracker';
 import { SAndPTrackerComponent } from './s-and-p-tracker/s-and-p-tracker';
 import { FundBannerComponent } from './fund-banner/fund-banner';
+import { FundChartingComponent } from './fund-charting/fund-charting';
+import { FundNewsComponent } from './fund-news/fund-news';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { FundBannerComponent } from './fund-banner/fund-banner';
     FundPremiumsComponent,
     SectorTrackerComponent,
     SAndPTrackerComponent,
-    FundBannerComponent
+    FundBannerComponent,
+    FundChartingComponent,
+    FundNewsComponent
   ],
   imports: [
     IonicModule,
@@ -48,7 +52,9 @@ import { FundBannerComponent } from './fund-banner/fund-banner';
     FundPremiumsComponent,
     SectorTrackerComponent,
     SAndPTrackerComponent,
-    FundBannerComponent
+    FundBannerComponent,
+    FundChartingComponent,
+    FundNewsComponent
   ]
 })
 export class ComponentsModule { }
