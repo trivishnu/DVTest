@@ -34,7 +34,7 @@ export class FiftyTwoWeeksChartComponent {
       this.todayValueAvailable = true;
     }
 
-    if (this.fiftyTwoWeekLow !== undefined) {
+    if (this.fiftyTwoWeekLow !== undefined && this.fiftyTwoWeekLow !== null) {
       this.todayLowStart = ((this.dayLow - this.fiftyTwoWeekLow) / (this.fiftyTwoWeekHigh - this.fiftyTwoWeekLow) * 200) + 60;
       var todayHighEnd = ((this.dayHigh - this.fiftyTwoWeekLow) / (this.fiftyTwoWeekHigh - this.fiftyTwoWeekLow) * 200) + 60;
       this.todayRangeWidth = todayHighEnd - this.todayLowStart;

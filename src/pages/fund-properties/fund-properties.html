@@ -12,7 +12,7 @@
 
 </ion-header>
 
-<ion-content no-bounce color="dark">
+<ion-content no-bounce color="dark" [ngClass]="sectorBackgroundClass">
 
   <ion-slides pager="true" loop="false" (ionSlideWillChange)="slideWillChange()">
 
@@ -39,7 +39,7 @@
     <ion-slide>
       <fund-daily-calculation [symbol]="sectorSymbol"></fund-daily-calculation>
     </ion-slide>
-    
+
     <ion-slide>
       <fund-news [symbol]="sectorSymbol"></fund-news>
     </ion-slide>

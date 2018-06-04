@@ -16,43 +16,73 @@
 .xly {
   color: map-get($colors, xly);
 }
+.xly-background {
+  background-image: url("../assets/imgs/consumer_discretionary.svg");
+}
 
 .xlp {
   color: map-get($colors, xlp);
+}
+.xlp-background {
+  background-image: url("../assets/imgs/consumer_staples.svg");
 }
 
 .xle {
   color: map-get($colors, xle);
 }
+.xle-background {
+  background-image: url("../assets/imgs/energy.svg");
+}
 
 .xlf {
   color: map-get($colors, xlf);
+}
+.xlf-background {
+  background-image: url("../assets/imgs/financials.svg");
 }
 
 .xlv {
   color: map-get($colors, xlv);
 }
+.xlv-background {
+  background-image: url("../assets/imgs/health_care.svg");
+}
 
 .xli {
   color: map-get($colors, xli);
 }
+.xli-background {
+  background-image: url("../assets/imgs/industrials.svg");
+}
 
 .xlb {
   color: map-get($colors, xlb);
+}
+.xlb-background {
+  background-image: url("../assets/imgs/materials.svg");
 }
 
 .xlre {
   color: map-get($colors, xlre);
   font-weight: bolder;
 }
+.xlre-background {
+  background-image: url("../assets/imgs/real_estate.svg");
+}
 
 .xlk {
   color: map-get($colors, xlk);
   font-weight: bolder;
 }
+.xlk-background {
+  background-image: url("../assets/imgs/technology.svg");
+}
 
 .xlu {
   color: map-get($colors, xlu);
+}
+.xlu-background {
+  background-image: url("../assets/imgs/utilities.svg");
 }
 
 .positive {

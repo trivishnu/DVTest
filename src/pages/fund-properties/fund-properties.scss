@@ -43,4 +43,15 @@ page-fund-properties {
     display: inline-block;
     font-weight: bolder;
   }
+
+  // sets up the svg as a fixed background image but I could not set the specific
+  // color of the image
+  ion-content {
+    background-position: left 150px top 40%;
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+
 }

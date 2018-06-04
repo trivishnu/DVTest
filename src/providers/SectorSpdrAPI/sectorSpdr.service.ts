@@ -36,8 +36,8 @@ const SECTOR_PROPERTIES = [
   { symbol: 'XLB', color: '#8F96CB', icon: 'materials' },
   { symbol: 'XLP', color: '#009CB4', icon: 'consumer_staples' },
   { symbol: 'XLY', color: '#DEDC00', icon: 'consumer_discretionary' },
-  { symbol: 'XLI', color: '#A3CCE4', icon: 'indutrials' },
-  { symbol: 'XLV', color: '#009FEE', icon: 'healthcare' },
+  { symbol: 'XLI', color: '#A3CCE4', icon: 'industrials' },
+  { symbol: 'XLV', color: '#009FEE', icon: 'health_care' },
   { symbol: 'XLF', color: '#AFCA0B', icon: 'financials' },
   { symbol: 'XLRE', color: '#D31515', icon: 'real_estate' },
   { symbol: 'XLC', color: '#B164A5', icon: 'communications' }

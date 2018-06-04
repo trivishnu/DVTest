@@ -25,12 +25,15 @@ export class FundPropertiesPage {
   symbolColorClass: string;
   sectorSection: string = "";
   titleClass: string = "";
+  sectorBackgroundClass
+  : string;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private sectorSpdrService: SectorSpdrService) {
     this.sectorSymbol = this.navParams.get('symbol');
     this.symbolColorClass = this.sectorSymbol.toLowerCase();
+    this.sectorBackgroundClass = this.symbolColorClass + "-background";
     this.sectorSection = sections[0];
   }
 
