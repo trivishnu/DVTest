@@ -49,6 +49,10 @@ export class TrackerPage {
 
         this.sectorTrackers.push(xlcSector);
 
+        var sAndP = this.sectorTrackers.shift();
+        this.sectorTrackers.sort(this.comparePerformance).reverse();
+        this.sectorTrackers.unshift(sAndP);
+
       });
   }
 
@@ -60,6 +64,14 @@ export class TrackerPage {
 
   handleTrackerSelected(symbol) {
     this.navCtrl.push(FundPropertiesPage, this.getSymbolParam(symbol));
+  }
+
+  comparePerformance(a :SectorTracker,b : SectorTracker) {
+    if (a.changePercent < b.changePercent)
+      return -1;
+    if (a.changePercent > b.changePercent)
+      return 1;
+    return 0;
   }
 
 }
