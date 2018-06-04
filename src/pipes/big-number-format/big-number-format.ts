@@ -19,7 +19,7 @@ export class BigNumberFormatPipe implements PipeTransform {
       value = value / 1000;
       suffix = "K";
     }
-    return value.toFixed(2) + suffix;
+    return value.toFixed(2) + " " + suffix;
   }
 
 }
