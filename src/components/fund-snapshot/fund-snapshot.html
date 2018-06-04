@@ -1,5 +1,14 @@
 <ion-scroll scrollY="true">
-  <fifty-two-weeks-chart [fiftyTwoWeekLow]="fiftyTwoWeekLow" [fiftyTwoWeekHigh]="fiftyTwoWeekHigh" [dayLow]="dayLow" [dayHigh]="dayHigh" [last]="last" [color]="sectorColor">
+  <fund-details [symbol]="symbol">
+  </fund-details>
+
+  <fifty-two-weeks-chart
+    [fiftyTwoWeekLow]="fiftyTwoWeekLow"
+    [fiftyTwoWeekHigh]="fiftyTwoWeekHigh"
+    [dayLow]="dayLow"
+    [dayHigh]="dayHigh"
+    [last]="last"
+    [color]="sectorColor">
   </fifty-two-weeks-chart>
 
   <ion-list padding>
