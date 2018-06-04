@@ -1,47 +1,49 @@
-<fifty-two-weeks-chart
-  [fiftyTwoWeekLow]="fiftyTwoWeekLow"
-  [fiftyTwoWeekHigh]="fiftyTwoWeekHigh"
-  [dayLow]="dayLow"
-  [dayHigh]="dayHigh"
-  [last]="last"
-  [color]="sectorColor">
-</fifty-two-weeks-chart>
+<ion-scroll scrollY="true">
+  <fifty-two-weeks-chart
+    [fiftyTwoWeekLow]="fiftyTwoWeekLow"
+    [fiftyTwoWeekHigh]="fiftyTwoWeekHigh"
+    [dayLow]="dayLow"
+    [dayHigh]="dayHigh"
+    [last]="last"
+    [color]="sectorColor">
+  </fifty-two-weeks-chart>
 
-<ion-list padding>
-  <ion-item color="secondary">
-    <ion-label>Market Cap</ion-label>
-    <ion-label text-right>{{marketCap}}</ion-label>
-  </ion-item>
-  <ion-item color="secondary">
-    <ion-label>Outstanding Shares</ion-label>
-    <ion-label text-right>{{sharesOutstanding}}</ion-label>
-  </ion-item>
-  <ion-item color="secondary">
-    <ion-label>Exchange</ion-label>
-    <ion-label text-right>{{exchange}}</ion-label>
-  </ion-item>
-  <ion-item color="secondary">
-    <ion-label>Average Volume</ion-label>
-    <ion-label text-right>{{averageVolume}}</ion-label>
-  </ion-item>
-  <ion-item color="secondary">
-    <ion-label>Index</ion-label>
-    <ion-label text-right>{{index}}</ion-label>
-  </ion-item>
-  <ion-item color="secondary">
-    <ion-label>Index Value</ion-label>
-    <ion-label text-right>{{indexValue | currency: 'USD'}}</ion-label>
-  </ion-item>
-  <ion-item color="secondary">
-    <ion-label>Index Dividend</ion-label>
-    <ion-label text-right>{{indexDividend | currency: 'USD'}}</ion-label>
-  </ion-item>
-  <ion-item color="secondary">
-    <ion-label col-auto>Index Dividend Yield</ion-label>
-    <ion-label text-right>{{indexDividendYield}}%</ion-label>
-  </ion-item>
-  <ion-item color="secondary">
-    <ion-label>Previous Close</ion-label>
-    <ion-label text-right>{{previousClose | currency: 'USD'}}</ion-label>
-  </ion-item>
-</ion-list>
+  <ion-list padding>
+    <ion-item color="secondary">
+      <ion-label>Market Cap</ion-label>
+      <ion-label text-right>{{marketCap}}</ion-label>
+    </ion-item>
+    <ion-item color="secondary">
+      <ion-label>Outstanding Shares</ion-label>
+      <ion-label text-right>{{sharesOutstanding}}</ion-label>
+    </ion-item>
+    <ion-item color="secondary">
+      <ion-label>Exchange</ion-label>
+      <ion-label text-right>{{exchange}}</ion-label>
+    </ion-item>
+    <ion-item color="secondary">
+      <ion-label>Average Volume</ion-label>
+      <ion-label text-right>{{averageVolume}}</ion-label>
+    </ion-item>
+    <ion-item color="secondary">
+      <ion-label>Index</ion-label>
+      <ion-label text-right>{{index}}</ion-label>
+    </ion-item>
+    <ion-item color="secondary">
+      <ion-label>Index Value</ion-label>
+      <ion-label text-right>{{indexValue | currency: 'USD'}}</ion-label>
+    </ion-item>
+    <ion-item color="secondary">
+      <ion-label>Index Dividend</ion-label>
+      <ion-label text-right>{{indexDividend | currency: 'USD'}}</ion-label>
+    </ion-item>
+    <ion-item color="secondary">
+      <ion-label col-auto>Index Dividend Yield</ion-label>
+      <ion-label text-right>{{indexDividendYield}}%</ion-label>
+    </ion-item>
+    <ion-item color="secondary">
+      <ion-label>Previous Close</ion-label>
+      <ion-label text-right>{{previousClose | currency: 'USD'}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-scroll>
