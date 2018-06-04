@@ -69,8 +69,18 @@ export class FundSnapshotComponent {
     this.indexDividend = snapshot.indexDividend;
     this.indexDividendYield = snapshot.indexDividendYield;
     this.previousClose = snapshot.previousClose;
-    this.fiftyTwoWeekHigh = snapshot.fiftyTwoWeekHigh;
-    this.fiftyTwoWeekLow = snapshot.fiftyTwoWeekLow;
+    // since the daily values may get updated before the yearly high/low
+    // we do a check and substitute the larger/lower intraday values as needed
+    if (snapshot.dayHigh > snapshot.fiftyTwoWeekHigh) {
+      this.fiftyTwoWeekHigh = snapshot.dayHigh;
+    } else {
+      this.fiftyTwoWeekHigh = snapshot.fiftyTwoWeekHigh;
+    }
+    if (snapshot.dayLow < snapshot.fiftyTwoWeekLow) {
+      this.fiftyTwoWeekLow = snapshot.dayLow;
+    } else {
+      this.fiftyTwoWeekLow = snapshot.fiftyTwoWeekLow;
+    }
     this.dayHigh = snapshot.dayHigh;
     this.dayLow = snapshot.dayLow;
   }
