@@ -1,13 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'volumeFormat',
+  name: 'bigNumberFormat',
 })
 
 /*
 Converts big numbers to a nice string for display
 */
-export class VolumeFormatPipe implements PipeTransform {
+export class BigNumberFormatPipe implements PipeTransform {
 
   transform(value: number, ...args) {
     var suffix = "";
