@@ -29,12 +29,12 @@ export class FiftyTwoWeeksChartComponent {
   }
 
   setChartFields() {
-    if (this.last !== undefined) {
+    if (this.last !== undefined && this.fiftyTwoWeekLow !== undefined) {
       this.todayLastStart = ((this.last - this.fiftyTwoWeekLow) / (this.fiftyTwoWeekHigh - this.fiftyTwoWeekLow) * 200) + 60;
       this.todayValueAvailable = true;
     }
 
-    if (this.fiftyTwoWeekLow !== undefined && this.fiftyTwoWeekLow !== null) {
+    if (this.fiftyTwoWeekLow !== undefined) {
       this.todayLowStart = ((this.dayLow - this.fiftyTwoWeekLow) / (this.fiftyTwoWeekHigh - this.fiftyTwoWeekLow) * 200) + 60;
       var todayHighEnd = ((this.dayHigh - this.fiftyTwoWeekLow) / (this.fiftyTwoWeekHigh - this.fiftyTwoWeekLow) * 200) + 60;
       this.todayRangeWidth = todayHighEnd - this.todayLowStart;
