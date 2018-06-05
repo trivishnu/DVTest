@@ -12,7 +12,7 @@
     <text x="270" y="70" alignment-baseline="top" text-anchor="start" font-size="16" fill="white">{{fiftyTwoWeekHigh | currency: 'USD'}}</text>
     <text x="270" y="85" alignment-baseline="top" text-anchor="start" font-size="12" fill="white">high</text>
 
-    <text [ngClass]="todayAnimation" *ngIf="dataAvailable" [attr.x]="todayLowStart" y="40" alignment-baseline="top" text-anchor="middle" [attr.fill]="sColor">Today</text>
+    <text [ngClass]="todayAnimation" *ngIf="dataAvailable" [attr.x]="todayLastStart" y="40" alignment-baseline="top" text-anchor="middle" [attr.fill]="sColor">Today</text>
 
     <rect [ngClass]="todayAnimation" *ngIf="dataAvailable" [attr.x]="todayLowStart" y="50" [attr.width]="todayRangeWidth" height="80" fill="gray" fill-opacity="0.5"/>
     <rect [ngClass]="todayAnimation" *ngIf="todayValueAvailable && dataAvailable" [attr.x]="todayLastStart" y="50" width="3" height="80" [attr.fill]="sColor"/>
