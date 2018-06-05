@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
-import { IndexValueFormatPipe } from './index-value-format/index-value-format';
 import { PercentChangeFormatPipe } from './percent-change-format/percent-change-format';
 import { PriceChangeFormatPipe } from './price-change-format/price-change-format';
 import { BigNumberFormatPipe } from './big-number-format/big-number-format';
 
 @NgModule({
-  declarations: [IndexValueFormatPipe,
-    PercentChangeFormatPipe,
+  declarations: [PercentChangeFormatPipe,
     PriceChangeFormatPipe,
     BigNumberFormatPipe],
   imports: [],
-  exports: [IndexValueFormatPipe,
-    PercentChangeFormatPipe,
+  exports: [PercentChangeFormatPipe,
     PriceChangeFormatPipe,
     BigNumberFormatPipe]
 })
