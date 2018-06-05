@@ -1,4 +1,4 @@
-<div padding class="banner">
+<div class="banner">
   <ion-grid>
     <ion-row nowrap align-items-center>
       <ion-col col-auto>
@@ -15,7 +15,7 @@
     </ion-row>
     <ion-row nowrap align-items-end>
       <ion-col>
-        <div class="price">{{last | priceFormat}}</div>
+        <div class="price">{{last | currency:'USD'}}</div>
       </ion-col>
       <ion-col>
         <div class="price-change" [ngClass]="changeClass">{{change | priceChangeFormat }}</div>
@@ -23,11 +23,8 @@
       <ion-col>
         <div class="percent-change" [ngClass]="changeClass">{{changePercent | percentChangeFormat }}</div>
       </ion-col>
-      <ion-col>
-        <div class="volume">{{volume | volumeFormat}}</div>
-      </ion-col>
-      <ion-col col-2>
-        <div float-right class="volume-label">Volume</div>
+      <ion-col col-auto>
+        <div class="volume">{{volume | bigNumberFormat}}</div> <div class="volume-label">Volume</div>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -66,7 +66,12 @@ export class FundBannerComponent {
       });
 
     var sector = this.sectorSpdrService.getSectorInfo(this.symbol);
-    this.sectorName = sector.sectorName;
+    if(sector !== undefined){
+      this.sectorName = sector.sectorName;
+    } else {
+      this.sectorName = "Unknown Sector";
+    }
+
   }
 
 }

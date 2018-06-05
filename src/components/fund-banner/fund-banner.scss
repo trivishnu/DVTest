@@ -1,6 +1,8 @@
 fund-banner {
   .banner {
     background-color: map-get($colors, secondary);
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   .fund-name {
@@ -24,10 +26,7 @@ fund-banner {
   .volume {
     font-size: 18px;
     color: white;
-  }
-
-  .volume-label {
-    color: white;
+    display: inline;
   }
 
   .as-of {
@@ -37,11 +36,16 @@ fund-banner {
   }
 
   .banner-spacer {
-    height: 5px;
+    height: 2px;
   }
 
   .volume-label {
+    color: white;
     font-size: 13px;
+    display: inline;
   }
 
+  .col {
+    padding: 0px;
+  }
 }

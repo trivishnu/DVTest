@@ -1,32 +1,23 @@
 <ion-header>
 
   <ion-navbar color="dark">
-    <ion-title><div [ngClass]="titleClass"><div style="display: inline-block; font-weight: bolder;" [ngClass]="symbolColorClass">{{sectorSymbol}}</div> {{sectorSection}}</div></ion-title>
+    <ion-title><div [ngClass]="titleClass"><div class="symbol-style" [ngClass]="symbolColorClass">{{sectorSymbol}}</div> {{sectorSection}}</div></ion-title>
   </ion-navbar>
+
+  <div class="header-divider"></div>
 
   <ion-toolbar>
     <fund-banner [symbol]="sectorSymbol"></fund-banner>
   </ion-toolbar>
+
 </ion-header>
 
-<ion-content no-bounce color="dark">
+<ion-content no-bounce color="dark" [ngClass]="sectorBackgroundClass">
 
   <ion-slides pager="true" loop="false" (ionSlideWillChange)="slideWillChange()">
 
     <ion-slide>
-      <fund-details [symbol]="sectorSymbol"></fund-details>
-    </ion-slide>
-
-    <ion-slide>
-      <fund-profile [symbol]="sectorSymbol"></fund-profile>
-    </ion-slide>
-
-    <ion-slide>
       <fund-snapshot [symbol]="sectorSymbol"></fund-snapshot>
-    </ion-slide>
-
-    <ion-slide>
-      <fund-daily-calculation [symbol]="sectorSymbol"></fund-daily-calculation>
     </ion-slide>
 
     <ion-slide>
@@ -38,16 +29,30 @@
     </ion-slide>
 
     <ion-slide>
-      <fund-documents [symbol]="sectorSymbol"></fund-documents>
-    </ion-slide>
-
-    <ion-slide>
       <fund-performance [symbol]="sectorSymbol"></fund-performance>
     </ion-slide>
 
     <ion-slide>
+      <fund-charting [symbol]="sectorSymbol"></fund-charting>
+    </ion-slide>
+
+    <ion-slide>
+      <fund-daily-calculation [symbol]="sectorSymbol"></fund-daily-calculation>
+    </ion-slide>
+
+    <ion-slide>
+      <fund-news [symbol]="sectorSymbol"></fund-news>
+    </ion-slide>
+
+    <ion-slide>
+      <fund-documents [symbol]="sectorSymbol"></fund-documents>
+    </ion-slide>
+
+    <!--
+    <ion-slide>
       <fund-premiums [symbol]="sectorSymbol"></fund-premiums>
     </ion-slide>
+    -->
 
   </ion-slides>
 

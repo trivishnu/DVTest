@@ -3,8 +3,8 @@
 <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 25 18" style="enable-background:new 0 0 25 18;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:none;stroke:#FFFFFF;stroke-width:0.7822;stroke-miterlimit:10;}
-	.st1{fill:none;stroke:#FFFFFF;stroke-width:0.7822;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st0{fill:none;stroke:#A9A9A9;stroke-width:0.7822;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#A9A9A9;stroke-width:0.7822;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 </style>
 <line class="st0" x1="3.2" y1="13.9" x2="3.2" y2="6.2"/>
 <line class="st0" x1="5.3" y1="6.2" x2="5.3" y2="13.9"/>

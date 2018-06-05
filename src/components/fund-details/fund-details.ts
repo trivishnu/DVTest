@@ -31,18 +31,24 @@ export class FundDetailsComponent {
       });
 
     var sector = this.sectorSpdrService.getSectorInfo(this.symbol);
-    this.sectorName = sector.sectorName;
-    this.description = sector.description;
-    this.weight = sector.weight;
+    if (sector !== undefined) {
+      this.sectorName = sector.sectorName;
+      this.description = sector.description;
+      this.weight = sector.weight;
+    }
   }
 
   updateFields(fundDetails: FundDetails) {
+    if (fundDetails !== undefined){
+      this.distributionFrequency = fundDetails.distributionFrequency;
+      this.expenseRatio = Number(fundDetails.expenseRatio).toFixed(2) + '%';
+      if(fundDetails.numberOfStocks !== null){
+        this.numberOfStocks = fundDetails.numberOfStocks.toString();
+      }
+      this.shortSelling = fundDetails.shortSelling ? 'Yes' : 'No';
+      this.options = fundDetails.options ? 'Yes' : 'No';
+    }
 
-    this.distributionFrequency = fundDetails.distributionFrequency;
-    this.expenseRatio = Number(fundDetails.expenseRatio).toFixed(2) + '%';
-    this.numberOfStocks = fundDetails.numberOfStocks.toString();
-    this.shortSelling = fundDetails.shortSelling ? 'Yes' : 'No';
-    this.options = fundDetails.options ? 'Yes' : 'No';
   }
 
 }
