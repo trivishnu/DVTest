@@ -1,6 +1,8 @@
 fund-banner {
   .banner {
     background-color: map-get($colors, secondary);
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   .fund-name {
@@ -44,6 +46,6 @@ fund-banner {
   }
 
   .col {
-    padding: 2px;
+    padding: 0px;
   }
 }
