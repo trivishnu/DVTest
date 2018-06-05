@@ -25,7 +25,6 @@ export class SectorTrackerComponent {
     this.color = this.sectorSpdrService.getSectorColor(this.tracker.symbol);
     this.icon = IMAGES_ASSETS_PATH + this.sectorSpdrService.getSectorIcon(this.tracker.symbol) + '.svg';
 
-    console.log(this.tracker.changePercent);
     if (this.tracker.changePercent > 0.0) {
       this.changeGraphics = IMAGES_ASSETS_PATH + 'green_button_arrowup.svg';
     }

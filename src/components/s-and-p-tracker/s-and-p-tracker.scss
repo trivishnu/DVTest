@@ -1,3 +1,39 @@
 s-and-p-tracker {
 
+    .tile {
+        background: #383F49;
+    }
+
+    .titleBar {
+        background-color: #DBE2E5;
+        height:3px;
+    }
+
+    .tileInfo {
+        color:white;
+        height:90px;
+    }
+
+    .sAndP500Name {
+        font-size: 20px;
+        font-weight: bold;
+        color: #DBE2E5;
+    }
+
+    .trackerChangePercent{
+        font-size: 18px;
+        font-weight: 300;
+        float: right;
+    }
+
+    .lastValue {
+        font-size: 16px;
+        font-weight: 300;
+    }
+
+    .changeGraphics{
+        width: 16px;
+        height:16px;
+    }
+
 }

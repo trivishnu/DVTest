@@ -12,10 +12,10 @@
                 </ion-col>
             </ion-row>
             <ion-row align-items-center>
-                <ion-col right class="trackerName" col-10>
+                <ion-col right col-10>
                         <span class="trackerName">{{tracker.displayName}}</span>
                 </ion-col>
-                <ion-col col-2>
+                <ion-col align-self-start col-2>
                         <img [src]="changeGraphics" *ngIf="tracker.changePercent !== 0.0" class="changeGraphics">
                     </ion-col>
             </ion-row>

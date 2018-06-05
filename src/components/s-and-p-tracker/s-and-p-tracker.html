@@ -1,7 +1,24 @@
-<div style="background: #383F49">
-    <div style="width: 100%;height:2px;background: #DBE2E5" ></div>
-    <button ion-button color="secondary" style="width: 100%;" (click)="sAndP500Tapped()">
-        <div>S & P 500</div>
-    </button>
+<div class="tile" (click)="sAndP500Tapped()">
+    <div class="tileBar" class="titleBar"></div>
+    <div  class="tileInfo">
+        <ion-grid>
+            <ion-row>
+                <ion-col col-7 class="sAndP500Name">
+                        <span [style.color]="color" class="trackerSymbol">S & P 500</span>
+                </ion-col>
+                <ion-col class="trackerChangePercent" col-5 align-self-end>
+                        <span float-right text-right>{{tracker.changePercent | percentChangeFormat}}</span>
+                </ion-col>
+            </ion-row>
+            <ion-row align-items-center>
+                <ion-col right col-10>
+                        <span class="lastValue">{{lastValue | number }}</span>
+                </ion-col>
+                <ion-col align-self-start col-2>
+                        <img [src]="changeGraphics" *ngIf="tracker.changePercent !== 0.0" class="changeGraphics">
+                    </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
 </div>  
     
