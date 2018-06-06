@@ -20,7 +20,9 @@
             [tracker]="tracker"
             (trackerSelected)="handleTrackerSelected($event)">
           </sector-tracker>
-          <s-and-p-tracker *ngIf="tracker.symbol === ''" class="tile">
+          <s-and-p-tracker *ngIf="tracker.symbol === ''" class="tile"
+            [tracker]="tracker"
+          >
           </s-and-p-tracker>
         </div>
       </ion-col>
