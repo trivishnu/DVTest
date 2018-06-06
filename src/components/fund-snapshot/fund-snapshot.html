@@ -13,20 +13,16 @@
 
   <ion-list padding>
     <ion-item color="secondary">
-      <ion-label col-auto>Dividend (MM/DD/YY)</ion-label>
-      <ion-label text-right>{{0 | currency:'USD'}}</ion-label>
+      <ion-label col-auto>Dividend</ion-label>
+      <ion-label text-right>{{indexDividend | currency: 'USD'}}</ion-label>
+    </ion-item>
+    <ion-item color="secondary">
+      <ion-label col-auto>Dividend Yield</ion-label>
+      <ion-label text-right>{{indexDividendYield}}%</ion-label>
     </ion-item>
     <ion-item color="secondary">
       <ion-label>Index Value ({{index}})</ion-label>
       <ion-label text-right>{{indexValue | number:'1.2-2'}}</ion-label>
-    </ion-item>
-    <ion-item color="secondary">
-      <ion-label>Index Dividend</ion-label>
-      <ion-label text-right>{{indexDividend | currency: 'USD'}}</ion-label>
-    </ion-item>
-    <ion-item color="secondary">
-      <ion-label col-auto>Index Dividend Yield</ion-label>
-      <ion-label text-right>{{indexDividendYield}}%</ion-label>
     </ion-item>
     <ion-item color="secondary">
       <ion-label>Average Volume</ion-label>
