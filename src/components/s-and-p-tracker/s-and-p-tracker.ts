@@ -30,7 +30,6 @@ export class SAndPTrackerComponent {
         if (resp.data.length > 0) {
           var quote = resp.data[0];
           if (quote.valid !== false) {
-            console.log(quote);
             this.lastValue = quote.last;
           }
         }
