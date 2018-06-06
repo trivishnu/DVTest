@@ -45,16 +45,27 @@ export class FundPropertiesPage {
   }
 
   slideWillChange() {
+    let previousIndex = this.slides.getPreviousIndex();
     let currentIndex = this.slides.getActiveIndex();
     if (currentIndex >= 0 && currentIndex < sections.length) {
-      this.titleTransition(sections[currentIndex]);
+      if(previousIndex > currentIndex){
+        this.titleTransitionUp(sections[currentIndex]);
+      } else {
+        this.titleTransitionDown(sections[currentIndex]);
+      }
     }
   }
 
-  titleTransition(section: string) {
-    this.titleClass = "animated fadeOutUp";
+  titleTransitionDown(section: string) {
+    this.titleClass = "animated fadeOutDown";
     setTimeout(() => { this.sectorSection = section; }, 300)
     setTimeout(() => { this.titleClass = "animated fadeInDown"; }, 300);
+  }
+
+  titleTransitionUp(section: string) {
+    this.titleClass = "animated fadeOutUp";
+    setTimeout(() => { this.sectorSection = section; }, 300)
+    setTimeout(() => { this.titleClass = "animated fadeInUp"; }, 300);
   }
 
 }
