@@ -1,6 +1,4 @@
-  <h4>Fund Performance</h4>
-
-  <ion-segment padding [(ngModel)]="performancePeriod" (ionChange)="onPerformancePeriodChange()">
+  <ion-segment color="light" padding [(ngModel)]="performancePeriod" (ionChange)="onPerformancePeriodChange()">
     <ion-segment-button value="Quarter">Quarter</ion-segment-button>
     <ion-segment-button value="Month">Month</ion-segment-button>
   </ion-segment>
@@ -17,35 +15,35 @@
       <ion-list>
         <ion-item color="secondary">
           <ion-label>1 Month</ion-label>
-          <ion-label text-right>{{selectedPerformance.oneMonth}}%</ion-label>
+          <ion-label text-right>{{selectedPerformance.oneMonth}}</ion-label>
         </ion-item>
         <ion-item color="secondary">
           <ion-label>Latest Quarter</ion-label>
-          <ion-label text-right>{{selectedPerformance.latestQuarter}}%</ion-label>
+          <ion-label text-right>{{selectedPerformance.latestQuarter}}</ion-label>
         </ion-item>
         <ion-item color="secondary">
           <ion-label>Year To Date</ion-label>
-          <ion-label text-right>{{selectedPerformance.calendarYTD}}%</ion-label>
+          <ion-label text-right>{{selectedPerformance.calendarYTD}}</ion-label>
         </ion-item>
         <ion-item color="secondary">
           <ion-label>1 Year</ion-label>
-          <ion-label text-right>{{selectedPerformance.annualizedOneYear}}%</ion-label>
+          <ion-label text-right>{{selectedPerformance.annualizedOneYear}}</ion-label>
         </ion-item>
         <ion-item color="secondary">
           <ion-label>3 Year</ion-label>
-          <ion-label text-right>{{selectedPerformance.annualizedThreeYear}}%</ion-label>
+          <ion-label text-right>{{selectedPerformance.annualizedThreeYear}}</ion-label>
         </ion-item>
         <ion-item color="secondary">
           <ion-label>5 Year</ion-label>
-          <ion-label text-right>{{selectedPerformance.annualizedFiveYear}}%</ion-label>
+          <ion-label text-right>{{selectedPerformance.annualizedFiveYear}}</ion-label>
         </ion-item>
         <ion-item color="secondary">
           <ion-label>10 Year</ion-label>
-          <ion-label text-right>{{selectedPerformance.annualizedTenYear}}%</ion-label>
+          <ion-label text-right>{{selectedPerformance.annualizedTenYear}}</ion-label>
         </ion-item>
         <ion-item color="secondary">
           <ion-label>Since Inception</ion-label>
-          <ion-label text-right>{{selectedPerformance.annualizedInceptionToDate}}%</ion-label>
+          <ion-label text-right>{{selectedPerformance.annualizedInceptionToDate}}</ion-label>
         </ion-item>
       </ion-list>
     </div>

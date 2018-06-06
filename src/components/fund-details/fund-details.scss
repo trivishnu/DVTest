@@ -1,9 +1,37 @@
 fund-details {
+  .col {
+    color: white;
+    font-size: 14px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .fund-description {
     color: white;
   }
 
+  .value {
+    font-size: 18px;
+  }
+
   p {
-    font-size: 16px;
+    font-size: 14px;
+  }
+
+  .divider {
+    width: 50%;
+    height: 2px;
+    overflow: hidden;
+    margin-bottom: 5px;
+    opacity: .50;
+  }
+
+  .button-small-ios {
+    height: 2.9em;
+    width: 75%;
+  }
+
+  .button {
+    white-space: normal;
   }
 }
