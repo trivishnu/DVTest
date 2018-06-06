@@ -12,7 +12,7 @@
             </ion-row>
             <ion-row align-items-center>
                 <ion-col right col-10>
-                        <span class="lastValue">{{lastValue | number }}</span>
+                        <span class="lastValue">{{lastValue | number : '1.2-2' }}</span>
                 </ion-col>
                 <ion-col align-self-start col-2>
                         <img [src]="changeGraphics" *ngIf="tracker.changePercent !== 0.0" class="changeGraphics">
