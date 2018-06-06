@@ -19,12 +19,26 @@
 .xly-background {
   background-image: url("../assets/imgs/consumer_discretionary.svg");
 }
+.xly-divider {
+  background-color: map-get($colors, xly);
+}
+.xly-border {
+  border-color: map-get($colors, xly);
+  border-radius: 1px;
+}
 
 .xlp {
   color: map-get($colors, xlp);
 }
 .xlp-background {
   background-image: url("../assets/imgs/consumer_staples.svg");
+}
+.xlp-divider {
+  background-color: map-get($colors, xlp);
+}
+.xlp-border {
+  border-color: map-get($colors, xlp);
+  border-radius: 1px;
 }
 
 .xle {
@@ -33,12 +47,26 @@
 .xle-background {
   background-image: url("../assets/imgs/energy.svg");
 }
+.xle-divider {
+  background-color: map-get($colors, xle);
+}
+.xle-border {
+  border-color: map-get($colors, xle);
+  border-radius: 1px;
+}
 
 .xlf {
   color: map-get($colors, xlf);
 }
 .xlf-background {
   background-image: url("../assets/imgs/financials.svg");
+}
+.xlf-divider {
+  background-color: map-get($colors, xlf);
+}
+.xlf-border {
+  border-color: map-get($colors, xlf);
+  border-radius: 1px;
 }
 
 .xlv {
@@ -47,6 +75,13 @@
 .xlv-background {
   background-image: url("../assets/imgs/health_care.svg");
 }
+.xlv-divider {
+  background-color: map-get($colors, xlv);
+}
+.xlv-border {
+  border-color: map-get($colors, xlv);
+  border-radius: 1px;
+}
 
 .xli {
   color: map-get($colors, xli);
@@ -54,12 +89,26 @@
 .xli-background {
   background-image: url("../assets/imgs/industrials.svg");
 }
+.xli-divider {
+  background-color: map-get($colors, xli);
+}
+.xli-border {
+  border-color: map-get($colors, xli);
+  border-radius: 1px;
+}
 
 .xlb {
   color: map-get($colors, xlb);
 }
 .xlb-background {
   background-image: url("../assets/imgs/materials.svg");
+}
+.xlb-divider {
+  background-color: map-get($colors, xlb);
+}
+.xlb-border {
+  border-color: map-get($colors, xlb);
+  border-radius: 1px;
 }
 
 .xlre {
@@ -69,6 +118,13 @@
 .xlre-background {
   background-image: url("../assets/imgs/real_estate.svg");
 }
+.xlre-divider {
+  background-color: map-get($colors, xlre);
+}
+.xlre-border {
+  border-color: map-get($colors, xlre);
+  border-radius: 1px;
+}
 
 .xlk {
   color: map-get($colors, xlk);
@@ -77,12 +133,26 @@
 .xlk-background {
   background-image: url("../assets/imgs/technology.svg");
 }
+.xlk-divider {
+  background-color: map-get($colors, xlk);
+}
+.xlk-border {
+  border-color: map-get($colors, xlk);
+  border-radius: 1px;
+}
 
 .xlu {
   color: map-get($colors, xlu);
 }
 .xlu-background {
   background-image: url("../assets/imgs/utilities.svg");
+}
+.xlu-divider {
+  background-color: map-get($colors, xlu);
+}
+.xlu-border {
+  border-color: map-get($colors, xlu);
+  border-radius: 1px;
 }
 
 .positive {

@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
+import { NavController } from 'ionic-angular';
 import { FundDetails } from '../../providers/SectorSpdrAPI';
 import { SectorSpdrService } from '../../providers/SectorSpdrAPI';
-
+import { HowToPurchasePage } from '../../pages/how-to-purchase/how-to-purchase';
 
 @Component({
   selector: 'fund-details',
@@ -12,16 +13,19 @@ export class FundDetailsComponent {
   @Input() symbol: string;
 
   distributionFrequency: string;
-  expenseRatio: string;
+  expenseRatio: number;
   numberOfStocks: string;
   shortSelling: string;
   options: string;
+  sectorDividerClass: string;
+  sectorButtonClass: string;
 
   sectorName: string;
   description: string;
   weight: number;
 
-  constructor(private sectorSpdrService: SectorSpdrService) {
+  constructor(private sectorSpdrService: SectorSpdrService,
+    private navCtrl: NavController) {
   }
 
   ngOnInit() {
@@ -36,19 +40,25 @@ export class FundDetailsComponent {
       this.description = sector.description;
       this.weight = sector.weight;
     }
+
+    this.sectorDividerClass = this.symbol.toLowerCase() + '-divider';
+    this.sectorButtonClass = this.symbol.toLowerCase() + '-border';
   }
 
   updateFields(fundDetails: FundDetails) {
-    if (fundDetails !== undefined){
+    if (fundDetails !== undefined) {
       this.distributionFrequency = fundDetails.distributionFrequency;
-      this.expenseRatio = Number(fundDetails.expenseRatio).toFixed(2) + '%';
-      if(fundDetails.numberOfStocks !== null){
+      this.expenseRatio = fundDetails.expenseRatio;
+      if (fundDetails.numberOfStocks !== null) {
         this.numberOfStocks = fundDetails.numberOfStocks.toString();
       }
       this.shortSelling = fundDetails.shortSelling ? 'Yes' : 'No';
       this.options = fundDetails.options ? 'Yes' : 'No';
     }
+  }
 
+  howToPurchase() {
+    this.navCtrl.push(HowToPurchasePage);
   }
 
 }

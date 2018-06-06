@@ -44,6 +44,10 @@ page-fund-properties {
     font-weight: bolder;
   }
 
+  .headerTitle {
+    -webkit-animation-duration: 1s;
+  }
+
   // sets up the svg as a fixed background image but I could not set the specific
   // color of the image
   ion-content {

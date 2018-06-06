@@ -1,10 +1,15 @@
 <ion-scroll scrollY="true">
   <ion-list padding>
     <ion-list-header color="secondary">
-      Top Holdings
+      Top 5 Holdings
     </ion-list-header>
-    <ion-item *ngFor="let holding of holdings" class="item" href="#" color="secondary">
-      {{holding.companyName}}
-    </ion-item>
+    <ng-container *ngFor="let holding of holdings; index as i">
+      <ion-item *ngIf="i<5" class="item" href="#" color="secondary">
+        {{holding.companyName}}
+      </ion-item>
+      <ion-item *ngIf="i>=5" class="default-holding" href="#">
+        {{holding.companyName}}
+      </ion-item>
+    </ng-container>
   </ion-list>
 </ion-scroll>
