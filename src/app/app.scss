@@ -178,3 +178,21 @@
 ion-scroll {
   height: 100%;
 }
+
+.tab-button[aria-selected=true]
+{
+  .ion-ios-sectors-outline,
+  .ion-ios-sectors,
+  .ion-md-sectors,.ion-md-sectors-outline {
+    content: url('../assets/imgs/wheel_color.svg');
+  }
+}
+
+.tab-button[aria-selected=false]{
+  .ion-ios-sectors-outline,
+  .ion-ios-sectors,
+  .ion-md-sectors,
+  .ion-md-sectors-outline {
+    content: url('../assets/imgs/wheel_bw.svg');
+  }
+}
