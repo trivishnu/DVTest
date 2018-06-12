@@ -15,31 +15,21 @@ export class FundBannerComponent {
 
   @Input() symbol: string;
 
-  last: number = 103.96;
-  change: number = 1.0;
-  changePercent: number = 1.0;
-  volume: number = 18000000;
+  last: number = 0;
+  change: number = 0;
+  changePercent: number = 0;
+  volume: number = 0;
   lastTimeStamp: string;
   changeClass: string = "neutral";
-  sectorName: string = "Consumer Discretionary";
-  symbolColorClass: string = "xly";
+  sectorName: string = "";
+  symbolColorClass: string = "";
 
   constructor(private quoteService: QuoteService,
     private sectorSpdrService: SectorSpdrService) {
   }
 
   ngOnInit() {
-    const currentTime = new Date(Date.now());
-    var convertedDateString = currentTime.toLocaleString(LOCAL_LANGUAGE, { timeZone: PRICE_TIMEZONE });
-    this.lastTimeStamp = convertedDateString.replace('at ', '');
-    if (this.change > 0) {
-      this.changeClass = "positive";
-    }
-    else if (this.change < 0) {
-      this.changeClass = "negative";
-    }
     this.symbolColorClass = "fund-name " + this.symbol.toLowerCase();
-
     this.quoteService.setConfiguration(FINANCIAL_API_SERVER, API_KEY);
     this.quoteService.getSnapQuotes("US:" + this.symbol, "SectorSpdr")
       .subscribe(resp => {
@@ -47,7 +37,7 @@ export class FundBannerComponent {
           var quote = resp.data[0];
 
           if (quote.valid !== false) {
-            var convertedDateString = currentTime.toLocaleString(LOCAL_LANGUAGE, { timeZone: PRICE_TIMEZONE });
+            var convertedDateString = new Date(Date.parse(quote.lastTimestamp)).toLocaleString(LOCAL_LANGUAGE, { timeZone: PRICE_TIMEZONE });
             this.lastTimeStamp = convertedDateString.replace('at ', '');
 
             if (quote.change > 0) {
