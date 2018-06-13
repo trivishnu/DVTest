@@ -1,7 +1,10 @@
 <ion-grid padding>
   <ion-row text-left>
     <ion-col col-3>
-      Chart
+      <fund-donut
+        [color]="sectorColor"
+        [weight]="weight">
+      </fund-donut>
     </ion-col>
     <ion-col col-9>
       <div class="value">{{weight | percentStringFormat}}</div>
