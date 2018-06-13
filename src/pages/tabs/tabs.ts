@@ -63,12 +63,6 @@ export class TabsPage {
             this.navCtrl.push(PrivacyPage);
           }
         },
-//      {
-//        text: 'Terms & Conditions',
-//          handler: () => {
-//            this.navCtrl.push(TermsAndConditionsPage);
-//          }
-//        },
         {
           text: 'About',
           handler: () => {
