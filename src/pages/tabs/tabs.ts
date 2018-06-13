@@ -52,7 +52,7 @@ export class TabsPage {
           }
         },
         {
-          text: 'Disclaimer/Risks',
+          text: 'Risks',
           handler: () => {
             this.navCtrl.push(DisclaimersAndRisksPage);
           }
@@ -61,12 +61,6 @@ export class TabsPage {
           text: 'Privacy Statement',
           handler: () => {
             this.navCtrl.push(PrivacyPage);
-          }
-        },
-        {
-          text: 'Terms & Conditions',
-          handler: () => {
-            this.navCtrl.push(TermsAndConditionsPage);
           }
         },
         {

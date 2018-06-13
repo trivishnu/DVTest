@@ -19,6 +19,7 @@ export class FundDetailsComponent {
   options: string;
   sectorDividerClass: string;
   sectorButtonClass: string;
+  sectorColor: string;
 
   sectorName: string;
   description: string;
@@ -29,6 +30,8 @@ export class FundDetailsComponent {
   }
 
   ngOnInit() {
+    this.sectorColor = this.sectorSpdrService.getSectorColor(this.symbol);
+
     this.sectorSpdrService.getFundDetails(this.symbol)
       .subscribe(resp => {
         this.updateFields(resp);
