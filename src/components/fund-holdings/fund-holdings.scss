@@ -1,5 +1,44 @@
 fund-holdings {
   .default-holding {
     color: white;
+    text-overflow: ellipsis;
+  }
+
+  .list-header-ios {
+    text-transform: none;
+    border-bottom: none;
+    margin-bottom: none;
+  }
+
+  .holdings-header {
+    color: $header-grey;
+    font-size: larger;
+  }
+
+  .top-holdings-label{
+    font-size: large;
+    padding-top: 15px;
+  }
+
+  .label-ios {
+    margin: 0 0 1px 0;
+    font-size: smaller;
+  }
+
+  .col {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .grid {
+    padding: 0;
+  }
+
+  .holdings-symbol-style {
+    display: inline-block;
+    font-weight: 900;
   }
 }

@@ -1,14 +1,35 @@
 <ion-scroll scrollY="true">
   <ion-list padding>
     <ion-list-header color="secondary">
-      Top 5 Holdings
+      <ion-grid>
+        <ion-row>
+          <ion-col text-left class="top-holdings-label"><div [ngClass]="titleClass" class="holdings-symbol-style">{{symbol}}</div> Top Holdings</ion-col>
+        </ion-row>
+        <ion-row class="holdings-header">
+          <ion-col col-7 text-left>Company Name</ion-col>
+          <ion-col col-2>Weight</ion-col>
+          <ion-col col-3 text-right>Last ($)</ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-list-header>
     <ng-container *ngFor="let holding of holdings; index as i">
       <ion-item *ngIf="i<5" class="item" href="#" color="secondary">
-        {{holding.companyName}}
+        <ion-grid>
+          <ion-row>
+            <ion-col col-7 text-left>{{holding.companyName}}</ion-col>
+            <ion-col col-2 text-right>{{holding.indexWeight | number : '1.2-2'}}%</ion-col>
+            <ion-col col-3 text-right>{{holding.last}}</ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-item>
       <ion-item *ngIf="i>=5" class="default-holding" href="#">
-        {{holding.companyName}}
+        <ion-grid>
+          <ion-row>
+            <ion-col col-7 text-left>{{holding.companyName}}</ion-col>
+            <ion-col col-2 text-right>{{holding.indexWeight | number : '1.2-2'}}%</ion-col>
+            <ion-col col-3 text-right>{{holding.last}}</ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-item>
     </ng-container>
   </ion-list>

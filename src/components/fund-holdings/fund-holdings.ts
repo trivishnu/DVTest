@@ -14,14 +14,14 @@ export class FundHoldingsComponent {
   asOfDate : string;
   asOfTime : string;
   holdings : Holding[] = [];
-
-  groceries: String[];
+  titleClass: string = "";
 
   constructor(private sectorSpdrService: SectorSpdrService) {
   }
 
   ngOnInit() {
-
+    this.titleClass = this.symbol.toLowerCase();
+    
     this.sectorSpdrService.getFundHoldings(this.symbol)
     .subscribe(resp => {
       this.updateFields(resp);
