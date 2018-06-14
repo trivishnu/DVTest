@@ -2,29 +2,24 @@
   <ion-grid>
     <ion-row nowrap align-items-center>
       <ion-col col-auto>
-        <div float-left [ngClass]="symbolColorClass">{{sectorName}}</div>
+        <img [src]="icon" class="sectorIcon" >
+        <div class="sectorName" [ngClass]="symbolColorClass">{{sectorName}}</div>
+      </ion-col>
+    </ion-row>
+    <ion-row nowrap align-items-end>
+      <ion-col col-3>
+        <div class="price">{{last | currency:'USD'}}</div>
       </ion-col>
       <ion-col>
-        <div float-right class="as-of">{{lastTimeStamp | date:'d MMM, h:mm a'}} ET</div>
+        <div class="price-change" [ngClass]="changeClass">{{change | priceChangeFormat }}({{changePercent | percentChangeFormat }})</div>
+      </ion-col>
+      <ion-col col-auto>
+        <div class="volume-label">Volume</div> <div class="volume">{{volume | bigNumberFormat}}</div>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <div class="banner-spacer"></div>
-      </ion-col>
-    </ion-row>
-    <ion-row nowrap align-items-end>
-      <ion-col>
-        <div class="price">{{last | currency:'USD'}}</div>
-      </ion-col>
-      <ion-col>
-        <div class="price-change" [ngClass]="changeClass">{{change | priceChangeFormat }}</div>
-      </ion-col>
-      <ion-col>
-        <div class="percent-change" [ngClass]="changeClass">{{changePercent | percentChangeFormat }}</div>
-      </ion-col>
-      <ion-col col-auto>
-        <div class="volume">{{volume | bigNumberFormat}}</div> <div class="volume-label">Volume</div>
+        <div float-left class="as-of">as of {{lastTimeStamp | date:'h:mm a'}} ET {{lastDate | date:'MMMM d, y'}}</div>
       </ion-col>
     </ion-row>
   </ion-grid>

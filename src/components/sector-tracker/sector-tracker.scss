@@ -1,67 +1,62 @@
 sector-tracker {
+  .tile {
+    background: #383F49;
+  }
 
-    .tile {
-        background: #383F49;
+  .tileBar {
+    height: 3px;
+  }
+
+  .tileInfo {
+    color: white;
+    // width: 100%;
+    height: 90px;
+  }
+
+  .trackerSymbol {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .trackerName {
+    font-size: 14px;
+    white-space: normal;
+  }
+
+  .trackerChangePercent {
+    font-size: 18px;
+    font-weight: 300;
+    float: right;
+  }
+
+  .trackerGraphics {
+    height: 18px;
+  }
+
+  .iconAndSymbol {
+    white-space: nowrap;
+  }
+
+  .changeGraphics {
+    width: 16px;
+    height: 16px;
+  }
+  @media screen and (max-device-width : 375px) {
+    .trackerSymbol {
+      font-size: 20px;
     }
 
-    .tileBar {
-        height:3px;
+    .trackerChangePercent {
+      font-size: 16px;
+    }
+  }
+  @media screen and (max-device-width : 320px) {
+    .trackerSymbol {
+      font-size: 16px;
     }
 
-    .tileInfo {
-        color:white;
-        // width: 100%;
-        height:90px;
+    .trackerChangePercent {
+      font-size: 12px;
     }
-
-    .trackerSymbol{
-        font-size: 22px;
-        font-weight: bold;
-    }
-
-
-    .trackerName{
-        font-size: 14px;
-        white-space:normal;
-    }
-
-    .trackerChangePercent{
-        font-size: 18px;
-        font-weight: 300;
-        float: right;
-    }
-
-    .trackerGraphics{
-        height:18px
-    }
-
-    .iconAndSymbol {
-        white-space: nowrap;
-    }
-
-    .changeGraphics{
-        width: 16px;
-        height:16px;
-    }
-
-    @media screen and (max-device-width : 375px)
-    {
-        .trackerSymbol{
-            font-size: 20px;
-        }
-        .trackerChangePercent{
-            font-size: 16px;
-        }
-    }
-
-    @media screen and (max-device-width : 320px)
-    {
-        .trackerSymbol{
-            font-size: 16px;
-        }
-        .trackerChangePercent{
-            font-size: 12px;
-        }
-    }
-
+  }
 }

@@ -6,6 +6,7 @@ import { FINANCIAL_API_SERVER, API_KEY } from '../../config/config';
 
 const LOCAL_LANGUAGE: string = 'en-US';
 const PRICE_TIMEZONE: string = 'America/New_York';
+const IMAGES_ASSETS_PATH = 'assets/imgs/';
 
 @Component({
   selector: 'fund-banner',
@@ -20,15 +21,19 @@ export class FundBannerComponent {
   changePercent: number = 0;
   volume: number = 0;
   lastTimeStamp: string;
+  lastDate: string;
   changeClass: string = "neutral";
   sectorName: string = "";
   symbolColorClass: string = "";
+  icon: string = "";
 
   constructor(private quoteService: QuoteService,
     private sectorSpdrService: SectorSpdrService) {
   }
 
   ngOnInit() {
+    this.icon = IMAGES_ASSETS_PATH + this.sectorSpdrService.getSectorIcon(this.symbol) + '.svg';
+
     this.symbolColorClass = "fund-name " + this.symbol.toLowerCase();
     this.quoteService.setConfiguration(FINANCIAL_API_SERVER, API_KEY);
     this.quoteService.getSnapQuotes("US:" + this.symbol, "SectorSpdr")
@@ -39,6 +44,7 @@ export class FundBannerComponent {
           if (quote.valid !== false) {
             var convertedDateString = new Date(Date.parse(quote.lastTimestamp)).toLocaleString(LOCAL_LANGUAGE, { timeZone: PRICE_TIMEZONE });
             this.lastTimeStamp = convertedDateString.replace('at ', '');
+            this.lastDate = this.lastTimeStamp;
 
             if (quote.change > 0) {
               this.changeClass = "positive";
