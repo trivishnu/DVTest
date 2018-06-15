@@ -63,8 +63,7 @@ export class SectorSpdrService {
   }
 
   initialize() {
-    this.getSectorsList()
-      .subscribe(sectors => this.sectors = sectors);
+    this.getSectorsList().subscribe(sectors => this.sectors = sectors);
   }
 
   getSectorsList(): Observable<Sector[]> {

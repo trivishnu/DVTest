@@ -1,7 +1,10 @@
 <ion-header>
 
   <ion-navbar color="dark">
-    <ion-title><div class="headerTitle" [ngClass]="titleClass"><div class="symbol-style" [ngClass]="symbolColorClass">{{sectorSymbol}}</div> {{sectorSection}}</div></ion-title>
+    <ion-title>
+      <div class="headerTitle" [ngClass]="titleClass">
+        <div class="symbol-style" [ngClass]="symbolColorClass">{{sectorSymbol}}</div> {{sectorSection}}</div>
+    </ion-title>
   </ion-navbar>
 
   <div class="header-divider"></div>
@@ -47,12 +50,6 @@
     <ion-slide>
       <fund-documents [symbol]="sectorSymbol"></fund-documents>
     </ion-slide>
-
-    <!--
-    <ion-slide>
-      <fund-premiums [symbol]="sectorSymbol"></fund-premiums>
-    </ion-slide>
-    -->
 
   </ion-slides>
 

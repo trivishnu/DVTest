@@ -1,32 +1,31 @@
 <ion-header>
 
   <ion-navbar [color]="'dark'">
-      <ion-title>
-          <img src="assets/imgs/sector_spdr_logo_small.svg" class="logo">
-      </ion-title>
+    <ion-title>
+      <img src="assets/imgs/sector_spdr_logo_small.svg" class="logo">
+    </ion-title>
   </ion-navbar>
 
   <div class="header-divider"></div>
 
 </ion-header>
 
-<ion-content >
+<ion-content no-bounce color="dark" [ngClass]="sectorBackgroundClass">
 
-  <ion-grid>
-    <ion-row wrap *ngFor="let i of rows">
-      <ion-col *ngFor="let tracker of sectorTrackers | slice:(i*2):(i+1)*2" width-50>
-        <div class="row responsive-sm">
-          <sector-tracker *ngIf="tracker.symbol !== ''" class="tile"
-            [tracker]="tracker"
-            (trackerSelected)="handleTrackerSelected($event)">
-          </sector-tracker>
-          <s-and-p-tracker *ngIf="tracker.symbol === ''" class="tile"
-            [tracker]="tracker"
-          >
-          </s-and-p-tracker>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-slides pager="true" loop="false" (ionSlideWillChange)="slideWillChange()">
+
+    <ion-slide>
+      <tracker-tiles></tracker-tiles>
+    </ion-slide>
+
+    <ion-slide>
+      <tracker-charting></tracker-charting>
+    </ion-slide>
+
+    <ion-slide>
+      <tracker-documents></tracker-documents>
+    </ion-slide>
+
+  </ion-slides>
 
 </ion-content>
