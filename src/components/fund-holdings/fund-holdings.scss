@@ -2,6 +2,7 @@ fund-holdings {
   .default-holding {
     color: white;
     text-overflow: ellipsis;
+    background-color: transparent;
   }
 
   .list-header-ios {
@@ -13,6 +14,7 @@ fund-holdings {
   .holdings-header {
     color: $header-grey;
     font-size: larger;
+    padding-right: 5px;
   }
 
   .top-holdings-label{
@@ -40,5 +42,9 @@ fund-holdings {
   .holdings-symbol-style {
     display: inline-block;
     font-weight: 900;
+  }
+
+  .item-ios {
+    padding-right: 16px;
   }
 }

@@ -3,49 +3,60 @@ fund-banner {
     background-color: map-get($colors, secondary);
     padding-left: 10px;
     padding-right: 10px;
+    padding-top: 3px;
+    padding-bottom: 5px;
   }
 
   .fund-name {
     font-size: 21px;
     white-space: nowrap;
+    text-transform: uppercase;
   }
 
   .price {
     font-size: 18px;
     color: white;
+    font-weight: bold;
   }
 
   .price-change {
     font-size: 18px;
-  }
-
-  .percent-change {
-    font-size: 18px;
+    display: inline;
+    font-weight: bold;
   }
 
   .volume {
-    font-size: 18px;
+    font-size: 16px;
     color: white;
     display: inline;
+    font-weight: bold;
   }
 
   .as-of {
-    color: white;
-    font-size: 13px;
+    color: $header-grey;
+    font-size: 10px;
     white-space: nowrap;
   }
 
   .banner-spacer {
-    height: 2px;
+    height: 5px;
   }
 
   .volume-label {
     color: white;
-    font-size: 13px;
+    font-size: 12px;
     display: inline;
   }
 
   .col {
-    padding: 0px;
+    padding: 2px;
+  }
+
+  .sectorIcon {
+    height: 18px;
+  }
+
+  .sectorName {
+    display: inline;
   }
 }
