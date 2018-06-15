@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Platform, IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { SectorSpdrService, SectorTracker } from '../../providers/SectorSpdrAPI'
 
@@ -18,12 +18,18 @@ export class TrackerTilesComponent {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private sectorSpdrService: SectorSpdrService) {
+    private sectorSpdrService: SectorSpdrService,
+    private platform: Platform) {
   }
 
   ngOnInit() {
-    this.sectorSpdrService.initialize();
+    this.platform.ready().then(() => {
+      this.initialize();
+    });
+  }
 
+  initialize() {
+    this.sectorSpdrService.initialize();
     this.sectorSpdrService.getSectorTracker("1D")
       .subscribe(resp => {
         this.sectorTrackers = resp;
@@ -65,7 +71,7 @@ export class TrackerTilesComponent {
     this.navCtrl.push(FundPropertiesPage, this.getSymbolParam(symbol));
   }
 
-  comparePerformance(a :SectorTracker,b : SectorTracker) {
+  comparePerformance(a: SectorTracker, b: SectorTracker) {
     if (a.changePercent < b.changePercent)
       return -1;
     if (a.changePercent > b.changePercent)

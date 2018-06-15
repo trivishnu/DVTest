@@ -17,6 +17,14 @@ export class TrackerPage {
   }
 
   slideWillChange() {
-    
+
   }
+
+  ionViewWillEnter() {
+    var elements = document.getElementsByClassName('swiper-pagination-bullet') as HTMLCollectionOf<HTMLElement>;
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].style.backgroundColor = "#2B7AD7";
+    }
+  }
+
 }
