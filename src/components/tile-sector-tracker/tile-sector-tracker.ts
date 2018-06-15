@@ -4,10 +4,10 @@ import { SectorTracker, SectorSpdrService } from '../../providers/SectorSpdrAPI'
 const IMAGES_ASSETS_PATH = 'assets/imgs/';
 
 @Component({
-  selector: 'sector-tracker',
-  templateUrl: 'sector-tracker.html'
+  selector: 'tile-sector-tracker',
+  templateUrl: 'tile-sector-tracker.html'
 })
-export class SectorTrackerComponent {
+export class SectorTrackerTileComponent {
 
   @Input() tracker: SectorTracker;
   @Output() trackerSelected = new EventEmitter();

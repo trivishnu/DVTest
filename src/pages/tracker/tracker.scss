@@ -1,13 +1,39 @@
 page-tracker {
-  .tile {
-    width: 100%;
-  }
 
   .logo {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 10px;
-    width: 135px;
+    margin-bottom: 5px;
+    width: 125px;
   }
+
+  .slide-zoom {
+    height: 100%;
+  }
+
+  .swiper-pagination-bullet {
+    width: 14px;
+    height: 14px;
+    border-radius: 5%;
+    background-color: $no-sector-blue;
+  }
+
+  .swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-top: 7px;
+  }
+
+  .swiper-container-horizontal > .swiper-pagination-bullets,
+  .swiper-pagination-custom,
+  .swiper-pagination-fraction {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    background-color: $pager-grey;
+    opacity: 0.96;
+  }
+
 }

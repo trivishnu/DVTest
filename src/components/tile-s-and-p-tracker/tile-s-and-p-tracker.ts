@@ -7,10 +7,10 @@ import { FINANCIAL_API_SERVER, API_KEY } from '../../config/config';
 const IMAGES_ASSETS_PATH = 'assets/imgs/';
 
 @Component({
-  selector: 's-and-p-tracker',
-  templateUrl: 's-and-p-tracker.html'
+  selector: 'tile-s-and-p-tracker',
+  templateUrl: 'tile-s-and-p-tracker.html'
 })
-export class SAndPTrackerComponent {
+export class SAndPTrackerTileComponent {
 
   @Input() tracker: SectorTracker;
   @Output() sAndP500Selected = new EventEmitter();

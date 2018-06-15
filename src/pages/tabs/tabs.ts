@@ -31,7 +31,7 @@ export class TabsPage {
 
   showMore() {
     let actionSheet = this.actionSheetCtl.create({
-      title: 'More',
+      title: 'Info SPDR',
       buttons: [
         {
           text: 'Contact Us',
@@ -43,12 +43,6 @@ export class TabsPage {
           text: 'How To Purchase',
           handler: () => {
             this.navCtrl.push(HowToPurchasePage);
-          }
-        },
-        {
-          text: 'US Market Weekly Summary',
-          handler: () => {
-            this.navCtrl.push(SummaryPage);
           }
         },
         {
@@ -70,6 +64,12 @@ export class TabsPage {
             this.navCtrl.push(AboutPage);
           }
         },
+//        {
+//          text: 'US Market Weekly Summary',
+//          handler: () => {
+//            this.navCtrl.push(SummaryPage);
+//          }
+//        },
 //        {
 //          text: 'Watchlist',
 //          handler: () => {

@@ -1,0 +1,16 @@
+<ion-scroll scrollY="true">
+  <ion-grid>
+    <ion-row wrap *ngFor="let i of rows">
+      <ion-col *ngFor="let tracker of sectorTrackers | slice:(i*2):(i+1)*2" width-50>
+        <div class="row responsive-sm">
+          <tile-sector-tracker *ngIf="tracker.symbol !== ''" class="tile"
+            [tracker]="tracker" (trackerSelected)="handleTrackerSelected($event)">
+          </tile-sector-tracker>
+          <tile-s-and-p-tracker *ngIf="tracker.symbol === ''" class="tile"
+            [tracker]="tracker">
+          </tile-s-and-p-tracker>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-scroll>

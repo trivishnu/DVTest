@@ -1,8 +1,8 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 
 @Component({
-  selector: 'fifty-two-weeks-chart',
-  templateUrl: 'fifty-two-weeks-chart.html'
+  selector: 'chart-fifty-two-weeks',
+  templateUrl: 'chart-fifty-two-weeks.html'
 })
 export class FiftyTwoWeeksChartComponent {
 
