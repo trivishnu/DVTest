@@ -12,6 +12,7 @@ import { FundPropertiesPage } from '../fund-properties/fund-properties';
   templateUrl: 'tracker.html',
 })
 export class TrackerPage {
+  public lastUpdateTime: Date;
 
   constructor() {
   }
@@ -21,6 +22,8 @@ export class TrackerPage {
   }
 
   ionViewWillEnter() {
+    this.lastUpdateTime = new Date(Date.now());
+    
     var elements = document.getElementsByClassName('swiper-pagination-bullet') as HTMLCollectionOf<HTMLElement>;
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.backgroundColor = "#2B7AD7";

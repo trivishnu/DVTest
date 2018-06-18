@@ -15,7 +15,7 @@
   <ion-slides pager="true" loop="false" (ionSlideWillChange)="slideWillChange()">
 
     <ion-slide>
-      <tracker-tiles></tracker-tiles>
+      <tracker-tiles [updateTime]="lastUpdateTime"></tracker-tiles>
     </ion-slide>
 
     <ion-slide>

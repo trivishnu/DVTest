@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Platform, IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { SectorSpdrService, SectorTracker } from '../../providers/SectorSpdrAPI'
@@ -11,6 +11,7 @@ import { FundPropertiesPage } from '../../pages/fund-properties/fund-properties'
 })
 export class TrackerTilesComponent {
 
+  @Input() updateTime: Date;
   sectorTrackers: SectorTracker[] = [];
   sAndPTracker = new SectorTracker();
   rows: number[];
@@ -22,13 +23,13 @@ export class TrackerTilesComponent {
     private platform: Platform) {
   }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.platform.ready().then(() => {
-      this.initialize();
+      this.loadSectorData();
     });
   }
 
-  initialize() {
+  loadSectorData() {
     this.sectorSpdrService.initialize();
     this.sectorSpdrService.getSectorTracker("1D")
       .subscribe(resp => {
