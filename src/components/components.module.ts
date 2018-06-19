@@ -21,6 +21,8 @@ import { FundDonutComponent } from './fund-donut/fund-donut';
 import { TrackerTilesComponent } from './tracker-tiles/tracker-tiles';
 import { TrackerChartingComponent } from './tracker-charting/tracker-charting';
 import { TrackerDocumentsComponent } from './tracker-documents/tracker-documents';
+import { PanelComponent } from './panel/panel';
+import { AccordionComponent } from './accordion/accordion';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { TrackerDocumentsComponent } from './tracker-documents/tracker-documents
     FundDonutComponent,
     TrackerTilesComponent,
     TrackerChartingComponent,
-    TrackerDocumentsComponent
+    TrackerDocumentsComponent,
+    PanelComponent,
+    AccordionComponent
   ],
   imports: [
     IonicModule,
@@ -66,7 +70,9 @@ import { TrackerDocumentsComponent } from './tracker-documents/tracker-documents
     FundDonutComponent,
     TrackerTilesComponent,
     TrackerChartingComponent,
-    TrackerDocumentsComponent
+    TrackerDocumentsComponent,
+    PanelComponent,
+    AccordionComponent
   ]
 })
 export class ComponentsModule { }

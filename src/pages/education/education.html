@@ -6,26 +6,18 @@
 
 </ion-header>
 
-<ion-content color="secondary">
-  <ion-slides pager="true" effect="fade" style="height: 30%" class="swiper-pagination-white">
-    <ion-slide style="background-image: url('assets/imgs/card-sf.png'); background-size: 100%;">
-      <h2>Investing Techniques Intro</h2>
-    </ion-slide>
+<ion-content padding color="secondary">
 
-    <ion-slide style="background-image: url('assets/imgs/card-saopaolo.png'); background-size: 100%;">
-      <h2>Document Library Intro</h2>
-    </ion-slide>
-  </ion-slides>
-  <ion-item-group>
-    <ion-item-divider color="dark">Investing Techniques</ion-item-divider>
-    <button ion-item *ngFor="let technique of techniques" (click)="techniqueSelected(technique)" color="secondary">
-        {{ technique }}
-      </button>
-  </ion-item-group>
-  <ion-item-group>
-    <ion-item-divider color="dark">Document Library (PDFs)</ion-item-divider>
-    <button ion-item *ngFor="let library of libraries" (click)="librarySelected(library)" color="secondary">
-          {{ library }}
-        </button>
-  </ion-item-group>
+  <accordion>
+    <panel title="Strategy 1">
+      <div style="background-color: yellow; height: 50px;">Some text about Strategy 1</div>
+    </panel>
+    <panel title="Strategy 2">
+      <div style="background-color: blue; height: 300px;">Some text about Strategy 2</div>
+    </panel>
+    <panel title="Strategy 3">
+      <div style="background-color: green; height: 100px;">Some text about Strategy 3</div>
+    </panel>
+  </accordion>
+
 </ion-content>

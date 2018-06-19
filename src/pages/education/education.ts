@@ -9,44 +9,27 @@ import { DetailPage } from '../detail/detail';
   templateUrl: 'education.html',
 })
 export class EducationPage {
-  public techniques: Array<string> = [
-    "Customize S&P 500",
-    "Equal Sector Strategy",
-    "Tax Strategies"
-  ];
+  items: any = [];
+  itemExpandHeight: number = 100;
 
-  public libraries: Array<string> = [
-    "All General",
-    "XLY - Consumer Discresionary",
-    "XLE - Energy Documents"
-  ];
-
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams) {
-
+  constructor() {
+    this.items = [
+      { expanded: false },
+      { expanded: false },
+      { expanded: false }
+    ];
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EducationPage');
-  }
+  expandItem(item) {
+    this.items.map((listItem) => {
+      if (item == listItem) {
+        listItem.expanded = !listItem.expanded;
+      } else {
+        listItem.expanded = false;
+      }
 
-  // Workaround for ionic issue redrawing slides
-  // https://github.com/ionic-team/ionic/issues/11216
-  ionViewDidEnter() {
-    try {
-      let event = document.createEvent('HTMLEvents');
-      event.initEvent('resize', true, false);
-      window.dispatchEvent(event);
-    } catch (e) { }
-  }
-
-  techniqueSelected(selection) {
-    this.navCtrl.push(DetailPage, {title: selection});
-  }
-
-  librarySelected(selection) {
-    this.navCtrl.push(DetailPage, {title: selection});
+      return listItem;
+    });
   }
 
 }
