@@ -1,0 +1,17 @@
+<div class="panel panel-info">
+  <div class="panel-heading" (click)="toggle.emit()">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          {{title}}
+        </ion-col>
+        <ion-col text-right>
+          {{getToggleIndicator()}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="panel-body animated fadeIn" *ngIf="opened">
+    <ng-content></ng-content>
+  </div>
+<div>
