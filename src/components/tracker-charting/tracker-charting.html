@@ -1,3 +1,34 @@
 <div class="description">
   {{text}}
 </div>
+
+<ion-scroll scrollY="true">
+
+  <ion-grid >
+    <ion-row wrap *ngFor="let i of rows">
+      <ion-col *ngFor="let symbol of sectors | slice:(i*3):(i+1)*3" width-30>
+        <div class="row responsive-sm">
+          <selector-sector-chart *ngIf="symbol !== ''" class="box"
+          [symbol]="symbol" 
+          [selected]="initialSelectedState"
+          (selectionChanged)="handleSectorSelectionChange($event)"
+          >
+          </selector-sector-chart>
+          <div *ngIf="symbol === ''" class="sAndP500Box">
+            <div class="sapName"><span>S&P 500</span></div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-list  >
+      <ion-item *ngFor="let symbol of selectedSectors">
+        <row-sector-tracker
+          [symbol]="symbol" (trackerSelected)="handleTrackerSelected($event)">
+        </row-sector-tracker>
+      </ion-item>
+  </ion-list>
+
+</ion-scroll>

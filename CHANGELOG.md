@@ -12,6 +12,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - `Security` to invite users to upgrade in case of vulnerabilities.
 - `Maintenance` for any maintenance work, which does not change the externaly observable behavior of the application
 
+## [0.0.2]
+### Added
+- Tracker Charting Selectors
+### Changed
+- Accordian control for "How to Invest"
+
 ## [0.0.1]
 ### Added
 - Initial project setup

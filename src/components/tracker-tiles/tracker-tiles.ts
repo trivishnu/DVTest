@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Platform, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Platform, NavController, NavParams } from 'ionic-angular';
 
 import { SectorSpdrService, SectorTracker } from '../../providers/SectorSpdrAPI'
 
@@ -45,14 +45,6 @@ export class TrackerTilesComponent {
             break;
           }
         }
-
-        const xlcSector = new SectorTracker();
-        xlcSector.symbol = "XLC";
-        xlcSector.displayName = "Communication Services"
-        xlcSector.change = "0.0";
-        xlcSector.changePercent = 0.0;
-
-        this.sectorTrackers.push(xlcSector);
 
         var sAndP = this.sectorTrackers.shift();
         this.sectorTrackers.sort(this.comparePerformance).reverse();

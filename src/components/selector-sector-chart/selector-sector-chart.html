@@ -1,0 +1,17 @@
+<div class="chartSelector" (click)="selectorTapped()">
+
+    <ion-row>
+        <ion-col col-4 align-self-center >
+                <div class="sectorStyle"
+                [style.border-color]="color"
+                [style.background-color] = "backgroundColor"
+                >
+               <img [src]="icon" class="sectorGraphics" >
+           </div>
+        </ion-col>
+        <ion-col col-8 align-self-center text-center>
+            <span [style.color]="symbolColor" class="trackerSymbol">{{symbol}}</span></ion-col>
+    </ion-row>
+
+    <!-- <span class="name">XLB</span> -->
+</div>  

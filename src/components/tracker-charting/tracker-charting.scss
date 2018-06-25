@@ -1,5 +1,31 @@
 tracker-charting {
+
+  .box {
+    width: 100%;
+  }
+
   .description {
     color: white;
   }
+
+  .sAndP500Box {
+    width: 100%;
+    height:40px;
+    font-size: 20px;
+    font-weight: bold;
+    background: #383F49;
+    color: #DBE2E5;
+    text-align: center;
+  }
+  .sAndP500Box:before{
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+  }
+  .sapName {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
 }

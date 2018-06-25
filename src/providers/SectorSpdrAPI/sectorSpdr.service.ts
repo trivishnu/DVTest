@@ -28,19 +28,20 @@ const DAILY_CALCULATION_URL = '/sectorspdr/api/daily-calculation/';
 const PREMIUM_DISCOUNT_FREQUENCY_DISTRIBUTION = '/sectorspdr/api/frequency-distribution/';
 const ALL_FUNDS_PERFORMANCE = '/sectorspdr/api/IDCO.Client.Spdrs.AllFundsPerformance/AllFundsPerformanceApi';
 const EXPENSE_RATIO_URL = '/sectorspdr/api/expense-ratio';
+const PIE_DATA_URL = '/sectorspdr/api/pie-data/';
 
 const SECTOR_PROPERTIES = [
-  { symbol: 'XLE', color: '#FFCC00', icon: 'energy' },
-  { symbol: 'XLU', color: '#F39200', icon: 'utilities' },
-  { symbol: 'XLK', color: '#B530B1', icon: 'technology' },
-  { symbol: 'XLB', color: '#8F96CB', icon: 'materials' },
-  { symbol: 'XLP', color: '#009CB4', icon: 'consumer_staples' },
-  { symbol: 'XLY', color: '#DEDC00', icon: 'consumer_discretionary' },
-  { symbol: 'XLI', color: '#A3CCE4', icon: 'industrials' },
-  { symbol: 'XLV', color: '#009FEE', icon: 'health_care' },
-  { symbol: 'XLF', color: '#AFCA0B', icon: 'financials' },
-  { symbol: 'XLRE', color: '#D31515', icon: 'real_estate' },
-  { symbol: 'XLC', color: '#B164A5', icon: 'communications' }
+  { symbol: 'XLE', name: 'Energy', color: '#FFCC00', icon: 'energy' },
+  { symbol: 'XLU', name: 'Utilities', color: '#F39200', icon: 'utilities' },
+  { symbol: 'XLK', name: 'Technology', color: '#B530B1', icon: 'technology' },
+  { symbol: 'XLB', name: 'Materials', color: '#8F96CB', icon: 'materials' },
+  { symbol: 'XLP', name: 'Consumer Staples', color: '#009CB4', icon: 'consumer_staples' },
+  { symbol: 'XLY', name: 'Consumer Discretionary', color: '#DEDC00', icon: 'consumer_discretionary' },
+  { symbol: 'XLI', name: 'Industrials', color: '#A3CCE4', icon: 'industrials' },
+  { symbol: 'XLV', name: 'Health_care', color: '#009FEE', icon: 'health_care' },
+  { symbol: 'XLF', name: 'Financials', color: '#AFCA0B', icon: 'financials' },
+  { symbol: 'XLRE', name: 'Real Estate', color: '#D31515', icon: 'real_estate' },
+  { symbol: 'XLC', name: 'Communications', color: '#B164A5', icon: 'communications' }
 
 ];
 
@@ -49,7 +50,7 @@ export class SectorSpdrService {
 
   public http: HttpNativeProvider | HttpAngularProvider;
   server: string;
-  sectors: Sector[];
+  sectors: Sector[] = [];
 
   constructor(private platform: Platform, private angularHttp: HttpAngularProvider, private nativeHttp: HttpNativeProvider) {
     if (this.platform.is('cordova')) {
@@ -423,6 +424,15 @@ export class SectorSpdrService {
     return this.http.get(this.server + EXPENSE_RATIO_URL);
   }
 
+  
+  getSectorEstimatedWeight(symbol: string): Observable<number> {
+    return this.http.get(this.server + PIE_DATA_URL + symbol)
+      .pipe(map(data => {
+        var pieData = data as any;
+        return this.numberFromPercent(pieData.estimateWeight);
+      }))
+  }
+
   buildUrl(url, parameters) {
     var qs = "";
     for (var key in parameters) {
@@ -478,6 +488,15 @@ export class SectorSpdrService {
     for (let sector of SECTOR_PROPERTIES) {
       if (sector.symbol === symbol) {
         return sector.icon;
+      }
+    }
+    return '';
+  }
+
+  getSectorName(symbol: string) {
+    for (let sector of SECTOR_PROPERTIES) {
+      if (sector.symbol === symbol) {
+        return sector.name;
       }
     }
     return '';

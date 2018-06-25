@@ -1,0 +1,44 @@
+<div class="banner">
+    <ion-grid>
+
+      <ion-row nowrap align-items-start>
+
+        <ion-col col-10>
+
+            <ion-row nowrap align-items-center>
+                <ion-col col-auto>
+                    <span [style.color]="color" class="trackerSymbol">{{symbol}}</span>
+                    <span class="trackerName">{{displayName}}</span>
+                </ion-col>
+              </ion-row>
+              <ion-row nowrap align-items-start>
+                  <ion-col col-3>
+                    <div class="price">{{last | currency:'USD'}}</div>
+                  </ion-col>
+                  <ion-col>
+                    <div class="price-change" [ngClass]="changeClass">
+                      {{changePercent | percentChangeFormat }}
+                      <img [src]="changeGraphics" class="changeGraphics">
+                    </div>
+                  </ion-col>
+                  <ion-col>
+                      <div>
+                        <span class="weightLabel">Weighting</span>
+                        <span class="weight"> {{weight}}%</span>
+                      </div>
+                    </ion-col>
+                </ion-row>
+        
+        </ion-col>
+
+        <ion-col col-2 justify-content-start>
+            <div class="sectorDetails" [style.border-color]="color" (click)="trackerTapped()" >
+              <img [src]="icon" class="sectorIcon" >
+              <div class="details">Details</div>
+            </div>
+        </ion-col>
+  
+      </ion-row>
+
+    </ion-grid>
+</div>
