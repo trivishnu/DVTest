@@ -1,0 +1,84 @@
+<div class="fds-horiz-line">
+  &emsp;
+</div>
+<div class="fds-container" [ngClass]="sector" >
+
+  <ul class="fds-list">
+    <li class="fds-list__item">
+      <input type="radio" class="fds-radio-btn" name="choice" id="a-opt" [(ngModel)]="timelineType" value="Today" (change)="onSelectionChange('Today')" checked  />
+      <label for="a-opt" class="fds-label">
+          <div class="fds-outer">
+              <div class="fds-inner"></div>
+            </div>
+            <span class="fds-dot-label">Today</span>
+        
+      </label>
+    </li>
+
+    <li class="fds-list__item">
+      <input type="radio" class="fds-radio-btn" name="choice" id="b-opt" [(ngModel)]="timelineType" value="1W"  (change)="onSelectionChange('1W')" />
+      <label for="b-opt" class="fds-label">
+        <div class="fds-outer">
+          <div class="fds-inner"></div>
+        </div>
+        <span class="fds-dot-label">1W</span>
+        </label>
+    </li>
+
+    <li class="fds-list__item">
+      <input type="radio" class="fds-radio-btn" name="choice" id="c-opt" [(ngModel)]="timelineType"  value="3M" (change)="onSelectionChange('3M')" />
+      <label for="c-opt" class="fds-label">
+          <div class="fds-outer">
+              <div class="fds-inner"></div>
+            </div>
+            <span class="fds-dot-label">3M</span>
+          </label>
+    </li>
+
+    <li class="fds-list__item">
+      <input type="radio" class="fds-radio-btn" name="choice" id="d-opt" [(ngModel)]="timelineType" value="YTD" (change)="onSelectionChange('YTD')" />
+      <label for="d-opt" class="fds-label">
+          <div class="fds-outer">
+              <div class="fds-inner"></div>
+            </div>
+            <span class="fds-dot-label">YTD</span>
+          </label>
+    </li>
+    <li class="fds-list__item">
+      <input type="radio" class="fds-radio-btn" name="choice" id="e-opt" [(ngModel)]="timelineType" value="1Y" (change)="onSelectionChange('1Y')" />
+      <label for="e-opt" class="fds-label">
+          <div class="fds-outer">
+              <div class="fds-inner"></div>
+            </div>
+            <span class="fds-dot-label">1Y</span>
+            </label>
+    </li>
+    <li class="fds-list__item">
+      <input type="radio" class="fds-radio-btn" name="choice" id="f-opt" [(ngModel)]="timelineType"  value="3Y" (change)="onSelectionChange('3Y')" />
+      <label for="f-opt" class="fds-label">
+          <div class="fds-outer">
+              <div class="fds-inner"></div>
+            </div>
+            <span class="fds-dot-label">3Y</span>
+          </label>
+    </li>
+    <li class="fds-list__item">
+      <input type="radio" class="fds-radio-btn" name="choice" id="g-opt" [(ngModel)]="timelineType" value="5Y" (change)="onSelectionChange('5Y')" />
+      <label for="g-opt" class="fds-label">
+          <div class="fds-outer">
+              <div class="fds-inner"></div>
+            </div>
+            <span class="fds-dot-label">5Y</span>
+            </label>
+    </li>
+    <li class="fds-list__item">
+      <input type="radio" class="fds-radio-btn" name="choice" id="h-opt" [(ngModel)]="timelineType" value="Max." (change)="onSelectionChange('Max.')" />
+      <label for="h-opt" class="fds-label">
+          <div class="fds-outer">
+              <div class="fds-inner"></div>
+            </div>
+            <span class="fds-dot-label">Max.</span>
+          </label>
+    </li>
+  </ul>
+</div>

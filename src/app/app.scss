@@ -155,6 +155,20 @@
   border-radius: 1px;
 }
 
+.xlc {
+  color: map-get($colors, xlc);
+}
+.xlc-background {
+  background-image: url("../assets/imgs/communications.svg");
+}
+.xlc-divider {
+  background-color: map-get($colors, xlc);
+}
+.xlc-border {
+  border-color: map-get($colors, xlc);
+  border-radius: 1px;
+}
+
 .positive {
   font-weight: bolder;
   color: green;

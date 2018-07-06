@@ -1,0 +1,244 @@
+/*--  start temp page styling --*/
+
+/*--  end temp page styling --*/
+
+.fds-horiz-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #B4BBC2;
+  margin-left: 6.25%;
+  margin-right: 6.25%;
+  margin-top: 20px;
+}
+
+.fds-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -39px;
+  margin-bottom: 10px;
+}
+
+.fds-list {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  padding: 0;
+  float: left;
+  clear: both;
+  margin: 0px;
+}
+
+.fds-list__item {
+  position: relative;
+  display: inline-block;
+  width: 12.5%;
+  display: flex;
+  justify-content: center;
+}
+
+.fds-radio-btn {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.fds-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.25s linear;
+  flex-flow: wrap;
+  align-content: center;
+  margin-top: 7px;
+}
+
+.fds-outer {
+  align-items: center;
+  background: transparent none repeat scroll 0 0;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  display: flex;
+  height: 20px;
+  justify-content: center;
+  position: relative;
+  width: 20px;
+}
+
+.fds-inner {
+  background: #CBCBCB;
+  border: 1px solid #CBCBCB;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.fds-radio-btn+.fds-label span {
+  display: flex;
+  justify-content: center;
+}
+
+.fds-radio-btn+.fds-label .fds-dot-label {
+  flex: 2 100%;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+/*-- default color --*/
+
+.fds-radio-btn:checked+.fds-label {
+  color: $no-sector-blue;
+}
+
+.fds-radio-btn:checked+.fds-label .fds-inner {
+  border: 1px solid $no-sector-blue;
+}
+
+.fds-radio-btn:checked+.fds-label .fds-outer {
+  background: #191E23;
+  border: 1px solid #B4BBC2;
+}
+
+.fds-radio-btn:checked+.fds-label .fds-inner {
+  background: $no-sector-blue;
+}
+
+/*-- sector color styling --*/
+
+.xly .fds-radio-btn:checked+.fds-label .fds-inner {
+  border: 1px solid map-get($colors, xly);
+}
+
+.xly .fds-radio-btn:checked+.fds-label .fds-inner {
+  background: map-get($colors, xly);
+}
+
+.xly .fds-radio-btn:checked+.fds-label {
+  color: map-get($colors, xly);
+}
+
+.xlp .fds-radio-btn:checked+.fds-label .fds-inner {
+  border: 1px solid map-get($colors, xlp);
+}
+
+.xlp .fds-radio-btn:checked+.fds-label .fds-inner {
+  background: map-get($colors, xlp);
+}
+
+.xlp .fds-radio-btn:checked+.fds-label {
+  color: map-get($colors, xlp);
+}
+
+.xle .fds-radio-btn:checked+.fds-label .fds-inner {
+  border: 1px solid map-get($colors, xle);
+}
+
+.xle .fds-radio-btn:checked+.fds-label .fds-inner {
+  background: map-get($colors, xle);
+}
+
+.xle .fds-radio-btn:checked+.fds-label {
+  color: map-get($colors, xle);
+}
+
+.xlf .fds-radio-btn:checked+.fds-label .fds-inner {
+  border: 1px solid map-get($colors, xlf);
+}
+
+.xlf .fds-radio-btn:checked+.fds-label .fds-inner {
+  background: map-get($colors, xlf);
+}
+
+.xlf .fds-radio-btn:checked+.fds-label {
+  color: map-get($colors, xlf);
+}
+
+.xlv .fds-radio-btn:checked+.fds-label .fds-inner {
+  border: 1px solid map-get($colors, xlv);
+}
+
+.xlv .fds-radio-btn:checked+.fds-label .fds-inner {
+  background: map-get($colors, xlyv);
+}
+
+.xlv .fds-radio-btn:checked+.fds-label {
+  color: map-get($colors, xlv);
+}
+
+.xli .fds-radio-btn:checked+.fds-label .fds-inner {
+  border: 1px solid map-get($colors, xli);
+}
+
+.xli .fds-radio-btn:checked+.fds-label .fds-inner {
+  background: map-get($colors, xli);
+}
+
+.xli .fds-radio-btn:checked+.fds-label {
+  color: map-get($colors, xli);
+}
+
+.xlb .fds-radio-btn:checked+.fds-label .fds-inner {
+  border: 1px solid map-get($colors, xlb);
+}
+
+.xlb .fds-radio-btn:checked+.fds-label .fds-inner {
+  background: map-get($colors, xlb);
+}
+
+.xlb .fds-radio-btn:checked+.fds-label {
+  color: map-get($colors, xlb);
+}
+
+.xlre .fds-radio-btn:checked+.fds-label .fds-inner {
+  border: 1px solid map-get($colors, xlre);
+}
+
+.xlre .fds-radio-btn:checked+.fds-label .fds-inner {
+  background: map-get($colors, xlre);
+}
+
+.xlre .fds-radio-btn:checked+.fds-label {
+  color: map-get($colors, xlre);
+}
+
+.xlk .fds-radio-btn:checked+.fds-label .fds-inner {
+  border: 1px solid map-get($colors, xlk);
+}
+
+.xlk .fds-radio-btn:checked+.fds-label .fds-inner {
+  background: map-get($colors, xlk);
+}
+
+.xlk .fds-radio-btn:checked+.fds-label {
+  color: map-get($colors, xlk);
+}
+
+.xlu .fds-radio-btn:checked+.fds-label .fds-inner {
+  border: 1px solid map-get($colors, xlu);
+}
+
+.xlu .fds-radio-btn:checked+.fds-label .fds-inner {
+  background: map-get($colors, xlu);
+}
+
+.xlu .fds-radio-btn:checked+.fds-label {
+  color: map-get($colors, xlu);
+}
+
+.xlc .fds-radio-btn:checked+.fds-label .fds-inner {
+  border: 1px solid map-get($colors, xlc);
+}
+
+.xlc .fds-radio-btn:checked+.fds-label .fds-inner {
+  background: map-get($colors, xlc);
+}
+
+.xlc .fds-radio-btn:checked+.fds-label {
+  color: map-get($colors, xlc);
+}

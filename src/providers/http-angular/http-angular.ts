@@ -13,12 +13,9 @@ export class HttpAngularProvider {
         return this.http.get(url, options) as Observable<Object>;
     }
 
-    public post(url: string, params: any, options: any = {}) {
+    public post(url: string, params: any, options: any = {}): Observable<Object> {
         options.withCredentials = true;
-
-        let body = this.createSearchParams(params);
-
-        return this.http.post(url, body.toString(), options);
+        return this.http.post(url, params, options) as Observable<Object>;
     }
 
     private createSearchParams(params: any) {
