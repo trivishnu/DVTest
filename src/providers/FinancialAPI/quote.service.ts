@@ -64,39 +64,39 @@ export class QuoteService {
     switch (historicalQuotesType) {
 
       case HistoricalQuotesType.OneWeek:
-        return this.getHistoricalDataForNumberOfDays(7);
+        return this.getHistoricalDataParametersForNumberOfDays(7);
 
       case HistoricalQuotesType.OneMonth:
-        return this.getHistoricalDataForNumberOfMonths(1);
+        return this.getHistoricalDataParametersForNumberOfMonths(1);
 
       case HistoricalQuotesType.ThreeMonths:
-        return this.getHistoricalDataForNumberOfMonths(3);
+        return this.getHistoricalDataParametersForNumberOfMonths(3);
 
       case HistoricalQuotesType.SixMonths:
-        return this.getHistoricalDataForNumberOfMonths(6);
+        return this.getHistoricalDataParametersForNumberOfMonths(6);
 
       case HistoricalQuotesType.YearToDate:
-        return this.getHistoricalDataForYearToDate();
+        return this.getHistoricalDataParametersForYearToDate();
 
       case HistoricalQuotesType.OneYear:
-        return this.getHistoricalDataForNumberOfYears(1);
+        return this.getHistoricalDataParametersForNumberOfYears(1);
 
       case HistoricalQuotesType.ThreeYear:
-        return this.getHistoricalDataForNumberOfYears(3);
+        return this.getHistoricalDataParametersForNumberOfYears(3);
 
       case HistoricalQuotesType.FiveYear:
-        return this.getHistoricalDataForNumberOfYears(5);
+        return this.getHistoricalDataParametersForNumberOfYears(5);
 
       case HistoricalQuotesType.Maximum:
-        return this.getHistoricalDataForNumberOfYears(25);
+        return this.getHistoricalDataParametersForNumberOfYears(25);
 
       default:
-        return this.getHistoricalDataForOneDay();
+        return this.getHistoricalDataParametersForOneDay();
     }
 
   }
 
-  getHistoricalDataForOneDay() {
+  getHistoricalDataParametersForOneDay() {
     var startDate = new Date();
     startDate.setHours(0, 0, 0, 0);
     var endDate = new Date();
@@ -104,7 +104,7 @@ export class QuoteService {
     return { start: startDate.toISOString(), end: endDate.toISOString(), resolution: 'MINUTE' };
   }
 
-  getHistoricalDataForNumberOfDays(days: number) {
+  getHistoricalDataParametersForNumberOfDays(days: number) {
     var startDate = new Date();
     startDate.setDate(startDate.getDate() - days);
     console.log("Day: Start Date", startDate);
@@ -112,14 +112,14 @@ export class QuoteService {
     return { start: startDate.toISOString(), end: endDate.toISOString(), resolution: 'DAY' };
   }
 
-  getHistoricalDataForNumberOfMonths(months: number) {
+  getHistoricalDataParametersForNumberOfMonths(months: number) {
     var startDate = new Date();
     startDate.setMonth(startDate.getMonth() - months);
     var endDate = new Date();
     return { start: startDate.toISOString(), end: endDate.toISOString(), resolution: 'DAY' };
   }
 
-  getHistoricalDataForNumberOfYears(years: number) {
+  getHistoricalDataParametersForNumberOfYears(years: number) {
     var startDate = new Date();
     startDate.setFullYear(startDate.getFullYear() - years);
     var endDate = new Date();
@@ -127,7 +127,7 @@ export class QuoteService {
   }
 
 
-  getHistoricalDataForYearToDate() {
+  getHistoricalDataParametersForYearToDate() {
     var startDate = new Date(new Date().getFullYear(), 0, 1)
     startDate.setHours(0, 0, 0, 0);
     var endDate = new Date();
