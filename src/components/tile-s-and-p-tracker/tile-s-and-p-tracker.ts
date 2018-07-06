@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SectorTracker } from '../../providers/SectorSpdrAPI';
 import { QuoteService } from '../../providers/FinancialAPI';
 
-import { FINANCIAL_API_SERVER, API_KEY } from '../../config/config';
+import { FINANCIAL_API_SERVER, API_KEY, S_AND_P_ID_NOTATION } from '../../config/config';
 
 const IMAGES_ASSETS_PATH = 'assets/imgs/';
 
@@ -25,7 +25,7 @@ export class SAndPTrackerTileComponent {
   ngOnInit() {
 
     this.quoteService.setConfiguration(FINANCIAL_API_SERVER, API_KEY);
-    this.quoteService.getSnapQuotes("XX:4359526", "SectorSpdr")
+    this.quoteService.getSnapQuotes(S_AND_P_ID_NOTATION, "SectorSpdr")
       .subscribe(resp => {
         if (resp.data.length > 0) {
           var quote = resp.data[0];

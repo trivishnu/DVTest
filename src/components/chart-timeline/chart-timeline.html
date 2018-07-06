@@ -5,7 +5,7 @@
 
   <ul class="fds-list">
     <li class="fds-list__item">
-      <input type="radio" class="fds-radio-btn" name="choice" id="a-opt" [(ngModel)]="timelineType" value="Today" (change)="onSelectionChange('1D')" checked  />
+      <input type="radio" class="fds-radio-btn" name="choice" id="a-opt" [(ngModel)]="timelineType" value="Today" (change)="onSelectionChange('Today')" checked  />
       <label for="a-opt" class="fds-label">
           <div class="fds-outer">
               <div class="fds-inner"></div>
@@ -72,7 +72,7 @@
             </label>
     </li>
     <li class="fds-list__item">
-      <input type="radio" class="fds-radio-btn" name="choice" id="h-opt" [(ngModel)]="timelineType" value="MAX" (change)="onSelectionChange('MAX')" />
+      <input type="radio" class="fds-radio-btn" name="choice" id="h-opt" [(ngModel)]="timelineType" value="Max." (change)="onSelectionChange('Max.')" />
       <label for="h-opt" class="fds-label">
           <div class="fds-outer">
               <div class="fds-inner"></div>

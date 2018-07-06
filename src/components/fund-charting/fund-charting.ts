@@ -1,9 +1,9 @@
 import { Component, Input, ElementRef } from '@angular/core';
-import { FundDetails } from '../../providers/SectorSpdrAPI';
 import { SectorSpdrService } from '../../providers/SectorSpdrAPI';
 import { ChartService } from '../../providers/fdsg/chartService';
 import { Platform } from 'ionic-angular';
 import { QuoteService } from '../../providers/FinancialAPI';
+import { S_AND_P_ID_NOTATION, S_AND_P_ID_COLOR } from '../../config/config';
 
 declare var FDSChartJS: any;
 
@@ -51,7 +51,7 @@ export class FundChartingComponent {
     this.color = this.sectorSpdrService.getSectorColor(this.symbol);
     this.sectorSymbol = this.symbol.toLowerCase();
     this.setupChart();
-    this.setChartType("1D");
+    this.setChartType("Today");
     this.updateChart();
 
     this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Home Page Disclosure (Mobile)');
@@ -74,7 +74,7 @@ export class FundChartingComponent {
     this.plot.addSeries(this.sAndPSeries);
     this.plot.addSeries(this.sectorSeries);
 
-    this.sAndPSeries.setAttribute('SeriesColor', 'app', 0xE5E2DB);
+    this.sAndPSeries.setAttribute('SeriesColor', 'app', S_AND_P_ID_COLOR);
     var color = this.chartService.getColorRef(this.sectorSpdrService.getSectorColor(this.symbol));
     this.sectorSeries.setAttribute('SeriesColor', 'app', color);
   }
@@ -99,8 +99,9 @@ export class FundChartingComponent {
 
   setChartType(type: string) {
     this.chartType = type;
-    this.quoteParams = this.quoteService.getHistoricaDataParameters(this.chartType);
-    if( this.chartType === "MAX") {
+    var historicalQuoteType = this.chartService.getHistoricalQuoteTypeFromTimeline(this.chartType);
+    this.quoteParams = this.quoteService.getHistoricaDataParameters(historicalQuoteType);
+    if( this.chartType === "Max.") {
       var startDate = this.sectorSpdrService.getStartDate(this.symbol);
       this.quoteParams.start = startDate;
     }
@@ -116,7 +117,7 @@ export class FundChartingComponent {
 
   updateSAndPOnChart() {
 
-    this.quoteService.getHistoricalQuotes("XX:4359526", this.quoteParams.start, this.quoteParams.end, this.quoteParams.resolution)
+    this.quoteService.getHistoricalQuotes(S_AND_P_ID_NOTATION, this.quoteParams.start, this.quoteParams.end, this.quoteParams.resolution)
     .subscribe(historicalQuotes => {
 
       var labels = historicalQuotes.data.map(p => this.chartService.getChartTime(p.lastTimestamp));

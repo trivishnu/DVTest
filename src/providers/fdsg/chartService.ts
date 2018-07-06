@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 
+import { CHART_BG_COLOR } from '../../config/config';
+import { HistoricalQuotesType } from '../../providers/FinancialAPI';
+
 declare var FDSChartJS: any;
 
 @Injectable()
@@ -16,9 +19,9 @@ export class ChartService {
     });
 
     chart.setAttributes({
-        'CanvasBGColor' : 0x191E23,
-        'PlotBGColor' : 0x191E23,
-        'ChartBGColor' : 0x191E23,
+        'CanvasBGColor' : CHART_BG_COLOR,
+        'PlotBGColor' : CHART_BG_COLOR,
+        'ChartBGColor' : CHART_BG_COLOR,
     });
   
     return chart;
@@ -215,5 +218,44 @@ export class ChartService {
     return (changeValue / oldNumber) * 100;
   }
 
+  getHistoricalQuoteTypeFromTimeline(timelineType: string) : HistoricalQuotesType {
+
+    switch(timelineType) {
+
+      case "Today":
+        return HistoricalQuotesType.OneDay;
+
+      case "1W":
+        return HistoricalQuotesType.OneWeek;      
+
+      case "1M":
+        return HistoricalQuotesType.OneMonth;
+
+      case "3M":
+        return HistoricalQuotesType.ThreeMonths;
+
+      case "6M":
+        return HistoricalQuotesType.SixMonths;
+
+      case 'YTD':
+      return HistoricalQuotesType.OneDay;
+
+      case "1Y":
+        return HistoricalQuotesType.YearToDate;
+
+      case "3Y":
+        return HistoricalQuotesType.ThreeYear;
+
+      case "5Y":
+        return HistoricalQuotesType.FiveYear;
+
+      case "Max.":
+        return HistoricalQuotesType.Maximum;
+
+      default:
+        return HistoricalQuotesType.OneDay;
+
+    }
+  }
 
 }

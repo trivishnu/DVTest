@@ -13,3 +13,7 @@ export { HistoricalQuote } from './models/historical-quote';
 export { HistoricalQuotes } from './models/historical-quotes';
 export { AutoCompleteSearchResult } from './models/autoComplete-searchResult';
 export { AutoCompleteSearchResults } from './models/autoComplete-searchResults';
+
+// Enums
+
+export { HistoricalQuotesType } from './enums/historicalQuotesType';

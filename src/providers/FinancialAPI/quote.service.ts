@@ -3,9 +3,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs/Rx';
 
 import { HistoricalQuotes, SnapQuotes } from '.';
+import { HistoricalQuotesType } from '.';
 
 const SNAP_QUOTE_URL: string = '/quotes/v1/snap-quotes';
 const HISTORICAL_QUOTE_URL: string = '/quotes/v1/historical-quotes';
+
+
 
 @Injectable()
 export class QuoteService {
@@ -56,35 +59,35 @@ export class QuoteService {
   }
 
   
-  getHistoricaDataParameters(chartType: string) {
+  getHistoricaDataParameters(historicalQuotesType: HistoricalQuotesType) {
 
-    switch (chartType) {
+    switch (historicalQuotesType) {
 
-      case "1M":
-        return this.getMonthsHistoricaDataParameters(1);
-
-      case "1W":
+      case HistoricalQuotesType.OneWeek:
         return this.getDaysHistoricaDataParameters(7);
 
-      case "3M":
+      case HistoricalQuotesType.OneMonth:
+        return this.getMonthsHistoricaDataParameters(1);
+
+      case HistoricalQuotesType.ThreeMonths:
         return this.getMonthsHistoricaDataParameters(3);
 
-      case "6M":
+      case HistoricalQuotesType.SixMonths:
         return this.getMonthsHistoricaDataParameters(6);
 
-      case 'YTD':
+      case HistoricalQuotesType.YearToDate:
         return this.getYTDHistoricaDataParameters();
 
-      case "1Y":
+      case HistoricalQuotesType.OneYear:
         return this.getYearsHistoricaDataParameters(1);
 
-      case "3Y":
+      case HistoricalQuotesType.ThreeYear:
         return this.getYearsHistoricaDataParameters(3);
 
-      case "5Y":
+      case HistoricalQuotesType.FiveYear:
         return this.getYearsHistoricaDataParameters(5);
 
-      case "MAX":
+      case HistoricalQuotesType.Maximum:
         return this.getYearsHistoricaDataParameters(25);
 
       default:
@@ -92,6 +95,43 @@ export class QuoteService {
     }
 
   }
+
+  // getHistoricaDataParameters(timelineType: string) {
+
+  //   switch (timelineType) {
+
+  //     case "1M":
+  //       return this.getMonthsHistoricaDataParameters(1);
+
+  //     case "1W":
+  //       return this.getDaysHistoricaDataParameters(7);
+
+  //     case "3M":
+  //       return this.getMonthsHistoricaDataParameters(3);
+
+  //     case "6M":
+  //       return this.getMonthsHistoricaDataParameters(6);
+
+  //     case 'YTD':
+  //       return this.getYTDHistoricaDataParameters();
+
+  //     case "1Y":
+  //       return this.getYearsHistoricaDataParameters(1);
+
+  //     case "3Y":
+  //       return this.getYearsHistoricaDataParameters(3);
+
+  //     case "5Y":
+  //       return this.getYearsHistoricaDataParameters(5);
+
+  //     case "MAX":
+  //       return this.getYearsHistoricaDataParameters(25);
+
+  //     default:
+  //       return this.getOneDayHistoricaDataParameters();
+  //   }
+
+  // }
 
   getOneDayHistoricaDataParameters() {
     var startDate = new Date();

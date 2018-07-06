@@ -4,7 +4,7 @@ import { SectorSpdrService, SectorTracker } from '../../providers/SectorSpdrAPI'
 
 import { FundPropertiesPage } from '../../pages/fund-properties/fund-properties';
 import { QuoteService } from '../../providers/FinancialAPI';
-import { FINANCIAL_API_SERVER, API_KEY } from '../../config/config';
+import { FINANCIAL_API_SERVER, API_KEY, S_AND_P_ID_NOTATION, S_AND_P_ID_COLOR } from '../../config/config';
 import { ChartService } from '../../providers/fdsg/chartService';
 
 const IMAGES_ASSETS_PATH = 'assets/imgs/';
@@ -66,7 +66,7 @@ export class TrackerChartingComponent {
     this.rows = Array.from(Array(Math.ceil(this.sectors.length / 3)).keys())
 
     this.quoteService.setConfiguration(FINANCIAL_API_SERVER, API_KEY);
-    this.quoteService.getSnapQuotes("XX:4359526", "SectorSpdr")
+    this.quoteService.getSnapQuotes(S_AND_P_ID_NOTATION, "SectorSpdr")
       .subscribe(resp => {
         if (resp.data.length > 0) {
           var quote = resp.data[0];
@@ -94,7 +94,7 @@ export class TrackerChartingComponent {
     // this.sectorSpdrService.initialize();
 
     this.setupChart();
-    this.setChartType("1D");
+    this.setChartType("Today");
     this.updateChart();
   
     this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Home Page Disclosure (Mobile)');
@@ -117,8 +117,9 @@ export class TrackerChartingComponent {
 
   setChartType(type: string) {
     this.chartType = type;
-    this.quoteParams = this.quoteService.getHistoricaDataParameters(this.chartType);
-    if( this.chartType === "MAX") {
+    var historicalQuoteType = this.chartService.getHistoricalQuoteTypeFromTimeline(this.chartType);
+    this.quoteParams = this.quoteService.getHistoricaDataParameters(historicalQuoteType);
+    if( this.chartType === "Max.") {
       this.quoteParams.start = '1998-12-22T04:00:00.000Z';
     }
   }
@@ -143,7 +144,7 @@ export class TrackerChartingComponent {
 
   addSAndPToChart() {
 
-    this.quoteService.getHistoricalQuotes("XX:4359526", this.quoteParams.start, this.quoteParams.end, this.quoteParams.resolution)
+    this.quoteService.getHistoricalQuotes(S_AND_P_ID_NOTATION, this.quoteParams.start, this.quoteParams.end, this.quoteParams.resolution)
     .subscribe(historicalQuotes => {
 
       var labels = historicalQuotes.data.map(p => this.chartService.getChartTime(p.lastTimestamp));
@@ -171,7 +172,7 @@ export class TrackerChartingComponent {
 
 
       this.plot.addSeries(this.sAndPSeries);
-      this.sAndPSeries.setAttribute('SeriesColor', 'app', 0xE5E2DB);
+      this.sAndPSeries.setAttribute('SeriesColor', 'app', S_AND_P_ID_COLOR);
 
       this.chart.invalidate();
     });
