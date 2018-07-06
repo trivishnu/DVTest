@@ -96,43 +96,6 @@ export class QuoteService {
 
   }
 
-  // getHistoricaDataParameters(timelineType: string) {
-
-  //   switch (timelineType) {
-
-  //     case "1M":
-  //       return this.getMonthsHistoricaDataParameters(1);
-
-  //     case "1W":
-  //       return this.getDaysHistoricaDataParameters(7);
-
-  //     case "3M":
-  //       return this.getMonthsHistoricaDataParameters(3);
-
-  //     case "6M":
-  //       return this.getMonthsHistoricaDataParameters(6);
-
-  //     case 'YTD':
-  //       return this.getYTDHistoricaDataParameters();
-
-  //     case "1Y":
-  //       return this.getYearsHistoricaDataParameters(1);
-
-  //     case "3Y":
-  //       return this.getYearsHistoricaDataParameters(3);
-
-  //     case "5Y":
-  //       return this.getYearsHistoricaDataParameters(5);
-
-  //     case "MAX":
-  //       return this.getYearsHistoricaDataParameters(25);
-
-  //     default:
-  //       return this.getOneDayHistoricaDataParameters();
-  //   }
-
-  // }
-
   getOneDayHistoricaDataParameters() {
     var startDate = new Date();
     startDate.setHours(0, 0, 0, 0);
@@ -141,24 +104,24 @@ export class QuoteService {
     return { start: startDate.toISOString(), end: endDate.toISOString(), resolution: 'MINUTE' };
   }
 
-  getDaysHistoricaDataParameters(day: number) {
+  getDaysHistoricaDataParameters(days: number) {
     var startDate = new Date();
-    startDate.setDate(startDate.getDate() - day);
+    startDate.setDate(startDate.getDate() - days);
     console.log("Day: Start Date", startDate);
     var endDate = new Date();
     return { start: startDate.toISOString(), end: endDate.toISOString(), resolution: 'DAY' };
   }
 
-  getMonthsHistoricaDataParameters(month: number) {
+  getMonthsHistoricaDataParameters(months: number) {
     var startDate = new Date();
-    startDate.setMonth(startDate.getMonth() - month);
+    startDate.setMonth(startDate.getMonth() - months);
     var endDate = new Date();
     return { start: startDate.toISOString(), end: endDate.toISOString(), resolution: 'DAY' };
   }
 
-  getYearsHistoricaDataParameters(year: number) {
+  getYearsHistoricaDataParameters(years: number) {
     var startDate = new Date();
-    startDate.setFullYear(startDate.getFullYear() - year);
+    startDate.setFullYear(startDate.getFullYear() - years);
     var endDate = new Date();
     return { start: startDate.toISOString(), end: endDate.toISOString(), resolution: 'MONTH' };
   }
