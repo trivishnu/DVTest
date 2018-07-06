@@ -91,8 +91,6 @@ export class TrackerChartingComponent {
       this.selectedSectors.shift();
     }
 
-    // this.sectorSpdrService.initialize();
-
     this.setupChart();
     this.setChartType("Today");
     this.updateChart();
