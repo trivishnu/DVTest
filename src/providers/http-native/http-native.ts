@@ -15,7 +15,7 @@ export class HttpNativeProvider {
         return Observable.fromPromise(responseData) as Observable<Object>;
     }
 
-    public post(url, params?: any, options: any = {}) {
+    public post(url: string, params?: any, options: any = {}): Observable<Object> {
         let responseData = this.http.post(url, params, {})
             .then(resp => options.responseType == 'text' ? resp.data : JSON.parse(resp.data));
 

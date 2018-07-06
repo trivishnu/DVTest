@@ -25,6 +25,7 @@ import { PanelComponent } from './panel/panel';
 import { AccordionComponent } from './accordion/accordion';
 import { SelectorSectorChartComponent } from './selector-sector-chart/selector-sector-chart';
 import { RowSectorTrackerComponent } from './row-sector-tracker/row-sector-tracker';
+import { ChartTimelineComponent } from './chart-timeline/chart-timeline';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { RowSectorTrackerComponent } from './row-sector-tracker/row-sector-track
     PanelComponent,
     AccordionComponent,
     SelectorSectorChartComponent,
-    RowSectorTrackerComponent
+    RowSectorTrackerComponent,
+    ChartTimelineComponent
   ],
   imports: [
     IonicModule,
@@ -78,7 +80,8 @@ import { RowSectorTrackerComponent } from './row-sector-tracker/row-sector-track
     PanelComponent,
     AccordionComponent,
     SelectorSectorChartComponent,
-    RowSectorTrackerComponent
+    RowSectorTrackerComponent,
+    ChartTimelineComponent
   ]
 })
 export class ComponentsModule { }

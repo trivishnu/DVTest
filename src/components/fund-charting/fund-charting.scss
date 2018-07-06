@@ -2,4 +2,37 @@ fund-charting {
   h4 {
     color: white;
   }
+
+  .sAndP500Name {
+    font-size: 18px;
+//    font-weight: bold;
+    color: #DBE2E5;
+  }
+
+  .sAndPValue {
+    font-size: 16px;
+    color: white;
+  }
+
+  .sectorName{
+    font-weight: bold;
+  }
+  .sectorValue{
+    font-size: 16px;
+    color: white;
+  }
+
+  .chartType{
+    color: gray;
+  }
+
+  .disclaimer{
+    font-size: 14px;
+    color: white;
+  }
+
+  a {
+    color: #2b7ad7;
+  }
+
 }

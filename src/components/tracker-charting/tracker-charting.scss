@@ -1,5 +1,9 @@
 tracker-charting {
 
+  // #chart {
+  //   background-color: white;
+  // }
+
   .box {
     width: 100%;
   }
@@ -24,8 +28,30 @@ tracker-charting {
     height: 100%;
   }
   .sapName {
+    font-weight: bold;
     display: inline-block;
     vertical-align: middle;
+  }
+
+  .sAndP500Name {
+    font-size: 18px;
+//    font-weight: bold;
+    color: #DBE2E5;
+  }
+
+  .sAndPValue {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+  }
+
+  .disclaimer{
+    font-size: 14px;
+    color: white;
+  }
+
+  a {
+    color: #2b7ad7;
   }
 
 }

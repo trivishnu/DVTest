@@ -13,6 +13,8 @@ import { Dividend } from './models/dividend';
 import { FundPerformance } from './models/fund-performance';
 import { FundPerformances } from './models/fund-performances';
 import { SECTOR_SPDR_SERVER } from '../../config/config';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
+import { URLSearchParams } from '@angular/http';
 
 const SECTORS_LIST_URL: string = '/sectorspdr/api/IDCO.Client.Spdrs.SectorPie/SectorPieApi';
 const FUND_DETAILS_URL: string = '/sectorspdr/api/fund-details/';
@@ -20,28 +22,33 @@ const FUND_SNAPSHOT_URL: string = '/sectorspdr/IDCO.Products.Etf.Profile/Profile
 const FUND_HOLDINGS_URL: string = '/sectorspdr/api/holdings/';
 const SECTOR_TRACKER_URL: string = '/sectorspdr/api/IDCO.Client.Spdrs.SectorTracker/SectorTrackerApi';
 const DIVIDEND_DISTRIBUTIONS_URL: string = '/sectorspdr/IDCO.Client.Spdrs.Distributions/Distributions/Distributions';
-const FUND_DOCUMENTS_URL: string = '/sectorspdr/IDCO.Client.Spdrs.DocumentLibrary/Document/GetFundDocuments';
 const QUARTER_END_PERFORMANCE_URL = '/sectorspdr/api/performance/{symbol}/quarterend';
 const MONTH_END_PERFORMANCE_URL = '/sectorspdr/api/performance/{symbol}/monthend';
-const DIVIDENDS_SCHEDULE_URL = '/sectorspdr/IDCO.Client.Spdrs.DocumentLibrary/Document/GetDividendSchedule';
 const DAILY_CALCULATION_URL = '/sectorspdr/api/daily-calculation/';
 const PREMIUM_DISCOUNT_FREQUENCY_DISTRIBUTION = '/sectorspdr/api/frequency-distribution/';
 const ALL_FUNDS_PERFORMANCE = '/sectorspdr/api/IDCO.Client.Spdrs.AllFundsPerformance/AllFundsPerformanceApi';
 const EXPENSE_RATIO_URL = '/sectorspdr/api/expense-ratio';
 const PIE_DATA_URL = '/sectorspdr/api/pie-data/';
+const CONTENT_URL = '/sectorspdr/api/content';
+// Document Libraryh
+const FUND_DOCUMENTS_URL: string = '/sectorspdr/IDCO.Client.Spdrs.DocumentLibrary/Document/GetFundDocuments';
+const DIVIDENDS_SCHEDULE_URL = '/sectorspdr/IDCO.Client.Spdrs.DocumentLibrary/Document/GetDividendSchedule';
+const RESEARCH_DOCUMENTS_URL = '/sectorspdr/IDCO.Client.Spdrs.DocumentLibrary/SectorResearch/GetResearchSectorDocuments';
+const ALL_FUNDS_DOCUMENTS_URL = '/sectorspdr/IDCO.Client.Spdrs.DocumentLibrary/Document/GetAllFundsDocuments';
+const SECTORS_DOCUMENTS_URL = '/sectorspdr/IDCO.Client.Spdrs.DocumentLibrary/Document/GetSectorDocuments';
 
 const SECTOR_PROPERTIES = [
-  { symbol: 'XLE', name: 'Energy', color: '#FFCC00', icon: 'energy' },
-  { symbol: 'XLU', name: 'Utilities', color: '#F39200', icon: 'utilities' },
-  { symbol: 'XLK', name: 'Technology', color: '#B530B1', icon: 'technology' },
-  { symbol: 'XLB', name: 'Materials', color: '#8F96CB', icon: 'materials' },
-  { symbol: 'XLP', name: 'Consumer Staples', color: '#009CB4', icon: 'consumer_staples' },
-  { symbol: 'XLY', name: 'Consumer Discretionary', color: '#DEDC00', icon: 'consumer_discretionary' },
-  { symbol: 'XLI', name: 'Industrials', color: '#A3CCE4', icon: 'industrials' },
-  { symbol: 'XLV', name: 'Health_care', color: '#009FEE', icon: 'health_care' },
-  { symbol: 'XLF', name: 'Financials', color: '#AFCA0B', icon: 'financials' },
-  { symbol: 'XLRE', name: 'Real Estate', color: '#D31515', icon: 'real_estate' },
-  { symbol: 'XLC', name: 'Communications', color: '#B164A5', icon: 'communications' }
+  { symbol: 'XLE', name: 'Energy', color: '#FFCC00', icon: 'energy', startDate: '1998-12-22T04:00:00.000Z' },
+  { symbol: 'XLU', name: 'Utilities', color: '#F39200', icon: 'utilities', startDate: '1998-12-22T04:00:00.000Z' },
+  { symbol: 'XLK', name: 'Technology', color: '#B530B1', icon: 'technology', startDate: '1998-12-22T04:00:00.000Z' },
+  { symbol: 'XLB', name: 'Materials', color: '#8F96CB', icon: 'materials', startDate: '1998-12-22T04:00:00.000Z' },
+  { symbol: 'XLP', name: 'Consumer Staples', color: '#009CB4', icon: 'consumer_staples', startDate: '1998-12-22T04:00:00.000Z' },
+  { symbol: 'XLY', name: 'Consumer Discretionary', color: '#DEDC00', icon: 'consumer_discretionary', startDate: '1998-12-22T04:00:00.000Z' },
+  { symbol: 'XLI', name: 'Industrials', color: '#A3CCE4', icon: 'industrials', startDate: '1998-12-22T04:00:00.000Z' },
+  { symbol: 'XLV', name: 'Health_care', color: '#009FEE', icon: 'health_care', startDate: '1998-12-22T04:00:00.000Z' },
+  { symbol: 'XLF', name: 'Financials', color: '#AFCA0B', icon: 'financials', startDate: '1998-12-22T04:00:00.000Z' },
+  { symbol: 'XLRE', name: 'Real Estate', color: '#D31515', icon: 'real_estate', startDate: '2015-10-08T04:00:00.000Z' },
+  { symbol: 'XLC', name: 'Communications', color: '#B164A5', icon: 'communications', startDate: '2018-06-19T04:00:00.000Z' }
 
 ];
 
@@ -51,6 +58,7 @@ export class SectorSpdrService {
   public http: HttpNativeProvider | HttpAngularProvider;
   server: string;
   sectors: Sector[] = [];
+  disclaimers = {};
 
   constructor(private platform: Platform, private angularHttp: HttpAngularProvider, private nativeHttp: HttpNativeProvider) {
     if (this.platform.is('cordova')) {
@@ -65,6 +73,30 @@ export class SectorSpdrService {
 
   initialize() {
     this.getSectorsList().subscribe(sectors => this.sectors = sectors);
+
+    let titles = [
+      'All Funds Performance Disclosure',
+      'Disclaimer (Desktop)',
+      'Disclaimer (Mobile)',
+      'Disclaimer header(mobile)',
+      'Disclosure',
+      'Disclosure (Mobile)',
+      'Disclosure header(mobile)',
+      'Distributions Disclosure',
+      'Premium/Discount Disclosure',
+      'Premium/Discount Disclosure (Mobile)',
+      'Performance Pages Disclosure (Mobile)',
+      'Home Page Disclosure (Mobile)',
+      'How To Purchase (Mobile)'
+    ];
+
+    this.retreiveContents(titles).subscribe(resp => {
+      for (let title in resp) {
+        var disclaimerObj = resp[title];
+        this.disclaimers[title] = disclaimerObj['ContentHtml'];
+      }
+    });
+
   }
 
   getSectorsList(): Observable<Sector[]> {
@@ -433,6 +465,25 @@ export class SectorSpdrService {
       }))
   }
 
+  retreiveContents(titles: string[]) {
+
+    var titlesJson = [];
+    for (let title of titles) {
+      titlesJson.push( { 'Title': title });
+    }
+    let bodyparams = new URLSearchParams();
+    bodyparams.set("", JSON.stringify(titlesJson));
+
+    let headers = new HttpHeaders();
+    headers = headers.append("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+
+    var response = this.http.post(this.server + CONTENT_URL, bodyparams.toString(), {
+      headers: headers,
+     });
+    return response;
+
+  }
+
   buildUrl(url, parameters) {
     var qs = "";
     for (var key in parameters) {
@@ -484,6 +535,15 @@ export class SectorSpdrService {
     return '#DBE2E5';
   }
 
+  getStartDate(symbol: string) {
+    for (let sector of SECTOR_PROPERTIES) {
+      if (sector.symbol === symbol) {
+        return sector.startDate;
+      }
+    }
+    return '#DBE2E5';
+  }
+
   getSectorIcon(symbol: string) {
     for (let sector of SECTOR_PROPERTIES) {
       if (sector.symbol === symbol) {
@@ -500,6 +560,10 @@ export class SectorSpdrService {
       }
     }
     return '';
+  }
+
+  getDisclaimerCotent(title : string) {
+    return this.disclaimers[title];
   }
 
 }
