@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Platform, ModalController, Events, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { ThreeDeeTouch, ThreeDeeTouchQuickAction } from '@ionic-native/three-dee-touch';
+//import { ThreeDeeTouch, ThreeDeeTouchQuickAction } from '@ionic-native/three-dee-touch';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Network } from '@ionic-native/network';
@@ -10,6 +10,7 @@ import { Network } from '@ionic-native/network';
 import { TabsPage } from '../pages/tabs/tabs';
 import { NotificationsPage } from '../pages/notifications/notifications';
 
+// 3D Touch is disabled since we plan to add this code back in the near future
 @Component({
   templateUrl: 'app.html'
 })
@@ -20,7 +21,7 @@ export class SpdrApp {
   constructor(public platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
-    public threeDeeTouch: ThreeDeeTouch,
+//    public threeDeeTouch: ThreeDeeTouch,
     private modalCtrl: ModalController,
     private events: Events,
     private push: Push,
@@ -31,7 +32,7 @@ export class SpdrApp {
     platform.ready().then(() => {
       if (this.platform.is('cordova')) {
         this.initPushNotification();
-        threeDeeTouch.isAvailable().then(isAvailable => this.configureThreeDeeTouch(isAvailable));
+//        threeDeeTouch.isAvailable().then(isAvailable => this.configureThreeDeeTouch(isAvailable));
         this.initNetworkStatus();
         statusBar.styleBlackTranslucent();
         splashScreen.hide();
@@ -71,6 +72,7 @@ export class SpdrApp {
     });
   }
 
+/*
   configureThreeDeeTouch(isAvailable: boolean) {
     if (isAvailable) {
       let actions: Array<ThreeDeeTouchQuickAction> = [
@@ -103,6 +105,7 @@ export class SpdrApp {
       })
     }
   }
+*/
 
   networkNotification() {
     let toast = this.toastCtrl.create({

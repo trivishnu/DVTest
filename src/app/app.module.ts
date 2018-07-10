@@ -30,7 +30,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AppVersion } from '@ionic-native/app-version';
 import { TapticEngine } from '@ionic-native/taptic-engine';
 import { Network } from '@ionic-native/network';
-import { ThreeDeeTouch } from '@ionic-native/three-dee-touch';
+//import { ThreeDeeTouch } from '@ionic-native/three-dee-touch';
 import { Push } from '@ionic-native/push';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { HTTP } from '@ionic-native/http';
@@ -114,7 +114,7 @@ import { DirectivesModule } from '../directives/directives.module';
     AppVersion,
     TapticEngine,
     Network,
-    ThreeDeeTouch,
+//    ThreeDeeTouch,
     Push,
     NativeStorage,
     HTTP,
