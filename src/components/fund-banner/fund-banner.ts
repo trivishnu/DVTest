@@ -26,6 +26,7 @@ export class FundBannerComponent {
   sectorName: string = "";
   symbolColorClass: string = "";
   icon: string = "";
+  changeGraphics = '';
 
   constructor(private quoteService: QuoteService,
     private sectorSpdrService: SectorSpdrService) {
@@ -45,12 +46,15 @@ export class FundBannerComponent {
             var convertedDateString = new Date(Date.parse(quote.lastTimestamp)).toLocaleString(LOCAL_LANGUAGE, { timeZone: PRICE_TIMEZONE });
             this.lastTimeStamp = convertedDateString.replace('at ', '');
             this.lastDate = this.lastTimeStamp;
+            this.changeGraphics = IMAGES_ASSETS_PATH + 'icon_indicator-none-gray.svg';
 
             if (quote.change > 0) {
               this.changeClass = "positive";
+              this.changeGraphics = IMAGES_ASSETS_PATH + 'icon_indicator-up-green.svg';
             }
             else if (quote.change < 0) {
               this.changeClass = "negative";
+              this.changeGraphics = IMAGES_ASSETS_PATH + 'icon_indicator-down-red.svg';
             }
 
             this.last = quote.last;
