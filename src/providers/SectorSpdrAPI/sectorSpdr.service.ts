@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { map } from 'rxjs/operators';
 import { Platform } from 'ionic-angular';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
+import { URLSearchParams } from '@angular/http';
 
 import { HttpAngularProvider } from '../http-angular/http-angular';
 import { HttpNativeProvider } from '../http-native/http-native';
@@ -13,8 +15,6 @@ import { Dividend } from './models/dividend';
 import { FundPerformance } from './models/fund-performance';
 import { FundPerformances } from './models/fund-performances';
 import { SECTOR_SPDR_SERVER } from '../../config/config';
-import { HttpHeaders, HttpParams } from '@angular/common/http';
-import { URLSearchParams } from '@angular/http';
 
 const SECTORS_LIST_URL: string = '/sectorspdr/api/IDCO.Client.Spdrs.SectorPie/SectorPieApi';
 const FUND_DETAILS_URL: string = '/sectorspdr/api/fund-details/';
@@ -456,7 +456,7 @@ export class SectorSpdrService {
     return this.http.get(this.server + EXPENSE_RATIO_URL);
   }
 
-  
+
   getSectorEstimatedWeight(symbol: string): Observable<number> {
     return this.http.get(this.server + PIE_DATA_URL + symbol)
       .pipe(map(data => {
@@ -466,21 +466,15 @@ export class SectorSpdrService {
   }
 
   retreiveContents(titles: string[]) {
-
     var titlesJson = [];
     for (let title of titles) {
       titlesJson.push( { 'Title': title });
     }
-    let bodyparams = new URLSearchParams();
-    bodyparams.set("", JSON.stringify(titlesJson));
 
     let headers = new HttpHeaders();
-    headers = headers.append("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+    headers = headers.append("content-type", "application/x-www-form-urlencoded; charset=UTF-8");
 
-    var response = this.http.post(this.server + CONTENT_URL, bodyparams.toString(), {
-      headers: headers,
-     });
-    return response;
+    return this.http.post(this.server + CONTENT_URL, JSON.stringify(titlesJson), headers);
 
   }
 

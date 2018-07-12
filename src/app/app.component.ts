@@ -9,6 +9,7 @@ import { Network } from '@ionic-native/network';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { NotificationsPage } from '../pages/notifications/notifications';
+import { SectorSpdrService } from '../providers/SectorSpdrAPI/sectorSpdr.service';
 
 // 3D Touch is disabled since we plan to add this code back in the near future
 @Component({
@@ -27,9 +28,12 @@ export class SpdrApp {
     private push: Push,
     private nativeStorage: NativeStorage,
     private network: Network,
-    private toastCtrl: ToastController) {
+    private toastCtrl: ToastController,
+    private sectorSpdrService: SectorSpdrService) {
 
     platform.ready().then(() => {
+      sectorSpdrService.initialize();
+
       if (this.platform.is('cordova')) {
         this.initPushNotification();
 //        threeDeeTouch.isAvailable().then(isAvailable => this.configureThreeDeeTouch(isAvailable));

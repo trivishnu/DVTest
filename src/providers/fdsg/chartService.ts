@@ -23,7 +23,7 @@ export class ChartService {
         'PlotBGColor' : CHART_BG_COLOR,
         'ChartBGColor' : CHART_BG_COLOR,
     });
-  
+
     return chart;
 
   }
@@ -92,7 +92,7 @@ export class ChartService {
 
   configureChartAxes(chart) {
 
-    
+
     var yAxis = chart.getObjectById('FC_plot_Y_AXIS')
     yAxis.setAttributes([{
       level: "user",
@@ -101,7 +101,7 @@ export class ChartService {
         {id: 'Ticks', val: false},
         // {id: 'LabelPosition', val: 2},
         {id: 'TickMode', val: 2},
-        {id: 'Title', val: true},
+        {id: 'Title', val: false},
         {id: 'TitlePosition', val: 1},
         {id: 'FontAlignment', val: 1},
 //        {id: 'ThreshMin', val: 1.232323},
@@ -195,7 +195,7 @@ export class ChartService {
 
     return color;
   }
-  
+
   hexToRgb(hex) {
     // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
     var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
@@ -226,7 +226,7 @@ export class ChartService {
         return HistoricalQuotesType.OneDay;
 
       case "1W":
-        return HistoricalQuotesType.OneWeek;      
+        return HistoricalQuotesType.OneWeek;
 
       case "1M":
         return HistoricalQuotesType.OneMonth;
