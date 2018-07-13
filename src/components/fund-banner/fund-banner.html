@@ -11,8 +11,9 @@
         <div class="price">{{last | currency:'USD'}}</div>
       </ion-col>
       <ion-col>
-        <div class="price-change" [ngClass]="changeClass">{{change | priceChangeFormat }}({{changePercent | percentChangeFormat }})</div>
+        <div class="price-change" [ngClass]="changeClass">{{change | priceChangeFormat }}({{changePercent | percentChangeFormat }})
         <img [src]="changeGraphics" class="changeGraphics">
+		</div>
       </ion-col>
       <ion-col col-auto>
         <div class="volume-label">Volume</div> <div class="volume">{{volume | bigNumberFormat}}</div>
