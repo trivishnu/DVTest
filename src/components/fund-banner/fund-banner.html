@@ -7,13 +7,13 @@
       </ion-col>
     </ion-row>
     <ion-row nowrap align-items-end>
-      <ion-col col-3>
+      <ion-col col-auto>
         <div class="price">{{last | currency:'USD'}}</div>
       </ion-col>
-      <ion-col>
+      <ion-col col-6>
         <div class="price-change" [ngClass]="changeClass">{{change | priceChangeFormat }}({{changePercent | percentChangeFormat }})
-        <img [src]="changeGraphics" class="changeGraphics">
-		</div>
+          <img [src]="changeGraphics" class="changeGraphics">
+        </div>
       </ion-col>
       <ion-col col-auto>
         <div class="volume-label">Volume</div> <div class="volume">{{volume | bigNumberFormat}}</div>
