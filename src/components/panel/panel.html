@@ -1,11 +1,12 @@
 <div class="panel panel-info">
   <div class="panel-heading" (click)="toggle.emit()">
     <ion-grid>
-      <ion-row>
-        <ion-col>
-          {{title}}
+      <ion-row wrap-reverse style="height: 100%;min-height: 100%;">
+        <ion-col class="title" text-left align-self-stretch>
+          <div>{{title}}</div>
+          <div class="subtitle">{{subTitle}}</div>
         </ion-col>
-        <ion-col text-right>
+        <ion-col col-1 text-center>
           {{getToggleIndicator()}}
         </ion-col>
       </ion-row>

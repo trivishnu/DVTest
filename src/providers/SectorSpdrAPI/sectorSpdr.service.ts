@@ -300,14 +300,14 @@ export class SectorSpdrService {
         performances.performances = d.performanceItems.map(d => {
           var performance = new FundPerformance();
           performance.performanceType = d.sheetMappingId;
-          performance.oneMonth = d.oneMonth;
-          performance.latestQuarter = d.latestQuarter;
-          performance.calendarYTD = d.calendarYTD;
-          performance.annualizedOneYear = d.annualizedOneYear;
-          performance.annualizedThreeYear = d.annualizedThreeYear;
-          performance.annualizedFiveYear = d.annualizedFiveYear;
-          performance.annualizedTenYear = d.annualizedTenYear;
-          performance.annualizedInceptionToDate = d.annualizedInceptionToDate;
+          performance.oneMonth = this.numberFromPercent(d.oneMonth);
+          performance.latestQuarter = this.numberFromPercent(d.latestQuarter);
+          performance.calendarYTD = this.numberFromPercent(d.calendarYTD);
+          performance.annualizedOneYear = this.numberFromPercent(d.annualizedOneYear);
+          performance.annualizedThreeYear = this.numberFromPercent(d.annualizedThreeYear);
+          performance.annualizedFiveYear = this.numberFromPercent(d.annualizedFiveYear);
+          performance.annualizedTenYear = this.numberFromPercent(d.annualizedTenYear);
+          performance.annualizedInceptionToDate = this.numberFromPercent(d.annualizedInceptionToDate);
           performance.liquidationType = d.liquidationType;
           performance.totalReturnType = d.totalReturnType;
           return performance;
