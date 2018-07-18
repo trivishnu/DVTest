@@ -26,10 +26,12 @@ export class TrackerTilesComponent {
   }
 
   ngOnInit() {
-    this.sectorSpdrService.getDisclaimerContent('Home Page Disclosure (Mobile)')
-      .subscribe(resp => {
-        this.generalDisclaimer = resp;
-      });
+    this.platform.ready().then(() => {
+      this.sectorSpdrService.getDisclaimerContent('Home Page Disclosure (Mobile)')
+        .subscribe(resp => {
+          this.generalDisclaimer = resp;
+        });
+    });
   }
 
   ngOnChanges() {

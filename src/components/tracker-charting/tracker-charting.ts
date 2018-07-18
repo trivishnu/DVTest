@@ -56,13 +56,13 @@ export class TrackerChartingComponent {
 
 
   ngOnInit() {
-    this.sectorSpdrService.getDisclaimerContent('Home Page Disclosure (Mobile)')
-      .subscribe(resp => {
-        this.generalDisclaimer = resp;
-      });
-
     this.platform.ready().then(() => {
       this.initialize();
+
+      this.sectorSpdrService.getDisclaimerContent('Home Page Disclosure (Mobile)')
+        .subscribe(resp => {
+          this.generalDisclaimer = resp;
+        });
     });
   }
 
