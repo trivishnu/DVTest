@@ -54,6 +54,9 @@ export class FundPerformanceComponent {
           }
         }
       });
+
+    this.additionalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Performance Pages Disclosure (Mobile)');
+	  this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Home Page Disclosure (Mobile)');
   }
 
   setSelectedPerformances(performances: FundPerformance[]) {

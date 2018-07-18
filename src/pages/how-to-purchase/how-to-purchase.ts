@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SectorSpdrService } from '../../providers/SectorSpdrAPI';
 
@@ -9,8 +9,9 @@ import { SectorSpdrService } from '../../providers/SectorSpdrAPI';
   templateUrl: 'how-to-purchase.html',
 })
 export class HowToPurchasePage {
-	
-  	
+
+  @Input() symbol: string;
+  sectorName: string;  	
   generalDisclaimer: string;
 
   constructor(private sectorSpdrService: SectorSpdrService,public navCtrl: NavController, public navParams: NavParams) {
@@ -18,10 +19,15 @@ export class HowToPurchasePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HowToPurchasePage');
+   
   }
   ngOnInit() {
-	    this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('How To Purchase (Mobile)');
-       
-   }
+    var sector = this.sectorSpdrService.getSectorInfo(this.symbol);
+    if (sector !== undefined) {
+      this.sectorName = sector.sectorName;
+       }  
+    this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('How To Purchase (Mobile)');
+    
+ }
 
 }

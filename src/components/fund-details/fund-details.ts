@@ -20,7 +20,6 @@ export class FundDetailsComponent {
   sectorDividerClass: string;
   sectorButtonClass: string;
   sectorColor: string;
-
   sectorName: string;
   description: string;
   weight: number;
