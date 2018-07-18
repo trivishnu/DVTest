@@ -10,10 +10,13 @@ export class ContactPage {
 
   generalDisclaimer: string;
 
-  constructor(public navCtrl: NavController,private sectorSpdrService: SectorSpdrService) {
+  constructor(public navCtrl: NavController, private sectorSpdrService: SectorSpdrService) {
 
   }
   ngOnInit() {
-  this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Home Page Disclosure (Mobile)');
+    this.sectorSpdrService.getDisclaimerContent('Home Page Disclosure (Mobile)')
+      .subscribe(resp => {
+        this.generalDisclaimer = resp;
+      });
   }
 }

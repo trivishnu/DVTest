@@ -14,7 +14,7 @@ declare var FDSChartJS: any;
 export class FundChartingComponent {
 
   @Input() symbol: string;
-  sectorSymbol : string;
+  sectorSymbol: string;
 
   chartType: string;
   chart: any;
@@ -24,8 +24,8 @@ export class FundChartingComponent {
   windowWidth: any;
   quoteParams: any;
 
-  sAndPSeries : any;
-  sectorSeries : any;
+  sAndPSeries: any;
+  sectorSeries: any;
 
   color = "#000000";
   lastValue = 0.0;
@@ -43,21 +43,24 @@ export class FundChartingComponent {
     private quoteService: QuoteService,
     private platform: Platform,
     private elementRef: ElementRef) {
-      this.windowWidth = platform.width() * 0.95;
-      this.windowHeight = platform.height() * 0.25;
+    this.windowWidth = platform.width() * 0.95;
+    this.windowHeight = platform.height() * 0.25;
   }
 
   ngOnInit() {
+    this.sectorSpdrService.getDisclaimerContent('Home Page Disclosure (Mobile)')
+      .subscribe(resp => {
+        this.generalDisclaimer = resp;
+      });
+      
     this.color = this.sectorSpdrService.getSectorColor(this.symbol);
     this.sectorSymbol = this.symbol.toLowerCase();
     this.setupChart();
     this.setChartType("Today");
     this.updateChart();
-
-    this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Home Page Disclosure (Mobile)');
   }
 
-    
+
   setupChart() {
 
     var chartDiv = this.elementRef.nativeElement.querySelector('#sectorChart');
@@ -70,7 +73,7 @@ export class FundChartingComponent {
 
     this.sAndPSeries = this.getChartSeries("S&P500");
     this.sectorSeries = this.getChartSeries(this.symbol);
-    
+
     this.plot.addSeries(this.sAndPSeries);
     this.plot.addSeries(this.sectorSeries);
 
@@ -101,7 +104,7 @@ export class FundChartingComponent {
     this.chartType = type;
     var historicalQuoteType = this.chartService.getHistoricalQuoteTypeFromTimeline(this.chartType);
     this.quoteParams = this.quoteService.getHistoricaDataParameters(historicalQuoteType);
-    if( this.chartType === "Max.") {
+    if (this.chartType === "Max.") {
       var startDate = this.sectorSpdrService.getStartDate(this.symbol);
       this.quoteParams.start = startDate;
     }
@@ -118,60 +121,60 @@ export class FundChartingComponent {
   updateSAndPOnChart() {
 
     this.quoteService.getHistoricalQuotes(S_AND_P_ID_NOTATION, this.quoteParams.start, this.quoteParams.end, this.quoteParams.resolution)
-    .subscribe(historicalQuotes => {
+      .subscribe(historicalQuotes => {
 
-      var labels = historicalQuotes.data.map(p => this.chartService.getChartTime(p.lastTimestamp));
-      var values = [];
-      if( historicalQuotes.data.length > 0 ) {
-        this.lastSAndPValue = historicalQuotes.data[historicalQuotes.data.length-1].last;
+        var labels = historicalQuotes.data.map(p => this.chartService.getChartTime(p.lastTimestamp));
+        var values = [];
+        if (historicalQuotes.data.length > 0) {
+          this.lastSAndPValue = historicalQuotes.data[historicalQuotes.data.length - 1].last;
 
-        var firstValue = historicalQuotes.data[0].last;
-        values = historicalQuotes.data.map(p => this.chartService.getPercentageChange(firstValue, p.last));
+          var firstValue = historicalQuotes.data[0].last;
+          values = historicalQuotes.data.map(p => this.chartService.getPercentageChange(firstValue, p.last));
 
-        this.sAndPChangePercent = values[values.length-1];
-        if (this.sAndPChangePercent > 0) {
-          this.sSAndPChangeClass = "positive";
+          this.sAndPChangePercent = values[values.length - 1];
+          if (this.sAndPChangePercent > 0) {
+            this.sSAndPChangeClass = "positive";
+          }
+          else if (this.changePercent < 0) {
+            this.sSAndPChangeClass = "negative";
+          }
         }
-        else if (this.changePercent < 0) {
-          this.sSAndPChangeClass = "negative";
-        }
-      }
 
-      this.sAndPSeries.getData().x.replace(0, labels);
-      this.sAndPSeries.getData().y.replace(0, values);
+        this.sAndPSeries.getData().x.replace(0, labels);
+        this.sAndPSeries.getData().y.replace(0, values);
 
-      this.chart.invalidate();
-    });
-    
+        this.chart.invalidate();
+      });
+
   }
 
   updateSectorOnChart() {
 
     this.quoteService.getHistoricalQuotes("US:" + this.symbol, this.quoteParams.start, this.quoteParams.end, this.quoteParams.resolution)
-    .subscribe(historicalQuotes => {
+      .subscribe(historicalQuotes => {
 
-      var labels = historicalQuotes.data.map(p => this.chartService.getChartTime(p.lastTimestamp));
-      var values = [];
-      if( historicalQuotes.data.length > 0 ) {
-        this.lastValue = historicalQuotes.data[historicalQuotes.data.length-1].last;
-        var firstValue = historicalQuotes.data[0].last;
-        values = historicalQuotes.data.map(p => this.chartService.getPercentageChange(firstValue, p.last));
-        this.changePercent = values[values.length-1];
-        if (this.changePercent > 0) {
-          this.changeClass = "positive";
+        var labels = historicalQuotes.data.map(p => this.chartService.getChartTime(p.lastTimestamp));
+        var values = [];
+        if (historicalQuotes.data.length > 0) {
+          this.lastValue = historicalQuotes.data[historicalQuotes.data.length - 1].last;
+          var firstValue = historicalQuotes.data[0].last;
+          values = historicalQuotes.data.map(p => this.chartService.getPercentageChange(firstValue, p.last));
+          this.changePercent = values[values.length - 1];
+          if (this.changePercent > 0) {
+            this.changeClass = "positive";
+          }
+          else if (this.changePercent < 0) {
+            this.changeClass = "negative";
+          }
+
         }
-        else if (this.changePercent < 0) {
-          this.changeClass = "negative";
-        }
 
-      }
+        this.sectorSeries.getData().x.replace(0, labels);
+        this.sectorSeries.getData().y.replace(0, values);
 
-      this.sectorSeries.getData().x.replace(0, labels);
-      this.sectorSeries.getData().y.replace(0, values);
+        this.chart.invalidate();
+      });
 
-      this.chart.invalidate();
-    });
-    
   }
 
   fundTimelineChanged(timeline) {

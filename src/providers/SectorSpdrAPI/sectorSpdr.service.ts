@@ -58,7 +58,8 @@ export class SectorSpdrService {
   public http: HttpNativeProvider | HttpAngularProvider;
   server: string;
   sectors: Sector[] = [];
-  disclaimers = {};
+  disclaimers;
+  titles: string[] = [];
 
   constructor(private platform: Platform, private angularHttp: HttpAngularProvider, private nativeHttp: HttpNativeProvider) {
     if (this.platform.is('cordova')) {
@@ -69,12 +70,8 @@ export class SectorSpdrService {
       this.server = '';
       this.http = this.angularHttp;
     }
-  }
 
-  initialize() {
-    this.getSectorsList().subscribe(sectors => this.sectors = sectors);
-
-    let titles = [
+    this.titles = [
       'All Funds Performance Disclosure',
       'Disclaimer (Desktop)',
       'Disclaimer (Mobile)',
@@ -89,14 +86,10 @@ export class SectorSpdrService {
       'Home Page Disclosure (Mobile)',
       'How To Purchase (Mobile)'
     ];
+  }
 
-    this.retreiveContents(titles).subscribe(resp => {
-      for (let title in resp) {
-        var disclaimerObj = resp[title];
-        this.disclaimers[title] = disclaimerObj['ContentHtml'];
-      }
-    });
-
+  initialize() {
+    this.getSectorsList().subscribe(sectors => this.sectors = sectors);
   }
 
   getSectorsList(): Observable<Sector[]> {
@@ -218,7 +211,7 @@ export class SectorSpdrService {
           var displayName = s.DisplayName as String;
           var startIndex = displayName.indexOf(" (");
           sectorTracker.displayName = displayName.substring(0, startIndex);
-//          sectorTracker.displayName = s.DisplayName;
+          //          sectorTracker.displayName = s.DisplayName;
           sectorTracker.changePercent = this.numberFromPercent(s.ChangeString);
           sectorTracker.change = s.Change;
           return sectorTracker;
@@ -465,19 +458,6 @@ export class SectorSpdrService {
       }))
   }
 
-  retreiveContents(titles: string[]) {
-    var titlesJson = [];
-    for (let title of titles) {
-      titlesJson.push( { 'Title': title });
-    }
-
-    let headers = new HttpHeaders();
-    headers = headers.append("content-type", "application/x-www-form-urlencoded; charset=UTF-8");
-
-    return this.http.post(this.server + CONTENT_URL, JSON.stringify(titlesJson), headers);
-
-  }
-
   buildUrl(url, parameters) {
     var qs = "";
     for (var key in parameters) {
@@ -556,8 +536,31 @@ export class SectorSpdrService {
     return '';
   }
 
-  getDisclaimerCotent(title : string) {
-    return this.disclaimers[title];
+  getDisclaimerContent(title: string): Observable<string> {
+    if (this.disclaimers) {
+      return Observable.of(this.disclaimers[title]);
+    } else {
+      var titlesJson = [];
+      for (let title of this.titles) {
+        titlesJson.push({ 'Title': title });
+      }
+
+      let headers = new HttpHeaders();
+      headers = headers.append("content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+
+      return this.http
+        .post(this.server + CONTENT_URL, JSON.stringify(titlesJson), headers)
+        .map(resp => {
+          this.disclaimers = {};
+          
+          for (let title in resp) {
+            var disclaimerObj = resp[title];
+            this.disclaimers[title] = disclaimerObj['ContentHtml'];
+          }
+
+          return this.disclaimers[title];
+        });
+    }
   }
 
 }

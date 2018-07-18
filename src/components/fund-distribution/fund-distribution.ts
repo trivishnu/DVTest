@@ -11,17 +11,17 @@ import { DocumentViewPage } from '../../pages/document-view/document-view';
 })
 export class FundDistributionComponent {
 
-  @Input() symbol : string;
+  @Input() symbol: string;
 
   dividendDistributions: DividendDistribution[] = [];
   distributionYearIndex = 0;
   dividendYearIndex = 0;
-  selectedDistribution : DividendDistribution;
-  selectedDividends : Dividend[];
+  selectedDistribution: DividendDistribution;
+  selectedDividends: Dividend[];
   generalDisclaimer: string;
   additionalDisclaimer: string;
 
-  dividendScheduleDocument : FundDocument;
+  dividendScheduleDocument: FundDocument;
 
   constructor(public navCtrl: NavController, private sectorSpdrService: SectorSpdrService) {
   }
@@ -29,24 +29,32 @@ export class FundDistributionComponent {
   ngOnInit() {
 
     this.sectorSpdrService.getDividendDistributions(this.symbol)
-    .subscribe(resp => {
-      this.dividendDistributions = resp;
+      .subscribe(resp => {
+        this.dividendDistributions = resp;
 
-      if( this.dividendDistributions.length >  0 ) {
-        this.selectedDistribution = this.dividendDistributions[this.distributionYearIndex];
-        this.selectedDividends = this.dividendDistributions[this.dividendYearIndex].dividends;
-      }
-    });
+        if (this.dividendDistributions.length > 0) {
+          this.selectedDistribution = this.dividendDistributions[this.distributionYearIndex];
+          this.selectedDividends = this.dividendDistributions[this.dividendYearIndex].dividends;
+        }
+      });
 
     this.sectorSpdrService.getDividendsScheduleDocuments()
-    .subscribe(scheduleDocuments => {
+      .subscribe(scheduleDocuments => {
 
-      if( scheduleDocuments.length > 0) {
-        this.dividendScheduleDocument = scheduleDocuments[0];
-      }
-    });
-	this.additionalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Distributions Disclosure');
-	this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Home Page Disclosure (Mobile)');
+        if (scheduleDocuments.length > 0) {
+          this.dividendScheduleDocument = scheduleDocuments[0];
+        }
+      });
+
+    this.sectorSpdrService.getDisclaimerContent('Home Page Disclosure (Mobile)')
+      .subscribe(resp => {
+        this.generalDisclaimer = resp;
+      });
+
+    this.sectorSpdrService.getDisclaimerContent('Distributions Disclosure')
+      .subscribe(resp => {
+        this.additionalDisclaimer = resp;
+      });
 
   }
 
@@ -55,26 +63,26 @@ export class FundDistributionComponent {
   }
 
   dividendYearChange(val: any) {
-    if( this.dividendYearIndex == 100 ) {
-      let lastFourDividends : Dividend[] = [];
+    if (this.dividendYearIndex == 100) {
+      let lastFourDividends: Dividend[] = [];
 
-      for ( var i = 0; i < this.dividendDistributions.length; i++) { 
-        for ( var j = 0; j < this.dividendDistributions[i].dividends.length; j++) { 
+      for (var i = 0; i < this.dividendDistributions.length; i++) {
+        for (var j = 0; j < this.dividendDistributions[i].dividends.length; j++) {
           lastFourDividends.push(this.dividendDistributions[i].dividends[j]);
-          if( lastFourDividends.length > 3) {
+          if (lastFourDividends.length > 3) {
             break;
           }
         }
-        if( lastFourDividends.length > 3) {
+        if (lastFourDividends.length > 3) {
           break;
         }
       }
 
-      // for ( var i = 0; i < this.dividendDistributions[0].dividends.length; i++) { 
+      // for ( var i = 0; i < this.dividendDistributions[0].dividends.length; i++) {
       //   lastFourDividends.push(this.dividendDistributions[0].dividends[i]);
       // }
       // if( lastFourDividends.length < 4 && this.selectedDividends.length > 1  ) {
-      //   for ( var i = 0; i < 4 - lastFourDividends.length && i < this.dividendDistributions[1].dividends.length; i++) { 
+      //   for ( var i = 0; i < 4 - lastFourDividends.length && i < this.dividendDistributions[1].dividends.length; i++) {
       //     lastFourDividends.push(this.dividendDistributions[0].dividends[i]);
       //   }
       // }
@@ -85,7 +93,7 @@ export class FundDistributionComponent {
     }
   }
 
-  documentSelected(document : FundDocument) {
+  documentSelected(document: FundDocument) {
 
     this.navCtrl.push(DocumentViewPage, {
       title: document.title,

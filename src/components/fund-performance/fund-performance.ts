@@ -16,7 +16,7 @@ export class FundPerformanceComponent {
   performanceTypes: string[] = [];
   selectedPerformances: FundPerformance[];
   performancePeriod: string = "Month";
-  performanceDate : string = "";
+  performanceDate: string = "";
   generalDisclaimer: string;
   additionalDisclaimer: string;
 
@@ -31,7 +31,6 @@ export class FundPerformanceComponent {
   }
 
   ngOnInit() {
-
     this.sectorSpdrService.getMonthEndPerformances(this.symbol)
       .subscribe(resp => {
         this.monthEndPerformances = resp;
@@ -55,8 +54,15 @@ export class FundPerformanceComponent {
         }
       });
 
-    this.additionalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Performance Pages Disclosure (Mobile)');
-	  this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Home Page Disclosure (Mobile)');
+    this.sectorSpdrService.getDisclaimerContent('Performance Pages Disclosure (Mobile)')
+      .subscribe(resp => {
+        this.additionalDisclaimer = resp;
+      });
+
+    this.sectorSpdrService.getDisclaimerContent('Home Page Disclosure (Mobile)')
+      .subscribe(resp => {
+        this.generalDisclaimer = resp;
+      });
   }
 
   setSelectedPerformances(performances: FundPerformance[]) {

@@ -11,23 +11,28 @@ import { SectorSpdrService } from '../../providers/SectorSpdrAPI';
 export class HowToPurchasePage {
 
   @Input() symbol: string;
-  sectorName: string;  	
+  sectorName: string;
   generalDisclaimer: string;
 
-  constructor(private sectorSpdrService: SectorSpdrService,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private sectorSpdrService: SectorSpdrService, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HowToPurchasePage');
-   
+
   }
+
   ngOnInit() {
     var sector = this.sectorSpdrService.getSectorInfo(this.symbol);
     if (sector !== undefined) {
       this.sectorName = sector.sectorName;
-       }  
-    this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('How To Purchase (Mobile)');
-    
- }
+    }
+
+    this.sectorSpdrService.getDisclaimerContent('How To Purchase (Mobile)')
+      .subscribe(resp => {
+        this.generalDisclaimer = resp;
+      });
+
+  }
 
 }

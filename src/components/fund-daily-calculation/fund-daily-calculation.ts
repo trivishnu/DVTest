@@ -7,9 +7,9 @@ import { SectorSpdrService, DailyCalculation } from '../../providers/SectorSpdrA
 })
 export class FundDailyCalculationComponent {
 
-  @Input() symbol : string;
+  @Input() symbol: string;
 
-  dailyCalculation : DailyCalculation;
+  dailyCalculation: DailyCalculation;
   generalDisclaimer: string;
   additionalDisclaimer: string;
 
@@ -17,12 +17,19 @@ export class FundDailyCalculationComponent {
   }
 
   ngOnInit() {
-
     this.sectorSpdrService.getDailyCalculation(this.symbol)
-    .subscribe(resp => {
-     this.dailyCalculation = resp;
-    });
-	this.additionalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Premium/Discount Disclosure (Mobile)');
-    this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Home Page Disclosure (Mobile)');
+      .subscribe(resp => {
+        this.dailyCalculation = resp;
+      });
+
+    this.sectorSpdrService.getDisclaimerContent('Home Page Disclosure (Mobile)')
+      .subscribe(resp => {
+        this.generalDisclaimer = resp;
+      });
+
+    this.sectorSpdrService.getDisclaimerContent('Premium/Discount Disclosure (Mobile)')
+      .subscribe(resp => {
+        this.additionalDisclaimer = resp;
+      });
   }
 }

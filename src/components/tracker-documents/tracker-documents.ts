@@ -10,11 +10,15 @@ export class TrackerDocumentsComponent {
   text: string;
   generalDisclaimer: string;
 
-  constructor( private sectorSpdrService: SectorSpdrService) {
+  constructor(private sectorSpdrService: SectorSpdrService) {
     this.text = 'Document Component';
   }
+  
   ngOnInit() {
-	   this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Home Page Disclosure (Mobile)');
+    this.sectorSpdrService.getDisclaimerContent('Home Page Disclosure (Mobile)')
+      .subscribe(resp => {
+        this.generalDisclaimer = resp;
+      });
   }
 
 }

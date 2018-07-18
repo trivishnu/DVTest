@@ -9,11 +9,11 @@ import { SectorSpdrService, Holding, SectorHoldings } from '../../providers/Sect
 })
 export class FundHoldingsComponent {
 
-  @Input() symbol : string;
+  @Input() symbol: string;
 
-  asOfDate : string;
-  asOfTime : string;
-  holdings : Holding[] = [];
+  asOfDate: string;
+  asOfTime: string;
+  holdings: Holding[] = [];
   titleClass: string = "";
   generalDisclaimer: string;
 
@@ -23,17 +23,20 @@ export class FundHoldingsComponent {
 
   ngOnInit() {
     this.titleClass = this.symbol.toLowerCase();
-    
+
     this.sectorSpdrService.getFundHoldings(this.symbol)
-    .subscribe(resp => {
-      this.updateFields(resp);
-    });
-   
-   this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Home Page Disclosure (Mobile)');
+      .subscribe(resp => {
+        this.updateFields(resp);
+      });
+      
+    this.sectorSpdrService.getDisclaimerContent('Home Page Disclosure (Mobile)')
+      .subscribe(resp => {
+        this.generalDisclaimer = resp;
+      });
   }
 
 
-  updateFields(sectorHoldings : SectorHoldings) {
+  updateFields(sectorHoldings: SectorHoldings) {
 
     this.asOfDate = sectorHoldings.asOfDate;
     this.asOfTime = sectorHoldings.asOfTime;

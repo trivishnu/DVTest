@@ -25,7 +25,11 @@ export class FundDocumentsComponent {
       .subscribe(resp =>
         this.documents = resp
       );
-	this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Home Page Disclosure (Mobile)');
+
+    this.sectorSpdrService.getDisclaimerContent('Home Page Disclosure (Mobile)')
+      .subscribe(resp => {
+        this.generalDisclaimer = resp;
+      });
   }
 
   documentSelected(document: FundDocument) {

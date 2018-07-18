@@ -16,8 +16,10 @@ export class FundNewsComponent {
   }
 
   ngOnInit() {
-	this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Home Page Disclosure (Mobile)');
-
+    this.sectorSpdrService.getDisclaimerContent('Home Page Disclosure (Mobile)')
+      .subscribe(resp => {
+        this.generalDisclaimer = resp;
+      });
   }
 
   updateFields(fundDetails: FundDetails) {
