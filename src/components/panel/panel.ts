@@ -7,6 +7,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class PanelComponent {
   @Input() opened = false;
   @Input() title: string;
+  @Input() subTitle: string;
   @Output() toggle: EventEmitter<any> = new EventEmitter<any>();
 
   public getToggleIndicator(){

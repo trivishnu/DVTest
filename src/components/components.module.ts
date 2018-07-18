@@ -26,6 +26,7 @@ import { AccordionComponent } from './accordion/accordion';
 import { SelectorSectorChartComponent } from './selector-sector-chart/selector-sector-chart';
 import { RowSectorTrackerComponent } from './row-sector-tracker/row-sector-tracker';
 import { ChartTimelineComponent } from './chart-timeline/chart-timeline';
+import { PerformanceChartComponent } from './performance-chart/performance-chart';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { ChartTimelineComponent } from './chart-timeline/chart-timeline';
     AccordionComponent,
     SelectorSectorChartComponent,
     RowSectorTrackerComponent,
-    ChartTimelineComponent
+    ChartTimelineComponent,
+    PerformanceChartComponent
   ],
   imports: [
     IonicModule,
@@ -81,7 +83,8 @@ import { ChartTimelineComponent } from './chart-timeline/chart-timeline';
     AccordionComponent,
     SelectorSectorChartComponent,
     RowSectorTrackerComponent,
-    ChartTimelineComponent
+    ChartTimelineComponent,
+    PerformanceChartComponent
   ]
 })
 export class ComponentsModule { }

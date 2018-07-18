@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { SectorSpdrService, FundPerformances } from '../../providers/SectorSpdrAPI';
 import { FundPerformance } from '../../providers/SectorSpdrAPI/models/fund-performance';
-import { Console } from '@angular/core/src/console';
 
 
 @Component({
@@ -12,83 +11,69 @@ export class FundPerformanceComponent {
 
 
   @Input() symbol: string;
-  performances: FundPerformances;
   quarterEndPerformances: FundPerformances;
   monthEndPerformances: FundPerformances;
-  performanceTypeIndex: number = 0;
   performanceTypes: string[] = [];
-  selectedPerformance: FundPerformance;
-  performancePeriod: string = "Quarter";
+  
+  selectedPerformances: FundPerformance[];
+  performancePeriod: string = "Month";
+  performanceDate : string = "";
 
   constructor(private sectorSpdrService: SectorSpdrService) {
+
+    this.performanceTypes.push("Total Returns(Net Asset Value)");
+    this.performanceTypes.push("Total Returns(Market Close)");
+    this.performanceTypes.push("After-Tax Pre-Liquidation Total Returns (Net Asset Value)");
+    this.performanceTypes.push("After-Tax Post-Liquidation Total Returns (Net Asset Value)");
+
   }
 
   ngOnInit() {
-    this.sectorSpdrService.getQuarterEndPerformances(this.symbol)
-      .subscribe(resp => {
-        this.quarterEndPerformances = resp;
-
-        if (this.quarterEndPerformances.performances.length > 0) {
-          for (var i = 0; i < this.quarterEndPerformances.performances.length; i++) {
-            var performance = this.quarterEndPerformances.performances[i];
-            var performanceType = "";
-            if (performance.liquidationType == null) {
-              performanceType = "Total Returns";
-            }
-            else {
-              performanceType = performance.liquidationType;
-            }
-            performanceType = performanceType.concat(" (" + performance.totalReturnType + ")");
-            this.performanceTypes.push(performanceType);
-          }
-
-          if (this.performancePeriod == "Quarter") {
-            this.performances = this.quarterEndPerformances;
-            this.selectedPerformance = this.performances.performances[this.performanceTypeIndex];
-          }
-        }
-
-      });
 
     this.sectorSpdrService.getMonthEndPerformances(this.symbol)
       .subscribe(resp => {
         this.monthEndPerformances = resp;
-
         if (this.monthEndPerformances.performances.length > 0) {
-          for (var i = 0; i < this.monthEndPerformances.performances.length; i++) {
-            var performance = this.monthEndPerformances.performances[i];
-            var performanceType = "";
-            if (performance.liquidationType == null) {
-              performanceType = "Total Returns";
-            }
-            else {
-              performanceType = performance.liquidationType;
-            }
-            performanceType = performanceType.concat(" (" + performance.totalReturnType + ")");
-            this.performanceTypes.push(performanceType);
-          }
-
           if (this.performancePeriod == "Month") {
-            this.performances = this.monthEndPerformances;
-            this.selectedPerformance = this.performances.performances[this.performanceTypeIndex];
+            this.setSelectedPerformances(this.monthEndPerformances.performances);
+            this.performanceDate = "(" + this.monthEndPerformances.asOfDate + ")";
           }
         }
 
       });
+
+    this.sectorSpdrService.getQuarterEndPerformances(this.symbol)
+      .subscribe(resp => {
+        this.quarterEndPerformances = resp;
+        if (this.quarterEndPerformances.performances.length > 0) {
+          if (this.performancePeriod == "Quarter") {
+            this.setSelectedPerformances(this.quarterEndPerformances.performances);
+            this.performanceDate = "(" + this.quarterEndPerformances.asOfDate + ")";
+          }
+        }
+      });
   }
 
-  onPerformanceTypeChange(val: any) {
-    this.selectedPerformance = this.performances.performances[this.performanceTypeIndex];
+  setSelectedPerformances(performances: FundPerformance[]) {
+
+    this.selectedPerformances = [];
+    for (var i = 0; i < performances.length; i++) {
+      var performance = performances[i];
+      this.selectedPerformances.push(performance);
+    }
+
   }
 
   onPerformancePeriodChange() {
+
     if (this.performancePeriod == "Quarter") {
-      this.performances = this.quarterEndPerformances;
+      this.setSelectedPerformances(this.quarterEndPerformances.performances);
+      this.performanceDate = "(" + this.quarterEndPerformances.asOfDate + ")";
     }
     else if (this.performancePeriod == "Month") {
-      this.performances = this.monthEndPerformances;
+      this.setSelectedPerformances(this.monthEndPerformances.performances);
+      this.performanceDate = "(" + this.monthEndPerformances.asOfDate + ")";
     }
-    this.selectedPerformance = this.performances.performances[this.performanceTypeIndex];
   }
 
 }

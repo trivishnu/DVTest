@@ -12,7 +12,7 @@ export class ChartService {
 
     var chart = new FDSChartJS(chartDiv, {
       appName: 'fdsg-app',
-      theme: 2,
+      theme: 4,
       disableLogging: true,
       height: height,
       width: width
@@ -26,6 +26,14 @@ export class ChartService {
 
     return chart;
 
+  }
+
+  setChartColor(chart, color: number) {
+    chart.setAttributes({
+      'CanvasBGColor' : color,
+      'PlotBGColor' : color,
+      'ChartBGColor' : color,
+    });
   }
 
   getChartPlot(chart) {
@@ -59,7 +67,8 @@ export class ChartService {
       'XMinorUnitStart': '---3-30-0', // Second day starts at 3:30AM when auto detection is off
       'XGrid' : false,
       'PlotFGStyle' : 5,
-      'YLabelFormat' : '#1.1F%'
+      'YLabelFormat' : '#1.1F%',
+      'YReference' : 0
     });
 
 
@@ -105,23 +114,23 @@ export class ChartService {
         {id: 'TitlePosition', val: 1},
         {id: 'FontAlignment', val: 1},
 //        {id: 'ThreshMin', val: 1.232323},
-        // {id: 'FontColor', val: 0xFF00},     // Labels color
-        // {id: 'GridFGColor', val: 0xFF00},    // Grid color
+        {id: 'FontColor', val: 0xFFFFFF},     // Labels color
+        {id: 'GridFGColor', val: 0xA9A9A9},    // Grid color
 //        {id: 'TicksFGColor', val: 0xFF00FF},  // Ticks color
         // {id: 'AxisFGColor', val: 0xFF00},   // Right Axis Color
-        // {id: 'CrosshairsLabelFontColor', val: 0xFF00},
-        // {id: 'CrosshairsLabelTextBoxBGColor', val: 0xFF00},
-        // {id: 'CrosshairsLabelTextBoxBGGradientColor', val: 0xFF00},
-        // {id: 'CrosshairsLabelTextBoxFGColor', val: 0xFF00},
-        // {id: 'Font2Color', val: 0xFF00},
-        // {id: 'IntradayScaleMajorUnitBGColor', val: 0xFF00},
-        // {id: 'IntradayScaleMajorUnitBGGradientColor', val: 0xFF00},
-        // {id: 'MinorGridFGColor', val: 0xFF0000},
-        // {id: 'OutlierIndicatorBGColor', val: 0xFF0000},
-        // {id: 'OutlierIndicatorBGGradientColor', val: 0xFF0000},
-        // {id: 'OutlierIndicatorFGColor', val: 0xFF0000},
+        // {id: 'CrosshairsLabelFontColor', val: 0xFF00FF},
+        // {id: 'CrosshairsLabelTextBoxBGColor', val: 0xFF00FF},
+        // {id: 'CrosshairsLabelTextBoxBGGradientColor', val: 0xFF00FF},
+        // {id: 'CrosshairsLabelTextBoxFGColor', val: 0xFF00FF},
+        // {id: 'Font2Color', val: 0xFF00FF},
+        // {id: 'IntradayScaleMajorUnitBGColor', val: 0xFF00FF},
+        // {id: 'IntradayScaleMajorUnitBGGradientColor', val: 0xFF00FF},
+        // {id: 'MinorGridFGColor', val: 0xFF00FF},
+        // {id: 'OutlierIndicatorBGColor', val: 0xFF00FF},
+        // {id: 'OutlierIndicatorBGGradientColor', val: 0xFF00FF},
+        // {id: 'OutlierIndicatorFGColor', val: 0xFF00FF},
         // {id: 'ReferenceLineFGColor', val: 0xFF0000},
-        // {id: 'TitleFontColor', val: 0xFF0000},
+        // {id: 'TitleFontColor', val: 0xFF00FF},
         // {id: 'TickOffset', val: 50},
       ]
     }]);
@@ -131,6 +140,8 @@ export class ChartService {
       level: "user",
       attrs: [
         {id: 'Grid', val: false},
+        {id: 'FontColor', val: 0xFFFFFF},     // Labels color
+        {id: 'GridFGColor', val: 0xA9A9A9},    // Grid color
       ]
     }]);
 
