@@ -14,10 +14,12 @@ export class FundPerformanceComponent {
   quarterEndPerformances: FundPerformances;
   monthEndPerformances: FundPerformances;
   performanceTypes: string[] = [];
-  
   selectedPerformances: FundPerformance[];
   performancePeriod: string = "Month";
   performanceDate : string = "";
+  generalDisclaimer: string;
+  additionalDisclaimer: string;
+
 
   constructor(private sectorSpdrService: SectorSpdrService) {
 

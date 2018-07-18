@@ -18,6 +18,8 @@ export class FundDistributionComponent {
   dividendYearIndex = 0;
   selectedDistribution : DividendDistribution;
   selectedDividends : Dividend[];
+  generalDisclaimer: string;
+  additionalDisclaimer: string;
 
   dividendScheduleDocument : FundDocument;
 
@@ -43,6 +45,8 @@ export class FundDistributionComponent {
         this.dividendScheduleDocument = scheduleDocuments[0];
       }
     });
+	this.additionalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Distributions Disclosure');
+	this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Home Page Disclosure (Mobile)');
 
   }
 

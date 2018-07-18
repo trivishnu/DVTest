@@ -11,7 +11,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 export class FundDocumentsComponent {
 
   @Input() symbol: string;
-
+  generalDisclaimer: string;
   documents: FundDocument[] = [];
   documentViewPage = DocumentViewPage;
 
@@ -25,6 +25,7 @@ export class FundDocumentsComponent {
       .subscribe(resp =>
         this.documents = resp
       );
+	this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Home Page Disclosure (Mobile)');
   }
 
   documentSelected(document: FundDocument) {

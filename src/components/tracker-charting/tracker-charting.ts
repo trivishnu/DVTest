@@ -59,6 +59,7 @@ export class TrackerChartingComponent {
     this.platform.ready().then(() => {
       this.initialize();
     });
+	this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Disclaimer header(mobile)');
   }
 
   initialize() {

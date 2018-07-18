@@ -1,3 +1,4 @@
+<ion-scroll scrollY="true">
 <div *ngIf="dailyCalculation !== undefined">
   <ion-list padding>
     <ion-list-header color="secondary">
@@ -33,3 +34,7 @@
     </ion-item>
   </ion-list>
 </div>
+<div  [innerHTML]="additionalDisclaimer" class='disclaimer' padding></div>
+	<hr>
+ <div  [innerHTML]="generalDisclaimer" class='disclaimer' padding></div>
+</ion-scroll>

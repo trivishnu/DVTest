@@ -10,6 +10,8 @@ export class FundDailyCalculationComponent {
   @Input() symbol : string;
 
   dailyCalculation : DailyCalculation;
+  generalDisclaimer: string;
+  additionalDisclaimer: string;
 
   constructor(private sectorSpdrService: SectorSpdrService) {
   }
@@ -20,6 +22,7 @@ export class FundDailyCalculationComponent {
     .subscribe(resp => {
      this.dailyCalculation = resp;
     });
-
+	this.additionalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Premium/Discount Disclosure (Mobile)');
+    this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Home Page Disclosure (Mobile)');
   }
 }

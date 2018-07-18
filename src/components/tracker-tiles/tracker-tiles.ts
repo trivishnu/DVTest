@@ -15,6 +15,8 @@ export class TrackerTilesComponent {
   sectorTrackers: SectorTracker[] = [];
   sAndPTracker = new SectorTracker();
   rows: number[];
+  generalDisclaimer: string;
+
 
   constructor(
     public navCtrl: NavController,
@@ -22,7 +24,9 @@ export class TrackerTilesComponent {
     private sectorSpdrService: SectorSpdrService,
     private platform: Platform) {
   }
-
+  ngOnInit() {	  
+   this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Home Page Disclosure (Mobile)');
+  }
   ngOnChanges() {
     this.platform.ready().then(() => {
       this.loadSectorData();

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
 import { DetailPage } from '../detail/detail';
+import { SectorSpdrService } from '../../providers/SectorSpdrAPI';
 
 @IonicPage()
 @Component({
@@ -9,8 +9,16 @@ import { DetailPage } from '../detail/detail';
   templateUrl: 'education.html',
 })
 export class EducationPage {
-
-  constructor() {
+	
+	
+  generalDisclaimer: string;
+	
+	
+  constructor(private sectorSpdrService: SectorSpdrService) {
   }
-
+   
+    ngOnInit() {
+	    this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Home Page Disclosure (Mobile)');
+       
+   }
 }

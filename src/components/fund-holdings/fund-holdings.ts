@@ -15,6 +15,8 @@ export class FundHoldingsComponent {
   asOfTime : string;
   holdings : Holding[] = [];
   titleClass: string = "";
+  generalDisclaimer: string;
+
 
   constructor(private sectorSpdrService: SectorSpdrService) {
   }
@@ -26,7 +28,8 @@ export class FundHoldingsComponent {
     .subscribe(resp => {
       this.updateFields(resp);
     });
-
+   
+   this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Home Page Disclosure (Mobile)');
   }
 
 

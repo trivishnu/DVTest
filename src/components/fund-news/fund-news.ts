@@ -10,11 +10,13 @@ import { SectorSpdrService } from '../../providers/SectorSpdrAPI';
 export class FundNewsComponent {
 
   @Input() symbol: string;
+  generalDisclaimer: string;
 
   constructor(private sectorSpdrService: SectorSpdrService) {
   }
 
   ngOnInit() {
+	this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Home Page Disclosure (Mobile)');
 
   }
 

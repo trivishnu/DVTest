@@ -26,9 +26,17 @@ export class FundSnapshotComponent {
   last: number;
   sectorColor: string;
   retry: number = 0;
+   generalDisclaimer: string;
+   
 
   constructor(private sectorSpdrService: SectorSpdrService, private quoteService: QuoteService) {
   }
+
+   ngOnInit() {
+	    this.generalDisclaimer = this.sectorSpdrService.getDisclaimerCotent('Home Page Disclosure (Mobile)');
+       
+   }
+  
 
   ngOnChanges() {
     this.requestData();

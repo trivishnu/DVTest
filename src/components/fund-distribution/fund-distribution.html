@@ -1,3 +1,4 @@
+<ion-scroll scrollY="true">
 <div padding style="background-color: #383F49;">
   <button ion-button *ngIf="dividendScheduleDocument" (click)='documentSelected(dividendScheduleDocument);' color="dark">
     {{dividendScheduleDocument.title}}
@@ -43,3 +44,8 @@
     </ion-list>
   </div>
 </div>
+
+<div  [innerHTML]="additionalDisclaimer" class='disclaimer' padding></div>
+	<hr>
+ <div  [innerHTML]="generalDisclaimer" class='disclaimer' padding></div>
+</ion-scroll>
