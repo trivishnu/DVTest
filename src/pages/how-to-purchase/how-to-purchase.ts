@@ -13,9 +13,8 @@ export class HowToPurchasePage {
   symbol: string;
   sectorName: string;
   generalDisclaimer: string;
-  changedDisclaimer:any;
-  str:string;
-  
+  changedDisclaimer:string;
+    
   constructor(private sectorSpdrService: SectorSpdrService, public navCtrl: NavController, public navParams: NavParams) {
     this.symbol=navParams.get("sectorsymbol");
     this.sectorName=navParams.get("sectorname");
@@ -23,18 +22,15 @@ export class HowToPurchasePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HowToPurchasePage');
-    console.log(this.sectorName);
-    console.log(this.symbol);
-    this.changedDisclaimer= document.getElementsByClassName("disclaimer")[0].innerHTML;
-    this.str=this.changedDisclaimer.replace('{sectorname}',this.sectorName);
-
-  }
+    }
 
   ngOnInit() {
       this.sectorSpdrService.getDisclaimerContent('How To Purchase (Mobile)')
       .subscribe(resp => {
         this.generalDisclaimer = resp;
         });
+        this.changedDisclaimer=this.generalDisclaimer.replace('{sectorname}',this.sectorName);
+        this.changedDisclaimer=this.changedDisclaimer.replace('{sectorsymbol}',this.symbol);
 
   }
 
