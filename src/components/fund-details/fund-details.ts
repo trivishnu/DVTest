@@ -61,11 +61,11 @@ export class FundDetailsComponent {
 
   howToPurchase() {
     this.navCtrl.push(HowToPurchasePage,
-    {
-      sectorsymbol: this.symbol,
-      sectorname:this.sectorName
-    });
-    
+      {
+        sectorSymbol: this.symbol,
+        sectorName: this.sectorName
+      });
+
   }
 
 }

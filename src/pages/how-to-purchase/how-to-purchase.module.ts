@@ -11,3 +11,4 @@ import { HowToPurchasePage } from './how-to-purchase';
   ],
 })
 export class HowToPurchasePageModule {}
+
